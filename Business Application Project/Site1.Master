@@ -12,8 +12,8 @@
     <form id="form1" runat="server">
         <div>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-                
                 <h1>Hello World</h1>
+                <span>Sometimes things don't go as planned</span>
             </asp:ContentPlaceHolder>
         </div>
     </form>
