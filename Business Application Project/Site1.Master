@@ -16,6 +16,10 @@
                 <span>Sometimes things don't go as planned</span>
             </asp:ContentPlaceHolder>
         </div>
+        <div>
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
     </form>
 </body>
 </html>
