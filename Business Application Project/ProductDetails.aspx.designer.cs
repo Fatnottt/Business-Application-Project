@@ -11,61 +11,61 @@ namespace Business_Application_Project
 {
 
 
-    public partial class Delete
+    public partial class ProductDetails
     {
 
         /// <summary>
-        /// Id control.
+        /// img_Product control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Id;
+        protected global::System.Web.UI.WebControls.Image img_Product;
 
         /// <summary>
-        /// Name control.
+        /// lbl_ProdName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Name;
+        protected global::System.Web.UI.WebControls.Label lbl_ProdName;
 
         /// <summary>
-        /// Price control.
+        /// lbl_ProdID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Price;
+        protected global::System.Web.UI.WebControls.Label lbl_ProdID;
 
         /// <summary>
-        /// Category control.
+        /// lbl_ProdDesc control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Category;
+        protected global::System.Web.UI.WebControls.Label lbl_ProdDesc;
 
         /// <summary>
-        /// Description control.
+        /// lbl_Price control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Description;
+        protected global::System.Web.UI.WebControls.Label lbl_Price;
 
         /// <summary>
-        /// DeleteButton control.
+        /// btn_Add control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button DeleteButton;
+        protected global::System.Web.UI.WebControls.Button btn_Add;
     }
 }
