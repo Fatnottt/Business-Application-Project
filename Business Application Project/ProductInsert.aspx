@@ -55,15 +55,6 @@
                 <asp:CompareValidator ID="cv_UnitPrice" runat="server" ControlToValidate="tb_UnitPrice" ErrorMessage="Only Numeric value is allowed" ForeColor="Red" Operator="DataTypeCheck" Type="Double"></asp:CompareValidator>
             </td>
         </tr>
-        <%--<tr>
-            <td>Product Name</td>
-            <td>
-                <asp:TextBox ID="tb_ProductName" runat="server"></asp:TextBox>
-            </td>
-            <td>
-                <asp:RequiredFieldValidator ID="rfv_ProductName" runat="server" ControlToValidate="tb_ProductName" ErrorMessage="Please enter a name for the product." ForeColor="Red"></asp:RequiredFieldValidator>
-            </td>
-        </tr>--%>
         <tr>
             <td>Product Desc</td>
             <td>
@@ -73,16 +64,6 @@
                 <asp:RequiredFieldValidator ID="rfv_ProductDesc" runat="server" ControlToValidate="tb_ProductDesc" ErrorMessage="Please enter a description for the product." ForeColor="Red"></asp:RequiredFieldValidator>
             </td>
         </tr>
-        <%--<tr>
-            <td>Stock Level</td>
-            <td>
-                <asp:TextBox ID="tb_StockLevel" runat="server"></asp:TextBox>
-            </td>
-            <td>
-                <asp:RequiredFieldValidator ID="rfv_StockLevel" runat="server" ControlToValidate="tb_StockLevel" ErrorMessage="Please enter a value for the Stock Level" ForeColor="Red"></asp:RequiredFieldValidator>
-                <asp:CompareValidator ID="cv_StockLevel" runat="server" ControlToValidate="tb_StockLevel" ErrorMessage="Only Numeric Integer is allowed" ForeColor="Red" Operator="DataTypeCheck" Type="Integer"></asp:CompareValidator>
-            </td>
-        </tr>--%>
         <tr>
             <td>Address</td>
             <td>

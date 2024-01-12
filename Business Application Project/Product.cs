@@ -15,15 +15,13 @@ namespace Business_Application_Project
         //System.Configuration.ConnectionStringSettings _connStr;
         string _connStr = ConfigurationManager.ConnectionStrings["DatabaseContext"].ConnectionString;
         private string _prodID = null;
-        //private string _prodName = string.Empty;
-        private string _prodDesc = ""; // this is another way to specify empty string
-        private decimal _unitPrice = 0;
-        private string _prodImage = "";
-        //private int _stockLevel = 0;
-        private string _category = "";
         private string _brand = "";
         private string _model = "";
+        private string _category = "";
+        private decimal _unitPrice = 0;
+        private string _prodDesc = "";
         private string _address = "";
+        private string _prodImage = "";
 
         // Default constructor
         public Product()
@@ -31,31 +29,29 @@ namespace Business_Application_Project
         }
 
         // Constructor that take in all data required to build a Product object
-        public Product(string prodID, string prodDesc,
-                       decimal unitPrice, string prodImage, string category, string brand, string model, string address)
+        public Product(string prodID, string brand, string model, string category, 
+                       decimal unitPrice, string prodDesc, string address, string prodImage)
         {
             _prodID = prodID;
-            //_prodName = prodName;
-            _prodDesc = prodDesc;
-            _unitPrice = unitPrice;
-            _prodImage = prodImage;
-            //_stockLevel = stockLevel;
-            _category = category;
             _brand = brand;
             _model = model;
+            _category = category;
+            _unitPrice = unitPrice;
+            _prodDesc = prodDesc;
             _address = address;
+            _prodImage = prodImage;
         }
 
         // Constructor that take in all except product ID
-        public Product(string prodDesc,
-               decimal unitPrice, string prodImage, string category, string brand, string model, string address)
-            : this(null, prodDesc, unitPrice, prodImage, category, brand, model, address)
-        {
+        public Product(string brand, string model, string category,
+               decimal unitPrice, string prodDesc, string address, string prodImage)
+            : this(null, brand, model, category, unitPrice, prodDesc, address, prodImage)
+        {   
         }
 
         // Constructor that take in only Product ID. The other attributes will be set to 0 or empty.
         public Product(string prodID)
-            : this(prodID, "", 0, "", "", "", "", "")
+            : this(prodID, "", "", "", 0, "", "", "")
         {
         }
 
@@ -67,11 +63,6 @@ namespace Business_Application_Project
             get { return _prodID; }
             set { _prodID = value; }
         }
-        //public string Product_Name
-        //{
-        //    get { return _prodName; }
-        //    set { _prodName = value; }
-        //}
         public string Product_Desc
         {
             get { return _prodDesc; }
@@ -87,12 +78,6 @@ namespace Business_Application_Project
             get { return _prodImage; }
             set { _prodImage = value; }
         }
-        //public int Stock_Level
-        //{
-        //    get { return _stockLevel; }
-        //    set { _stockLevel = value; }
-        //}
-
         public string Category
         {
             get { return _category; }
@@ -137,17 +122,15 @@ namespace Business_Application_Project
 
                         if (dr.Read())
                         {
-                            //string prod_Name = dr["Product_Name"].ToString();
-                            string prod_Desc = dr["Product_Desc"].ToString();
-                            string Prod_Image = dr["Product_Image"].ToString();
-                            decimal unit_Price = decimal.Parse(dr["Unit_Price"].ToString());
-                            //int stock_Level = int.Parse(dr["Stock_Level"].ToString());
-                            string category = dr["Category"].ToString();
                             string brand = dr["Brand"].ToString();
                             string model = dr["Model"].ToString();
+                            string category = dr["Category"].ToString();
+                            decimal unit_Price = decimal.Parse(dr["Unit_Price"].ToString());
+                            string prod_Desc = dr["Product_Desc"].ToString();
                             string address = dr["Address"].ToString();
+                            string Prod_Image = dr["Product_Image"].ToString();
 
-                            prodDetail = new Product(prodID, /*prod_Name,*/ prod_Desc, unit_Price, Prod_Image, /*stock_Level,*/ brand, model, address, category);
+                            prodDetail = new Product(prodID, brand, model, category, unit_Price, prod_Desc, address, Prod_Image);
                         }
                         else
                         {
@@ -193,16 +176,14 @@ namespace Business_Application_Project
                         while (dr.Read())
                         {
                             string prod_ID = dr["Product_ID"].ToString();
-                            //string prod_Name = dr["Product_Name"].ToString();
-                            string prod_Desc = dr["Product_Desc"].ToString();
-                            string Prod_Image = dr["Product_Image"].ToString();
-                            decimal unit_Price = decimal.Parse(dr["Unit_Price"].ToString());
-                            //int stock_Level = int.Parse(dr["Stock_Level"].ToString());
-                            string category = dr["Category"].ToString();
                             string brand = dr["Brand"].ToString();
                             string model = dr["Model"].ToString();
+                            string category = dr["Category"].ToString();
+                            decimal unit_Price = decimal.Parse(dr["Unit_Price"].ToString());
+                            string prod_Desc = dr["Product_Desc"].ToString();
+                            string Prod_Image = dr["Product_Image"].ToString();
                             string address = dr["Address"].ToString();
-                            Product a = new Product(prod_ID, /*prod_Name,*/ prod_Desc, unit_Price, Prod_Image, /*stock_Level*/ category, brand, model, address);
+                            Product a = new Product(prod_ID, brand, model, category, unit_Price, prod_Desc, address, Prod_Image);
                             prodList.Add(a);
                         }
                     }
@@ -232,24 +213,21 @@ namespace Business_Application_Project
 
             try
             {
-                string queryStr = "INSERT INTO Products(Product_ID,Product_Name, Product_Desc, Unit_Price,Product_Image,Stock_Level,Category, Brand, Model, Address)"
-                  + " values (@Product_ID,@Product_Name, @Product_Desc, @Unit_Price, @Product_Image,@Stock_Level,@Category, @Brand, @Model, @Address)";
-                //+ "values (@Product_ID, @Product_Name, @Product_Desc, @Unit_Price, @Product_Image,@Stock_Level)";
+                string queryStr = "INSERT INTO Products(Product_ID, Brand, Model, Category, Unit_Price, Product_Desc, Address, Product_Image)"
+                  + " values (@Product_ID, @Brand, @Model, @Category, @Unit_Price, @Product_Desc, @Address, @Product_Image)";
 
                 using (SqlConnection conn = new SqlConnection(_connStr))
                 {
                     using (SqlCommand cmd = new SqlCommand(queryStr, conn))
                     {
                         cmd.Parameters.AddWithValue("@Product_ID", this.Product_ID);
-                        //cmd.Parameters.AddWithValue("@Product_Name", this.Product_Name);
-                        cmd.Parameters.AddWithValue("@Product_Desc", this.Product_Desc);
-                        cmd.Parameters.AddWithValue("@Unit_Price", this.Unit_Price);
-                        cmd.Parameters.AddWithValue("@Product_Image", this.Product_Image);
-                        //cmd.Parameters.AddWithValue("@Stock_Level", this.Stock_Level);
-                        cmd.Parameters.AddWithValue("@Category", this.Category);
                         cmd.Parameters.AddWithValue("@Brand", this.Brand);
                         cmd.Parameters.AddWithValue("@Model", this.Model);
+                        cmd.Parameters.AddWithValue("@Category", this.Category);
+                        cmd.Parameters.AddWithValue("@Unit_Price", this.Unit_Price);
+                        cmd.Parameters.AddWithValue("@Product_Desc", this.Product_Desc);
                         cmd.Parameters.AddWithValue("@Address", this.Address);
+                        cmd.Parameters.AddWithValue("@Product_Image", this.Product_Image);
 
                         conn.Open();
                         result += cmd.ExecuteNonQuery(); // Returns no. of rows affected. Must be > 0

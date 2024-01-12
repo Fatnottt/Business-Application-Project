@@ -28,8 +28,8 @@ namespace Business_Application_Project
             }
 
 
-            Product prod = new Product(tb_ProductID.Text, tb_ProductDesc.Text,
-                decimal.Parse(tb_UnitPrice.Text), FileUpload1.FileName, tb_Category.Text, tb_Brand.Text, tb_Address.Text, tb_Model.Text);
+            Product prod = new Product(tb_ProductID.Text, tb_Brand.Text, tb_Model.Text,
+                tb_Category.Text, decimal.Parse(tb_UnitPrice.Text), tb_ProductDesc.Text, tb_Address.Text, FileUpload1.FileName);
             result = prod.ProductInsert();
 
             if (result > 0)
