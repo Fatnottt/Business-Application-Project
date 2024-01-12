@@ -19,6 +19,43 @@
             </td>
         </tr>
         <tr>
+            <td>Brand</td>
+            <td>
+                <asp:TextBox ID="tb_Brand" runat="server"></asp:TextBox>
+            </td>
+            <td>
+                <asp:RequiredFieldValidator ID="rfv_Brand" runat="server" ControlToValidate="tb_Brand" ErrorMessage="Please enter a brand for your bicycle." ForeColor="Red"></asp:RequiredFieldValidator>
+            </td>
+        </tr>
+        <tr>
+            <td>Model</td>
+            <td>
+                <asp:TextBox ID="tb_Model" runat="server"></asp:TextBox>
+            </td>
+            <td>
+                <asp:RequiredFieldValidator ID="rfv_Model" runat="server" ControlToValidate="tb_Model" ErrorMessage="Please enter a model for your bicycle." ForeColor="Red"></asp:RequiredFieldValidator>
+            </td>
+        </tr>
+        <tr>
+            <td>Category</td>
+            <td>
+                <asp:TextBox ID="tb_Category" runat="server"></asp:TextBox>
+            </td>
+            <td>
+                <asp:RequiredFieldValidator ID="rfv_Category" runat="server" ControlToValidate="tb_Category" ErrorMessage="Please enter a category for your bicycle." ForeColor="Red"></asp:RequiredFieldValidator>
+            </td>
+        </tr>
+        <tr>
+            <td class="auto-style3">Price</td>
+            <td class="auto-style3">
+                <asp:TextBox ID="tb_UnitPrice" runat="server"></asp:TextBox>
+            </td>
+            <td class="auto-style3">
+                <asp:RequiredFieldValidator ID="rfv_UnitPrice" runat="server" ControlToValidate="tb_UnitPrice" ErrorMessage="Please enter a Unit Price for the product." ForeColor="Red"></asp:RequiredFieldValidator>
+                <asp:CompareValidator ID="cv_UnitPrice" runat="server" ControlToValidate="tb_UnitPrice" ErrorMessage="Only Numeric value is allowed" ForeColor="Red" Operator="DataTypeCheck" Type="Double"></asp:CompareValidator>
+            </td>
+        </tr>
+        <%--<tr>
             <td>Product Name</td>
             <td>
                 <asp:TextBox ID="tb_ProductName" runat="server"></asp:TextBox>
@@ -26,7 +63,7 @@
             <td>
                 <asp:RequiredFieldValidator ID="rfv_ProductName" runat="server" ControlToValidate="tb_ProductName" ErrorMessage="Please enter a name for the product." ForeColor="Red"></asp:RequiredFieldValidator>
             </td>
-        </tr>
+        </tr>--%>
         <tr>
             <td>Product Desc</td>
             <td>
@@ -36,17 +73,7 @@
                 <asp:RequiredFieldValidator ID="rfv_ProductDesc" runat="server" ControlToValidate="tb_ProductDesc" ErrorMessage="Please enter a description for the product." ForeColor="Red"></asp:RequiredFieldValidator>
             </td>
         </tr>
-        <tr>
-            <td class="auto-style3">Unit Price</td>
-            <td class="auto-style3">
-                <asp:TextBox ID="tb_UnitPrice" runat="server"></asp:TextBox>
-            </td>
-            <td class="auto-style3">
-                <asp:RequiredFieldValidator ID="rfv_UnitPrice" runat="server" ControlToValidate="tb_UnitPrice" ErrorMessage="Please enter a Unit Price for the product." ForeColor="Red"></asp:RequiredFieldValidator>
-                <asp:CompareValidator ID="cv_UnitPrice" runat="server" ControlToValidate="tb_UnitPrice" ErrorMessage="Only Numeric value is allowed" ForeColor="Red" Operator="DataTypeCheck" Type="Double"></asp:CompareValidator>
-            </td>
-        </tr>
-        <tr>
+        <%--<tr>
             <td>Stock Level</td>
             <td>
                 <asp:TextBox ID="tb_StockLevel" runat="server"></asp:TextBox>
@@ -54,6 +81,15 @@
             <td>
                 <asp:RequiredFieldValidator ID="rfv_StockLevel" runat="server" ControlToValidate="tb_StockLevel" ErrorMessage="Please enter a value for the Stock Level" ForeColor="Red"></asp:RequiredFieldValidator>
                 <asp:CompareValidator ID="cv_StockLevel" runat="server" ControlToValidate="tb_StockLevel" ErrorMessage="Only Numeric Integer is allowed" ForeColor="Red" Operator="DataTypeCheck" Type="Integer"></asp:CompareValidator>
+            </td>
+        </tr>--%>
+        <tr>
+            <td>Address</td>
+            <td>
+                <asp:TextBox ID="tb_Address" runat="server" Rows="5" TextMode="MultiLine"></asp:TextBox>
+            </td>
+            <td>
+                <asp:RequiredFieldValidator ID="rfv_Address" runat="server" ControlToValidate="tb_Address" ErrorMessage="Please enter the address of your bicycle." ForeColor="Red"></asp:RequiredFieldValidator>
             </td>
         </tr>
         <tr>

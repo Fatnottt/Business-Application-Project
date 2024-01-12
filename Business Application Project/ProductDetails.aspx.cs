@@ -17,12 +17,21 @@ namespace Business_Application_Project
             string prodID = Request.QueryString["ProdID"].ToString();
             prod = aProd.getProduct(prodID);
 
-            lbl_ProdName.Text = prod.Product_Name;
+            //lbl_ProdName.Text = prod.Product_Name;
             lbl_ProdDesc.Text = prod.Product_Desc;
             lbl_Price.Text = prod.Unit_Price.ToString("c");
             img_Product.ImageUrl = "~\\Images\\" + prod.Product_Image;
+            lbl_Category.Text = prod.Category;
+            lbl_Brand.Text = prod.Brand;
+            lbl_Model.Text = prod.Model;
+            lbl_Address.Text = prod.Address;
 
-            lbl_ProdID.Text = prodID.ToString();
+            //lbl_ProdID.Text = prodID.ToString();
+
+        }
+
+        protected void btn_Add_Click(object sender, EventArgs e)
+        {
 
         }
     }

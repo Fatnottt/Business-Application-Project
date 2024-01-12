@@ -33,40 +33,58 @@ namespace Business_Application_Project
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_ProductID;
 
         /// <summary>
-        /// tb_ProductName control.
+        /// tb_Brand control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tb_ProductName;
+        protected global::System.Web.UI.WebControls.TextBox tb_Brand;
 
         /// <summary>
-        /// rfv_ProductName control.
+        /// rfv_Brand control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_ProductName;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_Brand;
 
         /// <summary>
-        /// tb_ProductDesc control.
+        /// tb_Model control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tb_ProductDesc;
+        protected global::System.Web.UI.WebControls.TextBox tb_Model;
 
         /// <summary>
-        /// rfv_ProductDesc control.
+        /// rfv_Model control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_ProductDesc;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_Model;
+
+        /// <summary>
+        /// tb_Category control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tb_Category;
+
+        /// <summary>
+        /// rfv_Category control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_Category;
 
         /// <summary>
         /// tb_UnitPrice control.
@@ -96,31 +114,40 @@ namespace Business_Application_Project
         protected global::System.Web.UI.WebControls.CompareValidator cv_UnitPrice;
 
         /// <summary>
-        /// tb_StockLevel control.
+        /// tb_ProductDesc control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tb_StockLevel;
+        protected global::System.Web.UI.WebControls.TextBox tb_ProductDesc;
 
         /// <summary>
-        /// rfv_StockLevel control.
+        /// rfv_ProductDesc control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_StockLevel;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_ProductDesc;
 
         /// <summary>
-        /// cv_StockLevel control.
+        /// tb_Address control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CompareValidator cv_StockLevel;
+        protected global::System.Web.UI.WebControls.TextBox tb_Address;
+
+        /// <summary>
+        /// rfv_Address control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_Address;
 
         /// <summary>
         /// FileUpload1 control.

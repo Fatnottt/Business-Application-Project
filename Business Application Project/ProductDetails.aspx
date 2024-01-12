@@ -16,10 +16,11 @@
             </td>
             <td>
                 <strong>
-                    <asp:Label ID="lbl_ProdName" runat="server"></asp:Label>
-                    (</strong><asp:Label ID="lbl_ProdID" runat="server"></asp:Label>
-                <strong>)<br />
+                    <asp:Label ID="lbl_Brand" runat="server"></asp:Label>
                 </strong>
+                <asp:Label ID="lbl_Model" runat="server"></asp:Label><br />
+                <asp:Label ID="lbl_Category" runat="server"></asp:Label><br />
+                <asp:Label ID="lbl_Address" runat="server"></asp:Label><br />
                 <asp:Label ID="lbl_ProdDesc" runat="server"></asp:Label>
             </td>
         </tr>

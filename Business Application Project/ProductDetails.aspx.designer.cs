@@ -24,22 +24,40 @@ namespace Business_Application_Project
         protected global::System.Web.UI.WebControls.Image img_Product;
 
         /// <summary>
-        /// lbl_ProdName control.
+        /// lbl_Brand control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_ProdName;
+        protected global::System.Web.UI.WebControls.Label lbl_Brand;
 
         /// <summary>
-        /// lbl_ProdID control.
+        /// lbl_Model control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_ProdID;
+        protected global::System.Web.UI.WebControls.Label lbl_Model;
+
+        /// <summary>
+        /// lbl_Category control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Category;
+
+        /// <summary>
+        /// lbl_Address control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Address;
 
         /// <summary>
         /// lbl_ProdDesc control.

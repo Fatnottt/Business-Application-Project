@@ -5,8 +5,12 @@
     <asp:GridView ID="gvProduct" runat="server" AutoGenerateColumns="False" OnSelectedIndexChanged="gvProduct_SelectedIndexChanged" DataKeyNames="Product_ID" OnRowCancelingEdit="gvProduct_RowCancelingEdit" OnRowDeleting="gvProduct_RowDeleting" OnRowEditing="gvProduct_RowEditing" OnRowUpdating="gvProduct_RowUpdating">
         <Columns>
             <asp:BoundField DataField="Product_ID" HeaderText="Product ID" />
-            <asp:BoundField DataField="Product_Name" HeaderText="Product Name" />
+            <%--<asp:BoundField DataField="Product_Name" HeaderText="Product Name" />--%>
             <asp:BoundField DataField="Unit_Price" HeaderText="Unit Price" />
+            <asp:BoundField DataField="Category" HeaderText="Category" />
+            <asp:BoundField DataField="Brand" HeaderText="Brand" />
+            <asp:BoundField DataField="Model" HeaderText="Model" />
+            <asp:BoundField DataField="Address" HeaderText="Address" />
             <asp:CommandField ShowSelectButton="True" ShowDeleteButton="True" ShowEditButton="True" />
         </Columns>
     </asp:GridView>

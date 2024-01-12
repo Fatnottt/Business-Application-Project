@@ -79,10 +79,14 @@ namespace Business_Application_Project
             GridViewRow row = (GridViewRow)gvProduct.Rows[e.RowIndex];
             string id = gvProduct.DataKeys[e.RowIndex].Value.ToString();
             string tid = ((TextBox)row.Cells[0].Controls[0]).Text;
-            string tname = ((TextBox)row.Cells[1].Controls[0]).Text;
-            string tprice = ((TextBox)row.Cells[2].Controls[0]).Text;
+            //string tname = ((TextBox)row.Cells[1].Controls[0]).Text;
+            string tprice = ((TextBox)row.Cells[1].Controls[0]).Text;
+            string tcategory = ((TextBox)row.Cells[2].Controls[0]).Text;
+            string tbrand = ((TextBox)row.Cells[3].Controls[0]).Text;
+            string tmodel = ((TextBox)row.Cells[4].Controls[0]).Text;
+            string taddress = ((TextBox)row.Cells[5].Controls[0]).Text;
 
-            result = prod.ProductUpdate(tid, tname, decimal.Parse(tprice));
+            result = prod.ProductUpdate(tid, decimal.Parse(tprice), tcategory, tbrand, tmodel, taddress);
             if (result > 0)
             {
                 Response.Write("<script>alert('Product updated successfully');</script>");
