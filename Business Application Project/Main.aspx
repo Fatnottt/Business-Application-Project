@@ -78,10 +78,10 @@
                         <li><a href="#portfolio">Portfolio</a></li>
                         <li><a href="#team">Team</a></li>
                         <li><a href="blog.html">Blog</a></li>
-                        <li class="dropdown"><a href="#"><span>Sign Up</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+                        <li class="dropdown" id="SignUpLink" runat="server"><a href="#"><span>Sign Up</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
                             <ul>
-                                <li><a href="#">Sign Up</a></li>
-                                <li><a href="#">Log In</a></li>
+                                <li><a href="SignUp.aspx">Sign Up</a></li>
+                                <li><a href="Login.aspx">Login</a></li>
                             </ul>
                         </li>
                         <li><a href="#contact">Contact</a></li>
@@ -1375,6 +1375,7 @@
         </footer>
         <!-- End Footer -->
         <!-- End Footer -->
+        <asp:Label ID="UserInfoLabel" runat="server" Text=""></asp:Label>
 
         <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
