@@ -13,7 +13,7 @@ namespace Business_Application_Project
         //Private string _connStr = Properties.Settings.Default.DBConnStr;
 
         //System.Configuration.ConnectionStringSettings _connStr;
-        string _connStr = ConfigurationManager.ConnectionStrings["DatabaseContext"].ConnectionString;
+        string _connStr = ConfigurationManager.ConnectionStrings["BikieDB"].ConnectionString;
         private string _prodID = null;
         private string _brand = "";
         private string _model = "";
