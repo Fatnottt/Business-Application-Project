@@ -161,14 +161,14 @@ namespace Business_Application_Project
 
             try
             {
-                string queryStr = "INSERT INTO Reviews(Product ID, Rating, Comment)"
+                string queryStr = "INSERT INTO Reviews([Product ID], Rating, Comment)"
                   + " values (@Product_ID, @Rating, @Comment)";
 
                 using (SqlConnection conn = new SqlConnection(_connStr))
                 {
                     using (SqlCommand cmd = new SqlCommand(queryStr, conn))
                     {
-                        cmd.Parameters.AddWithValue("@Product ID", this.Product_ID);
+                        cmd.Parameters.AddWithValue("@Product_ID", this.Product_ID);
                         cmd.Parameters.AddWithValue("@Rating", this.Rating);
                         cmd.Parameters.AddWithValue("@Comment", this.Reviews);
 
@@ -201,7 +201,7 @@ namespace Business_Application_Project
             int nofRow = 0;
             string queryStr = "UPDATE Reviews SET" +
                               " Rating = @Rating, " +
-                              " Reviews = @Comment, " +
+                              " Comment = @Comment " +
                               " WHERE Product_ID = @productID";
             try
             {

@@ -28,6 +28,7 @@ namespace Business_Application_Project
         protected void gvHistory_RowEditing(object sender, GridViewEditEventArgs e)
         {
             gvHistory.EditIndex = e.NewEditIndex;
+            // gvHistory.SelectedIndex = e.NewEditIndex;
             bindReviews();
         }
 
@@ -38,7 +39,8 @@ namespace Business_Application_Project
             GridViewRow row = (GridViewRow)gvHistory.Rows[e.RowIndex];
             string id = gvHistory.DataKeys[e.RowIndex].Value.ToString();
             string tid = ((TextBox)row.Cells[0].Controls[0]).Text;
-            string trating = ((TextBox)row.Cells[1].Controls[0]).Text;
+            string trating = ((RadioButtonList)row.FindControl("rblEditRating")).SelectedItem.Text;
+            //string trating = ((TextBox)row.Cells[1].Controls[0]).Text;
             string treview = ((TextBox)row.Cells[2].Controls[0]).Text;
 
 
@@ -58,10 +60,45 @@ namespace Business_Application_Project
 
         }
 
+        //// example:
+        //protected void gvHistory_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        //{
+        //    int result = 0;
+        //    Review review = new Review();
+        //    GridViewRow row = gvHistory.Rows[e.RowIndex];
+        //    string id = gvHistory.DataKeys[e.RowIndex].Value.ToString();
+        //    string tid = ((Label)row.FindControl("lblProductID")).Text;
+        //    string trating = ((RadioButtonList)row.FindControl("rblEditRating"))?.SelectedItem?.Text;
+        //    string treview = ((TextBox)row.FindControl("tbEditReview")).Text;
+
+        //    if (trating != null)
+        //    {
+        //        result = review.ReviewUpdate(tid, trating, treview);
+
+        //        if (result > 0)
+        //        {
+        //            Response.Write("<script>alert('Review updated successfully!');</script>");
+        //        }
+        //        else
+        //        {
+        //            Response.Write("<script>alert('Review NOT updated');</script>");
+        //        }
+        //    }
+        //    else
+        //    {
+        //        Response.Write("<script>alert('Please select a rating');</script>");
+        //    }
+
+        //    gvHistory.EditIndex = -1;
+        //    bindReviews();
+        //}
+
+
         protected void gvHistory_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
             gvHistory.EditIndex = -1;
             bindReviews();
         }
+
     }
 }

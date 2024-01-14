@@ -11,7 +11,6 @@ namespace Business_Application_Project
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
         }
 
         protected void btn_Submit_Click(object sender, EventArgs e)
