@@ -28,7 +28,6 @@ namespace Business_Application_Project
         protected void gvHistory_RowEditing(object sender, GridViewEditEventArgs e)
         {
             gvHistory.EditIndex = e.NewEditIndex;
-            // gvHistory.SelectedIndex = e.NewEditIndex;
             bindReviews();
         }
 
@@ -38,10 +37,15 @@ namespace Business_Application_Project
             Review review = new Review();
             GridViewRow row = (GridViewRow)gvHistory.Rows[e.RowIndex];
             string id = gvHistory.DataKeys[e.RowIndex].Value.ToString();
-            string tid = ((TextBox)row.Cells[0].Controls[0]).Text;
+
+            // Update this line to use the correct control ID for Product_ID
+            string tid = ((TextBox)row.FindControl("txtProductID")).Text;
+
+            // Update this line to use the correct control ID for the RadioButtonList
             string trating = ((RadioButtonList)row.FindControl("rblEditRating")).SelectedItem.Text;
-            //string trating = ((TextBox)row.Cells[1].Controls[0]).Text;
-            string treview = ((TextBox)row.Cells[2].Controls[0]).Text;
+
+            // Update this line to use the correct control ID for the TextBox
+            string treview = ((TextBox)row.FindControl("txtEditReview")).Text;
 
 
             result = review.ReviewUpdate(tid, trating, treview);
@@ -57,42 +61,7 @@ namespace Business_Application_Project
 
             gvHistory.EditIndex = -1;
             bindReviews();
-
         }
-
-        //// example:
-        //protected void gvHistory_RowUpdating(object sender, GridViewUpdateEventArgs e)
-        //{
-        //    int result = 0;
-        //    Review review = new Review();
-        //    GridViewRow row = gvHistory.Rows[e.RowIndex];
-        //    string id = gvHistory.DataKeys[e.RowIndex].Value.ToString();
-        //    string tid = ((Label)row.FindControl("lblProductID")).Text;
-        //    string trating = ((RadioButtonList)row.FindControl("rblEditRating"))?.SelectedItem?.Text;
-        //    string treview = ((TextBox)row.FindControl("tbEditReview")).Text;
-
-        //    if (trating != null)
-        //    {
-        //        result = review.ReviewUpdate(tid, trating, treview);
-
-        //        if (result > 0)
-        //        {
-        //            Response.Write("<script>alert('Review updated successfully!');</script>");
-        //        }
-        //        else
-        //        {
-        //            Response.Write("<script>alert('Review NOT updated');</script>");
-        //        }
-        //    }
-        //    else
-        //    {
-        //        Response.Write("<script>alert('Please select a rating');</script>");
-        //    }
-
-        //    gvHistory.EditIndex = -1;
-        //    bindReviews();
-        //}
-
 
         protected void gvHistory_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
@@ -100,5 +69,9 @@ namespace Business_Application_Project
             bindReviews();
         }
 
+        protected void btn_Back_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("InsertReview.aspx");
+        }
     }
 }

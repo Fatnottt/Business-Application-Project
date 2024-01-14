@@ -12,8 +12,9 @@ namespace Business_Application_Project
     {
         private static string _connStr = ConfigurationManager.ConnectionStrings["BikieDB"].ConnectionString;
         private string _prodID = null;
-        private string _review = "";
         private string _rating = "";
+        private string _review = "";
+
 
         // Default constructor
         public Review()
@@ -21,16 +22,16 @@ namespace Business_Application_Project
         }
 
         // Constructor that take in all data required to build a Product object
-        public Review(string prodID, string review, string rating)
+        public Review(string prodID, string rating, string review)
         {
             _prodID = prodID;
-            _review = review;
             _rating = rating;
+            _review = review;
         }
 
         // Constructor that take in all except product ID
-        public Review(string review, string rating)
-            : this(null, review, rating)
+        public Review(string rating, string review)
+            : this(null, rating, review)
         {
         }
 
@@ -48,63 +49,17 @@ namespace Business_Application_Project
             get { return _prodID; }
             set { _prodID = value; }
         }
-        public string Reviews
-        {
-            get { return _review; }
-            set { _review = value; }
-        }
         public string Rating
         {
             get { return _rating; }
             set { _rating = value; }
         }
 
-
-
-        ////Below as the Class methods for some DB operations. 
-        //public Review getReview(string prodID)
-        //{
-        //    Review reviewDetail = null;
-        //    try
-        //    {
-        //        using (SqlConnection conn = new SqlConnection(_connStr))
-        //        {
-        //            string queryStr = "SELECT * FROM Products WHERE Product ID = @ProdID";
-        //            using (SqlCommand cmd = new SqlCommand(queryStr, conn))
-        //            {
-        //                cmd.Parameters.AddWithValue("@ProdID", prodID);
-
-        //                conn.Open();
-        //                SqlDataReader dr = cmd.ExecuteReader();
-
-        //                if (dr.Read())
-        //                {
-        //                    string Reviews = dr["Brand"].ToString();
-        //                    string Rating = dr["Model"].ToString();
-
-        //                    reviewDetail = new Review(prodID, Reviews, Rating);
-        //                }
-        //                else
-        //                {
-        //                    reviewDetail = null;
-        //                }
-        //            }
-        //        }
-        //    }
-        //    catch (SqlException ex)
-        //    {
-        //        Console.Write($"An SqlException have occurred - {ex}!");
-        //        reviewDetail = null;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.Write($"An Exception have occurred - {ex}!");
-        //        reviewDetail = null;
-        //    }
-
-
-        //    return reviewDetail;
-        //}
+        public string Reviews
+        {
+            get { return _review; }
+            set { _review = value; }
+        }
 
 
         /// <summary>
@@ -202,7 +157,8 @@ namespace Business_Application_Project
             string queryStr = "UPDATE Reviews SET" +
                               " Rating = @Rating, " +
                               " Comment = @Comment " +
-                              " WHERE Product_ID = @productID";
+                              " WHERE [Product ID] = @productID"; // Use the correct field name
+
             try
             {
                 using (SqlConnection conn = new SqlConnection(_connStr))
@@ -220,18 +176,17 @@ namespace Business_Application_Project
             }
             catch (SqlException ex)
             {
-                Console.Write($"An SqlException have occurred - {ex}!");
+                Console.Write($"An SqlException has occurred - {ex}!");
                 nofRow = -1;
             }
             catch (Exception ex)
             {
-                Console.Write($"An Exception have occurred - {ex}!");
+                Console.Write($"An Exception has occurred - {ex}!");
                 nofRow = -2;
             }
 
             return nofRow;
-
-        }//end Update
+        }
 
     }
 }

@@ -48,7 +48,7 @@
                 <asp:Button ID="btn_Submit" runat="server" Text="Submit" OnClick="btn_Submit_Click" />
             </td>
             <td>
-                 <asp:Button ID="btn_ViewReview" runat="server" Text="View Reviews" OnClick="btn_ViewReview_Click" />
+                 <asp:Button ID="btn_ViewReview" runat="server" Text="View Reviews" OnClick="btn_ViewReview_Click" CausesValidation="false" />
             </td>
             <td>&nbsp;</td>
         </tr>

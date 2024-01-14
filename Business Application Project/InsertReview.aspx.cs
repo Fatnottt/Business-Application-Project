@@ -44,7 +44,7 @@ namespace Business_Application_Project
         }
         protected void btn_ViewReview_Click(object sender, EventArgs e)
         {
-            Response.Redirect("ViewReview.aspx");
+                Response.Redirect("ViewReview.aspx");
         }
     }
     
