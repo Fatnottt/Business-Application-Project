@@ -10,7 +10,7 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h1>Review</h1>
+    <h1>Insert Review</h1>
     <table class="auto-style1">
         <tr>
             <td>Product ID</td>
