@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace Business_Application_Project
@@ -14,26 +15,26 @@ namespace Business_Application_Project
         {
             if (!IsPostBack)
             {
-                bind();
+                bindReviews();
             }
         }
-        private void bind()
+        private void bindReviews()
         {
-            List<Product> listOfProducts = product.getProductAll();
-            this.gvHistory.DataSource = listOfProducts;
+            List<Review> reviews = Review.getReviewAll();
+            this.gvHistory.DataSource = reviews;
             this.gvHistory.DataBind();
         }
 
         protected void gvHistory_RowEditing(object sender, GridViewEditEventArgs e)
         {
             gvHistory.EditIndex = e.NewEditIndex;
-            bind();
+            bindReviews();
         }
 
         protected void gvHistory_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
             int result = 0;
-            Product prod = new Product();
+            Review review = new Review();
             GridViewRow row = (GridViewRow)gvHistory.Rows[e.RowIndex];
             string id = gvHistory.DataKeys[e.RowIndex].Value.ToString();
             string tid = ((TextBox)row.Cells[0].Controls[0]).Text;
@@ -41,24 +42,26 @@ namespace Business_Application_Project
             string treview = ((TextBox)row.Cells[2].Controls[0]).Text;
 
 
-            //result = prod.ProductUpdate(tid, trating, treview);
-            //if (result > 0)
-            //{
-            //    Response.Write("<script>alert('Review updated successfully!');</script>");
-            //}
-            //else
-            //{
-            //    Response.Write("<script>alert('Review NOT updated');</script>");
-            //}
-            //gvHistory.EditIndex = -1;
-            //bind();
+            result = review.ReviewUpdate(tid, trating, treview);
+
+            if (result > 0)
+            {
+                Response.Write("<script>alert('Review updated successfully!');</script>");
+            }
+            else
+            {
+                Response.Write("<script>alert('Review NOT updated');</script>");
+            }
+
+            gvHistory.EditIndex = -1;
+            bindReviews();
 
         }
 
         protected void gvHistory_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
             gvHistory.EditIndex = -1;
-            bind();
+            bindReviews();
         }
     }
 }
