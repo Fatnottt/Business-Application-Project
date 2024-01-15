@@ -15,6 +15,15 @@ namespace Business_Application_Project
     {
 
         /// <summary>
+        /// hf_productId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hf_productId;
+
+        /// <summary>
         /// img_Product control.
         /// </summary>
         /// <remarks>
@@ -22,6 +31,15 @@ namespace Business_Application_Project
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image img_Product;
+
+        /// <summary>
+        /// lbl_ProdID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_ProdID;
 
         /// <summary>
         /// lbl_Brand control.

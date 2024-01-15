@@ -79,7 +79,6 @@ namespace Business_Application_Project
             GridViewRow row = (GridViewRow)gvProduct.Rows[e.RowIndex];
             string id = gvProduct.DataKeys[e.RowIndex].Value.ToString();
             string tid = ((TextBox)row.Cells[0].Controls[0]).Text;
-            //string tname = ((TextBox)row.Cells[1].Controls[0]).Text;
             string tprice = ((TextBox)row.Cells[1].Controls[0]).Text;
             string tcategory = ((TextBox)row.Cells[2].Controls[0]).Text;
             string tbrand = ((TextBox)row.Cells[3].Controls[0]).Text;

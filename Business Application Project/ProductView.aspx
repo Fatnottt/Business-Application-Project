@@ -1,11 +1,14 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="ProductView.aspx.cs" Inherits="Business_Application_Project.ProductView" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style type="text/css">
+        .grid-view-padding td {
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:GridView ID="gvProduct" runat="server" AutoGenerateColumns="False" OnSelectedIndexChanged="gvProduct_SelectedIndexChanged" DataKeyNames="Product_ID" OnRowCancelingEdit="gvProduct_RowCancelingEdit" OnRowDeleting="gvProduct_RowDeleting" OnRowEditing="gvProduct_RowEditing" OnRowUpdating="gvProduct_RowUpdating">
+    <asp:GridView ID="gvProduct" runat="server" AutoGenerateColumns="False" CssClass="grid-view-padding" OnSelectedIndexChanged="gvProduct_SelectedIndexChanged" DataKeyNames="Product_ID" OnRowCancelingEdit="gvProduct_RowCancelingEdit" OnRowDeleting="gvProduct_RowDeleting" OnRowEditing="gvProduct_RowEditing" OnRowUpdating="gvProduct_RowUpdating">
         <Columns>
             <asp:BoundField DataField="Product_ID" HeaderText="Product ID" />
-            <%--<asp:BoundField DataField="Product_Name" HeaderText="Product Name" />--%>
             <asp:BoundField DataField="Unit_Price" HeaderText="Unit Price" />
             <asp:BoundField DataField="Category" HeaderText="Category" />
             <asp:BoundField DataField="Brand" HeaderText="Brand" />

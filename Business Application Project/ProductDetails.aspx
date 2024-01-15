@@ -9,6 +9,7 @@
 </asp:Content>
 <asp:Content ID="ContentPlaceHolder1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h2>PRODUCT DETAILS</h2>
+    <asp:HiddenField ID="hf_productId" runat="server" /> <%--verlyn dh this--%>
     <table class="auto-style3">
         <tr>
             <td rowspan="3">
@@ -16,6 +17,7 @@
             </td>
             <td>
                 <strong>
+                    <asp:Label ID="lbl_ProdID" runat="server"></asp:Label> <%--verlyn dh this--%>
                     <asp:Label ID="lbl_Brand" runat="server"></asp:Label>
                 </strong>
                 <asp:Label ID="lbl_Model" runat="server"></asp:Label><br />
