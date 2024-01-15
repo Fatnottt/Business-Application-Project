@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="InsertReview.aspx.cs" Inherits="Business_Application_Project.InsertReview" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/WithNavbar.Master" AutoEventWireup="true" CodeBehind="InsertReview.aspx.cs" Inherits="Business_Application_Project.InsertReview" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
         .auto-style1 {
@@ -7,14 +7,21 @@
         .auto-style2 {
             height: 69px;
         }
+        .auto-style3 {
+            width: 363px;
+        }
+        .auto-style4 {
+            height: 69px;
+            width: 363px;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h1>Insert Review</h1>
+    <h1>Share Your Experience!</h1>
     <table class="auto-style1">
         <tr>
             <td>Product ID</td>
-            <td>
+            <td class="auto-style3">
                 <asp:TextBox ID="tb_Product_ID" runat="server"></asp:TextBox>
             </td>
             <td>
@@ -23,7 +30,7 @@
         </tr>
         <tr>
             <td>Rating</td>
-            <td>
+            <td class="auto-style3">
                 <asp:RadioButtonList ID="rbl_Rating" runat="server" Width="334px">
                     <asp:ListItem Value="1 - Terrible"></asp:ListItem>
                     <asp:ListItem Value="2 - Poor"></asp:ListItem>
@@ -38,7 +45,7 @@
         </tr>
         <tr>
             <td class="auto-style2">Comment</td>
-            <td class="auto-style2">
+            <td class="auto-style4">
                 <asp:TextBox ID="tb_Review" runat="server"></asp:TextBox>
             </td>
             <td class="auto-style2"></td>
@@ -47,7 +54,7 @@
             <td>
                 <asp:Button ID="btn_Submit" runat="server" Text="Submit" OnClick="btn_Submit_Click" />
             </td>
-            <td>
+            <td class="auto-style3">
                  <asp:Button ID="btn_ViewReview" runat="server" Text="View Reviews" OnClick="btn_ViewReview_Click" CausesValidation="false" />
             </td>
             <td>&nbsp;</td>
