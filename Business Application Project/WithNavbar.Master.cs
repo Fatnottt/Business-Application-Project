@@ -5,12 +5,11 @@ using System.Linq;
 using System.Threading;
 using System.Web;
 using System.Web.UI;
-using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 namespace Business_Application_Project
 {
-    public partial class Main : System.Web.UI.Page
+    public partial class WithNavbar : System.Web.UI.MasterPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -29,7 +28,7 @@ namespace Business_Application_Project
                 TextInfo textInfo = cultureInfo.TextInfo;
                 string capitalizedUserName = textInfo.ToTitleCase(currentUser.Name.ToLower());
 
-                SignUpLink.InnerHtml = "<a href=\"#\"><span>" + "Welcome, " + capitalizedUserName + "!" + "</span> <i class=\"bi bi-chevron-down dropdown-indicator\"></i></a><ul><li><a href=\"Profile.aspx\">Profile</a></li><li><a href=\"Login.aspx\">Logout</a></li></ul>";
+                SignUpLink.InnerHtml = "<a href=\"#\"><span>" + "Welcome, " + capitalizedUserName + "!" + "</span> <i class=\"bi bi-chevron-down dropdown-indicator\"></i></a><ul><li><a href=\"Profile.aspx\">Profile</a></li><li><a href=\"Logout.aspx\">Logout</a></li></ul>";
             }
             else
             {
