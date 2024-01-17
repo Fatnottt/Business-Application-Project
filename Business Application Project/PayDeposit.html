@@ -43,6 +43,8 @@
         <h1>Security Deposit Payment</h1>
         <p>Thanks for registering! To complete your registration, please pay a refundable security deposit of SGD 100.</p>
 
+        <input type="hidden" id="paypal-transaction-id" name="paypal-transaction-id">
+
         <script src="https://www.paypal.com/sdk/js?client-id=ARxHqFKYlPbhZqGUjfmGDICboj8wo0sY8bV-0y-NfgBkq2vOxoq2bTsPfi5gbAECfwkV7DX7fVcZvuZa"></script>
 
         <div id="paypal-button-container"></div>
@@ -60,6 +62,7 @@
                 },
                 onApprove: function (data, actions) {
                     return actions.order.capture().then(function (details) {
+                        saveTransactionId(details.id);
                         window.location.href = 'Main.aspx';
                     });
                 },
@@ -67,6 +70,15 @@
                     alert('Payment canceled. Please complete the transaction to proceed.');
                 }
             }).render('#paypal-button-container');
+
+            // Function to send the transaction ID to the server
+            function saveTransactionId(transactionId) {
+                // Use AJAX to send the transaction ID to the server
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "SaveTransactionId.aspx", true);
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                xhr.send("transactionId=" + transactionId);
+            }
         </script>
     </div>
 </body>

@@ -158,6 +158,7 @@
     <Content Include="ProductDetails.aspx" />
     <Content Include="ProductInsert.aspx" />
     <Content Include="ProductView.aspx" />
+    <Content Include="SaveTransactionId.aspx" />
     <Content Include="ViewReview.aspx" />
     <Content Include="Profile.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -347,6 +348,13 @@
     <Compile Include="ProperShoppingCart.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Review.cs" />
+    <Compile Include="SaveTransactionId.aspx.cs">
+      <DependentUpon>SaveTransactionId.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SaveTransactionId.aspx.designer.cs">
+      <DependentUpon>SaveTransactionId.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ViewReview.aspx.cs">
       <DependentUpon>ViewReview.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
