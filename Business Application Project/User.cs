@@ -10,7 +10,8 @@ namespace Business_Application_Project
         public string Email { get; set; }
         public string Name { get; set; }
         public string ActualPassword { get; set; }
-        
+        public string Role { get; internal set; }
+
         // Add other properties as needed (e.g., UserId, Role, etc.)
 
         // You can also add methods or additional logic related to users

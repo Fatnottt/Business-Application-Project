@@ -54,34 +54,10 @@ namespace Business_Application_Project
 
             if (Page.IsValid)
             {
-                //// Authenticate user against the database
-                //if (AuthenticateUser(email, password))
-                //{
-                //    // Create a user object (you may need to adjust this based on your User class)
-                //    User currentUser = new User { Email = email };
-
-                //    // Store user object in session
-                //    Session["CurrentUser"] = currentUser;
-
-                //    // Remember Me functionality
-                //    if (RmbMeCheckbox.Checked)
-                //    {
-                //        HttpCookie cookie = new HttpCookie("RememberMe");
-                //        cookie["Email"] = email;
-                //        cookie.Expires = DateTime.Now.AddDays(30); // Set the expiration date as needed
-                //        Response.Cookies.Add(cookie);
-                //    }
-
-                //    Response.Redirect("Main.aspx"); // Redirect to the home page or dashboard
-                //}
-                //else
-                //{
-                //    ErrorMessage.Text = "Invalid email or password.";
-                //}
-                if (AuthenticateUser(email, password, out string userName))
+                if (AuthenticateUser(email, password, out string userName, out string userRole))
                 {
                     // Create a user object
-                    User currentUser = new User { Email = email, Name = userName };
+                    User currentUser = new User { Email = email, Name = userName, Role = userRole };
 
                     // Store user object in session
                     Session["CurrentUser"] = currentUser;
@@ -94,8 +70,15 @@ namespace Business_Application_Project
                         Response.Cookies.Add(cookie);
                     }
 
-                    // Remember Me functionality...
-                    Response.Redirect("Main.aspx"); // Redirect to the home page or dashboard
+                    // Redirect based on user role
+                    if (userRole.Equals("Admin", StringComparison.OrdinalIgnoreCase))
+                    {
+                        Response.Redirect("AdminMain.aspx"); // Redirect to the admin dashboard
+                    }
+                    else
+                    {
+                        Response.Redirect("Main.aspx"); // Redirect to the user dashboard
+                    }
                 }
                 else
                 {
@@ -104,46 +87,13 @@ namespace Business_Application_Project
             }
         }
 
-        //private bool AuthenticateUser(string email, string password)
-        //{
-        //    string connectionString = ConfigurationManager.ConnectionStrings["BikieDB"].ConnectionString;
-        //    using (SqlConnection connection = new SqlConnection(connectionString))
-        //    {
-        //        connection.Open();
-        //        string query = "SELECT Email, ActualPassword, Name FROM Users WHERE Email = @Email AND ActualPassword = @Password AND Name = @Name";
-        //        using (SqlCommand command = new SqlCommand(query, connection))
-        //        {
-        //            command.Parameters.AddWithValue("@Email", email);
-        //            command.Parameters.AddWithValue("@Password", password);
-        //            command.Parameters.AddWithValue("@Name", Name);
-
-        //            SqlDataReader reader = command.ExecuteReader();
-        //            if (reader.Read())
-        //            {
-        //                // User authenticated, fetch user details
-        //                string userName = reader["Name"].ToString();
-
-        //                // Create a user object (you may need to adjust this based on your User class)
-        //                User currentUser = new User { Email = email, Name = userName };
-
-        //                // Store user object in session
-        //                Session["CurrentUser"] = currentUser;
-
-        //                return true;
-        //            }
-        //        }
-        //    }
-
-        //    return false;
-        //} 
-
-        private bool AuthenticateUser(string email, string password, out string Name)
+        private bool AuthenticateUser(string email, string password, out string userName, out string userRole)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["BikieDB"].ConnectionString;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                string query = "SELECT Email, Name FROM Users WHERE Email = @Email AND ActualPassword = @Password";
+                string query = "SELECT u.Email, u.Name, r.Role FROM Users u INNER JOIN UserRoles r ON u.Email = r.Email WHERE u.Email = @Email AND u.ActualPassword = @Password";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@Email", email);
@@ -152,10 +102,11 @@ namespace Business_Application_Project
                     SqlDataReader reader = command.ExecuteReader();
                     if (reader.Read())
                     {
-                        Name = reader["Name"].ToString();
+                        userName = reader["Name"].ToString();
+                        userRole = reader["Role"].ToString();
 
                         // Create a user object (you may need to adjust this based on your User class)
-                        User currentUser = new User { Email = email, Name = Name };
+                        User currentUser = new User { Email = email, Name = userName, Role = userRole };
 
                         // Store user object in session
                         Session["CurrentUser"] = currentUser;
@@ -164,9 +115,11 @@ namespace Business_Application_Project
                 }
             }
 
-            Name = null;
+            userName = null;
+            userRole = null;
             return false;
         }
+
 
 
         private bool IsValidEmail(string email)

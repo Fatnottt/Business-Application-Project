@@ -120,6 +120,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AdminMain.aspx" />
     <Content Include="App_Data\BikieDB.mdf" />
     <Content Include="App_Data\BikieDB_log.ldf">
       <DependentUpon>BikieDB.mdf</DependentUpon>
@@ -287,6 +288,7 @@
     <Content Include="Content\bootstrap\bootstrap-grid.scss" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="AdminNavbar.Master" />
     <None Include="Scripts\jquery-3.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.1.js" />
     <Content Include="Scripts\jquery-3.7.1.min.js" />
@@ -298,6 +300,20 @@
     <Content Include="WithNavbar.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminMain.aspx.cs">
+      <DependentUpon>AdminMain.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminMain.aspx.designer.cs">
+      <DependentUpon>AdminMain.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminNavbar.Master.cs">
+      <DependentUpon>AdminNavbar.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminNavbar.Master.designer.cs">
+      <DependentUpon>AdminNavbar.Master</DependentUpon>
+    </Compile>
     <Compile Include="EditProfile.aspx.cs">
       <DependentUpon>EditProfile.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -437,7 +453,6 @@
     <Content Include="SignUp.aspx" />
     <Content Include="ViewCart.aspx" />
     <Content Include="Web.config" />
-    <Content Include="WithNavbar.Master" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EditProfile.aspx.cs">
