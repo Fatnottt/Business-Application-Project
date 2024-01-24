@@ -161,11 +161,8 @@
     <Content Include="ProductDetails.aspx" />
     <Content Include="ProductInsert.aspx" />
     <Content Include="ProductView.aspx" />
-<<<<<<< .mine
     <Content Include="RecoverPassword.aspx" />
-=======
     <Content Include="SaveTransactionId.aspx" />
->>>>>>> .theirs
     <Content Include="ViewReview.aspx" />
     <Content Include="Profile.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
