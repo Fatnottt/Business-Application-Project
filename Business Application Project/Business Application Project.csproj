@@ -141,7 +141,10 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="EditProfile.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="ForgotPassword.aspx" />
     <Content Include="InsertReview.aspx" />
+    <Content Include="Login.aspx" />
+    <Content Include="Logout.aspx" />
     <Content Include="Main.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -154,6 +157,7 @@
     <Content Include="ProductDetails.aspx" />
     <Content Include="ProductInsert.aspx" />
     <Content Include="ProductView.aspx" />
+    <Content Include="RecoverPassword.aspx" />
     <Content Include="ViewReview.aspx" />
     <Content Include="Profile.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -296,6 +300,13 @@
     <Compile Include="EditProfile.aspx.designer.cs">
       <DependentUpon>EditProfile.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ForgotPassword.aspx.cs">
+      <DependentUpon>ForgotPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ForgotPassword.aspx.designer.cs">
+      <DependentUpon>ForgotPassword.aspx</DependentUpon>
+    </Compile>
     <Compile Include="InsertReview.aspx.cs">
       <DependentUpon>InsertReview.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -304,6 +315,20 @@
       <DependentUpon>InsertReview.aspx</DependentUpon>
     </Compile>
     <Compile Include="Constants.cs" />
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Product.cs" />
     <Compile Include="Main.aspx.cs">
       <DependentUpon>Main.aspx</DependentUpon>
@@ -342,6 +367,13 @@
     </Compile>
     <Compile Include="ProperShoppingCart.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RecoverPassword.aspx.cs">
+      <DependentUpon>RecoverPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RecoverPassword.aspx.designer.cs">
+      <DependentUpon>RecoverPassword.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Review.cs" />
     <Compile Include="ViewReview.aspx.cs">
       <DependentUpon>ViewReview.aspx</DependentUpon>

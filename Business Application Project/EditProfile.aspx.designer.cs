@@ -15,13 +15,22 @@ namespace Business_Application_Project
     {
 
         /// <summary>
-        /// asdf control.
+        /// UserEmailLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl asdf;
+        protected global::System.Web.UI.WebControls.Label UserEmailLabel;
+
+        /// <summary>
+        /// SessionInfoLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label SessionInfoLabel;
 
         /// <summary>
         /// Name control.
@@ -114,6 +123,15 @@ namespace Business_Application_Project
         protected global::System.Web.UI.WebControls.Label ErrorMessage2;
 
         /// <summary>
+        /// SuccessMessage2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label SuccessMessage2;
+
+        /// <summary>
         /// UpdateBtn control.
         /// </summary>
         /// <remarks>
@@ -166,14 +184,5 @@ namespace Business_Application_Project
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button DeleteBtn;
-
-        /// <summary>
-        /// UserInfoLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label UserInfoLabel;
     }
 }
