@@ -3,6 +3,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:Label ID="UserEmailLabel" runat="server" Text=""></asp:Label><br />
+    <asp:Label ID="SessionInfoLabel" runat="server" Text=""></asp:Label>
     <section style="background-color: #008374;">
         <div class="container rounded bg-white mt-5 mb-5">
             <div class="row">
@@ -67,10 +69,13 @@
                         </div>
 
                         <asp:Label ID="ErrorMessage2" runat="server" Text="" ForeColor="Red"></asp:Label>
+                        <asp:Label ID="SuccessMessage2" runat="server" Text="" ForeColor="Green"></asp:Label>
+
+
 
 
                         <div class="mt-5 text-center">
-                            <asp:Button ID="UpdateBtn" class="btn btn-primary profile-button" runat="server" Text="Update Password" OnClick="UpdateBtn_Click"/>
+                            <asp:Button ID="UpdateBtn" class="btn btn-primary profile-button" runat="server" Text="Update Password" OnClick="UpdateBtn_Click" />
                         </div>
                     </div>
                 </div>
@@ -98,7 +103,7 @@
 
 
                         <div class="mt-5 text-center">
-                            <asp:Button ID="DeleteBtn" class="btn btn-danger profile-button" runat="server" Text="Delete Profile" OnClick="DeleteBtn_Click"/>
+                            <asp:Button ID="DeleteBtn" class="btn btn-danger profile-button" runat="server" Text="Delete Profile" OnClick="DeleteBtn_Click" />
                         </div>
                     </div>
                 </div>

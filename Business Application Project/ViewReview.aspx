@@ -1,8 +1,8 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="ViewReview.aspx.cs" Inherits="Business_Application_Project.ReviewDetails" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/WithNavbar.Master" AutoEventWireup="true" CodeBehind="ViewReview.aspx.cs" Inherits="Business_Application_Project.ReviewDetails" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h1>Reviews</h1>
+    <h1>Your Reviews</h1>
    <asp:GridView ID="gvHistory" runat="server" AutoGenerateColumns="False" DataKeyNames="Product_ID" OnRowCancelingEdit="gvHistory_RowCancelingEdit" OnRowEditing="gvHistory_RowEditing" OnRowUpdating="gvHistory_RowUpdating" Width="100%">
         <Columns>
             <asp:TemplateField HeaderText="Product ID" SortExpression="Product_ID">

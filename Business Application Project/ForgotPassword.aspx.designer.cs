@@ -11,61 +11,52 @@ namespace Business_Application_Project
 {
 
 
-    public partial class ViewCart
+    public partial class ForgotPassword
     {
 
         /// <summary>
-        /// gv_CartView control.
+        /// lblEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gv_CartView;
+        protected global::System.Web.UI.WebControls.Label lblEmail;
 
         /// <summary>
-        /// lbl_TotalPrice control.
+        /// tbEmailId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_TotalPrice;
+        protected global::System.Web.UI.WebControls.TextBox tbEmailId;
 
         /// <summary>
-        /// lbl_Error control.
+        /// RequiredFieldValidatorEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_Error;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorEmail;
 
         /// <summary>
-        /// btn_Update control.
+        /// btPassRec control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_Update;
+        protected global::System.Web.UI.WebControls.Button btPassRec;
 
         /// <summary>
-        /// btn_Clear control.
+        /// lblPassRec control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_Clear;
-
-        /// <summary>
-        /// btn_Back control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_Back;
+        protected global::System.Web.UI.WebControls.Label lblPassRec;
     }
 }

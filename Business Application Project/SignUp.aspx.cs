@@ -22,10 +22,10 @@ namespace Business_Application_Project
         protected void Register_Click(object sender, EventArgs e)
         {
             // Get user input from the form
-            string name = Name.Text;
-            string email = Email.Text;
-            string password = ActualPassword.Text;
-            string repeatPassword = RepeatPassword.Text;
+            string name = Name.Text.Trim();
+            string email = Email.Text.Trim();
+            string password = ActualPassword.Text.Trim();
+            string repeatPassword = RepeatPassword.Text.Trim();
 
             // Validate input (add your validation logic here)
             if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(repeatPassword))
@@ -39,6 +39,13 @@ namespace Business_Application_Project
             {
                 // Display an error message for invalid email format
                 ErrorMessage.Text = "Invalid email format.";
+                return;
+            }
+
+            if (!IsValidPassword(password))
+            {
+                // Display an error message for invalid password
+                ErrorMessage.Text = "Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, and one special character.";
                 return;
             }
 
@@ -95,7 +102,7 @@ namespace Business_Application_Project
                         // Set user information in the session
                         Session["CurrentUser"] = currentUser;
                         // Optionally, you can redirect the user to a confirmation page
-                        Response.Redirect("Main.aspx");
+                        Response.Redirect("PayDeposit.html");
                     }
                     else
                     {
@@ -117,6 +124,15 @@ namespace Business_Application_Project
             {
                 return false;
             }
+        }
+        private bool IsValidPassword(string password)
+        {
+            // Password must be at least 8 characters long, contain at least one uppercase letter,
+            // one lowercase letter, and one special character
+            return password.Length >= 8 &&
+                   password.Any(char.IsUpper) &&
+                   password.Any(char.IsLower) &&
+                   password.Any(ch => !char.IsLetterOrDigit(ch));
         }
 
     }

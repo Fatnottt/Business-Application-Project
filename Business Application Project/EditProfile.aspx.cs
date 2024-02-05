@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Web.Mvc.Controls;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
@@ -6,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Xml.Linq;
 
 namespace Business_Application_Project
 {
@@ -13,15 +15,33 @@ namespace Business_Application_Project
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                User currentUser = Session["CurrentUser"] as User;
+
+                if (currentUser != null)
+                {
+                    // User is logged in
+                    // Set user's name and email in the textboxes
+                    Name.Text = currentUser.Name;
+                    CurrentEmail.Text = currentUser.Email;
+                    UserEmailLabel.Text = $"User Email in Session: {currentUser?.Email ?? "Not available"}";
+                    SessionInfoLabel.Text = $"Is CurrentUser in Session: {currentUser != null}";
+                }
+                else
+                {
+                    // Redirect to login page or handle the case when the user is not logged in
+                    Response.Redirect("Login.aspx");
+                }
+            }
 
         }
         protected void SaveBtn_Click(object sender, EventArgs e)
         {
-            string name = Name.Text;
-            string currentemail = CurrentEmail.Text;
-            string newemail = NewEmail.Text;
+            string name = Name.Text.Trim();
+            string currentemail = CurrentEmail.Text.Trim();
+            string newemail = NewEmail.Text.Trim();
 
-            // Validate input (add your validation logic here)
             // Validate input (add your validation logic here)
             if (!string.IsNullOrEmpty(newemail) && !IsValidEmail(newemail))
             {
@@ -90,6 +110,17 @@ namespace Business_Application_Project
                     if (rowsAffected > 0)
                     {
                         // Update successful
+
+                        // Update the name in the current user object in the session
+                        User currentUser = Session["CurrentUser"] as User;
+                        currentUser.Name = name;
+
+                        // Update the user object in the session
+                        Session["CurrentUser"] = currentUser;
+
+                        Response.Redirect(Request.RawUrl, false);
+                        Context.ApplicationInstance.CompleteRequest();
+
                         SuccessMessage1.Text = "User updated successfully!";
                         ErrorMessage1.Text = "";
                     }
@@ -102,6 +133,7 @@ namespace Business_Application_Project
                 }
 
             }
+
         }
         private bool IsValidEmail(string email)
         {
@@ -118,16 +150,99 @@ namespace Business_Application_Project
 
         protected void UpdateBtn_Click(object sender, EventArgs e)
         {
-            string currentpassword = CurrentPassword.Text;
-            string actualpassword = ActualPassword.Text;
-            string repeatpassword = RepeatPassword.Text;
+            string currentpassword = CurrentPassword.Text.Trim();
+            string actualpassword = ActualPassword.Text.Trim();
+            string repeatpassword = RepeatPassword.Text.Trim();
 
+            // Validate input
+            if (string.IsNullOrEmpty(currentpassword) || string.IsNullOrEmpty(actualpassword) || string.IsNullOrEmpty(repeatpassword))
+            {
+                // Display an error message for incomplete form
+                ErrorMessage2.Text = "All fields are required.";
+                return;
+            }
+
+            if (!IsValidPassword(actualpassword))
+            {
+                // Display an error message for invalid password
+                ErrorMessage2.Text = "Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, and one special character.";
+                return;
+            }
+
+            // Check if the new password and repeat password match
+            if (actualpassword != repeatpassword)
+            {
+                // Display an error message for mismatched passwords
+                ErrorMessage2.Text = "New password and repeat password do not match.";
+                return;
+            }
+
+            // Check if the current password matches the user's actual password
+            User currentUser = Session["CurrentUser"] as User;
+            if (currentUser != null && currentUser.ActualPassword != currentpassword)
+            {
+                // Display an error message for incorrect current password
+                ErrorMessage2.Text = "Incorrect current password.";
+                return;
+            }
+
+            // Update the user's password in the database
+            string connectionString = ConfigurationManager.ConnectionStrings["BikieDB"].ConnectionString;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                // Ensure that the email is not null
+                if (currentUser != null && !string.IsNullOrEmpty(currentUser.Email))
+                {
+                    string updatePasswordQuery = "UPDATE [Users] SET ActualPassword = @ActualPassword WHERE Email = @Email";
+
+                    using (SqlCommand command = new SqlCommand(updatePasswordQuery, connection))
+                    {
+                        command.Parameters.AddWithValue("@ActualPassword", actualpassword);
+                        command.Parameters.AddWithValue("@Email", currentUser.Email);
+
+                        int rowsAffected = command.ExecuteNonQuery();
+
+                        if (rowsAffected > 0)
+                        {
+                            // Password update successful
+
+                            // Update the password in the current user object in the session
+                            currentUser.ActualPassword = actualpassword;
+
+                            // Update the user object in the session
+                            Session["CurrentUser"] = currentUser;
+
+                            Response.Redirect(Request.RawUrl, false);
+                            Context.ApplicationInstance.CompleteRequest();
+
+                            SuccessMessage2.Text = "Password updated successfully!";
+                            ErrorMessage2.Text = "";
+                        }
+                        else
+                        {
+                            // No rows affected, user not found or no changes made.
+                            ErrorMessage2.Text = "User not found or no changes made.";
+                            SuccessMessage2.Text = "";
+                        }
+                    }
+                }
+                else
+                {
+                    // Handle the case where the user email is null
+                    ErrorMessage2.Text = "User email is missing.";
+                    SuccessMessage2.Text = "";
+                }
+            }
         }
+
+
 
         protected void DeleteBtn_Click(object sender, EventArgs e)
         {
-            string email = Email.Text;
-            string password = Password.Text;
+            string email = Email.Text.Trim();
+            string password = Password.Text.Trim();
 
             // Validate input (add your validation logic here)
             if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
@@ -208,5 +323,15 @@ namespace Business_Application_Project
                 }
             }
         }
+        private bool IsValidPassword(string password)
+        {
+            // Password must be at least 8 characters long, contain at least one uppercase letter,
+            // one lowercase letter, and one special character
+            return password.Length >= 8 &&
+                    password.Any(char.IsUpper) &&
+                    password.Any(char.IsLower) &&
+                    password.Any(ch => !char.IsLetterOrDigit(ch));
+        }
+
     }
 }

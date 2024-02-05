@@ -4,13 +4,12 @@ using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Web;
-using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace Business_Application_Project
 {
-    public partial class WithNavbar : System.Web.UI.MasterPage
+    public partial class AdminNavbar : System.Web.UI.MasterPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {

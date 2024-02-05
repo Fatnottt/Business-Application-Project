@@ -11,7 +11,10 @@ namespace Business_Application_Project
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            // Update labels with session information for testing purposes
+            User currentUser = Session["CurrentUser"] as User;
+            UserEmailLabel.Text = $"User Email in Session: {currentUser?.Email ?? "Not available"}";
+            SessionInfoLabel.Text = $"Is CurrentUser in Session: {currentUser != null}";
         }
     }
 }

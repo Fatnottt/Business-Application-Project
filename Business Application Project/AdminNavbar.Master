@@ -1,10 +1,10 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="WithNavbar.master.cs" Inherits="Business_Application_Project.WithNavbar" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="AdminNavbar.master.cs" Inherits="Business_Application_Project.AdminNavbar" %>
 
 <!DOCTYPE html>
 
 <html>
 <head runat="server">
-    <title>Bikie - Rent Your Bike</title>
+    <title>Admin Dashboard</title>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
@@ -41,7 +41,6 @@
           * Author: BootstrapMade.com
           * License: https://bootstrapmade.com/license/
           ======================================================== -->
-
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -49,23 +48,7 @@
     <form id="form1" runat="server">
         <div>
             <!-- ======= Header ======= -->
-            <section id="topbar" class="topbar d-flex align-items-center">
-                <div class="container d-flex justify-content-center justify-content-md-between">
-                    <div class="contact-info d-flex align-items-center">
-                        <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:contact@example.com">contact@example.com</a></i>
-                        <i class="bi bi-phone d-flex align-items-center ms-4"><span>+1 5589 55488 55</span></i>
-                    </div>
-                    <div class="social-links d-none d-md-flex align-items-center">
-                        <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-                        <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-                        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-                        <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-                    </div>
-                </div>
-            </section>
-            <!-- End Top Bar -->
-
-            <header id="header" class="header d-flex align-items-center">
+            <header id="header" class="header d-flex align-items-center" style="background-color: black; color: white;">
 
                 <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
                     <a href="Main.aspx" class="logo d-flex align-items-center">
@@ -88,6 +71,7 @@
                                 </ul>
                             </li>
                             <li><a href="#contact">Contact</a></li>
+                            <li><a href="AdminDashboard.aspx">Dashboard</a></li>
                         </ul>
                     </nav>
                     <!-- .navbar -->
@@ -98,11 +82,28 @@
                 </div>
             </header>
             <!-- End Header -->
-            <!-- End Header -->
+            <div id="header2" class="header d-flex align-items-center justify-content-center" style="background-color: black; color: white;">
+
+                <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+                    <nav id="navbar2" class="navbar align-items-center">
+                        <ul>
+                            <li><a href="#hero" class="active">Users</a></li>
+                            <li><a href="#about">Transactions</a></li>
+                            <li><a href="#services">Bikes</a></li>
+                        </ul>
+                    </nav>
+                    <!-- .navbar -->
+
+                    <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+                    <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+
+                </div>
+            </div>
+
+
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
         </div>
     </form>
-    <script src="https://kit.fontawesome.com/f351bc9ca7.js" crossorigin="anonymous"></script>
 </body>
 </html>
