@@ -11,6 +11,7 @@ namespace Business_Application_Project
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            // Assuming you have a hardcoded bike ID
             string bikeId = "11"; // Replace with your actual bike ID
             string userEmail = "yatsleo@gmail.com"; // Replace with actual user email
 
@@ -23,23 +24,13 @@ namespace Business_Application_Project
             btn.Text = userHasReviewed ? "Edit Review" : "Rate";
             btn.Click += (s, args) => RateButtonClick(bikeId, userHasReviewed);
 
-            // Add the button to your UI (e.g., to a placeholder)
+            // Clear existing controls in the placeholder
+            phBikeButtons.Controls.Clear();
+
+            // Add the button to your UI (e.g., to the placeholder)
             phBikeButtons.Controls.Add(btn);
         }
 
-        protected void RateButtonClick(string bikeId, bool userHasReviewed)
-        {
-            if (userHasReviewed)
-            {
-                // User has already reviewed, redirect to edit review page
-                Response.Redirect("EditReview.aspx?BikeId=" + bikeId);
-            }
-            else
-            {
-                // User hasn't reviewed, redirect to rate form
-                Response.Redirect("RateForm.aspx?BikeId=" + bikeId);
-            }
-        }
 
         protected void btn_Rate_Click(object sender, EventArgs e)
         {
@@ -54,15 +45,23 @@ namespace Business_Application_Project
                 // Redirect to RateForm.aspx for rating
                 Response.Redirect($"RateForm.aspx?productId={productId}");
             }
-            else if (control is HyperLink ratingsLink)
-            {
-                // Access the Product ID from the NavigateUrl
-                string productId = ratingsLink.NavigateUrl.Split('=').Last();
+        }
 
-                // Redirect to ViewRatings.aspx for viewing ratings
-                Response.Redirect($"ViewRatings.aspx?product={productId}");
+        private void RateButtonClick(string bikeId, bool userHasReviewed)
+        {
+            if (userHasReviewed)
+            {
+                // Redirect to EditReview.aspx for editing the review
+                Response.Redirect($"EditReview.aspx?bikeId={bikeId}");
+            }
+            else
+            {
+                // Redirect to RateForm.aspx for rating
+                Response.Redirect($"RateForm.aspx?bikeId={bikeId}");
             }
         }
+
+      
 
 
 

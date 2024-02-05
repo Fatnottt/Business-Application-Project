@@ -28,21 +28,10 @@
         </tr>
 
         <tr>
-            <td>25</td>
-            <td>15 Jan</td>
-            <td>16 Jan</td>
-            <td>
-                <asp:Button ID="btn_Rate_1" runat="server" Text="Rate" OnClick="btn_Rate_Click" CommandArgument="Bike 1" />
-
-            </td>
-        </tr>
-
-        <tr>
             <td>11</td>
             <td>10 Jan</td>
             <td>12 Jan</td>
-            <td><asp:Button ID="btn_Rate_2" runat="server" Text="Rate" OnClick="btn_Rate_Click" CommandArgument="Bike 2" />
-            <asp:PlaceHolder ID="phBikeButtons" runat="server"></asp:PlaceHolder></td>
+            <td><asp:PlaceHolder ID="phBikeButtons" runat="server"></asp:PlaceHolder></td>
         </tr>
 
     </table>

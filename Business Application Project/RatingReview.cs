@@ -58,6 +58,29 @@ namespace Business_Application_Project
             }
         }
 
+        public static void UpdateReviewInDatabase(string userEmail, string bikeId, int stars, string comment)
+        {
+            using (SqlConnection connection = new SqlConnection(_connStr))
+            {
+                connection.Open();
+
+                string query = "UPDATE Reviews SET " +
+                               "Stars = @Stars, " +
+                               "Comment = @Comment, " +
+                               "Review_Date = GETDATE() " +
+                               "WHERE User_Email = @UserEmail AND Bike_ID = @BikeId";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@UserEmail", userEmail);
+                    command.Parameters.AddWithValue("@BikeId", bikeId);
+                    command.Parameters.AddWithValue("@Stars", stars);
+                    command.Parameters.AddWithValue("@Comment", comment);
+
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
 
         public static bool HasUserReviewed(string userEmail, string bikeId)
         {
@@ -79,5 +102,6 @@ namespace Business_Application_Project
             }
 
         }
+
     }
 }

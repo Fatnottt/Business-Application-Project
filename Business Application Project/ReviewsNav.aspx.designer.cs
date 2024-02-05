@@ -15,24 +15,6 @@ namespace Business_Application_Project
     {
 
         /// <summary>
-        /// btn_Rate_1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_Rate_1;
-
-        /// <summary>
-        /// btn_Rate_2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_Rate_2;
-
-        /// <summary>
         /// phBikeButtons control.
         /// </summary>
         /// <remarks>
