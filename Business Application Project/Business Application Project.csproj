@@ -162,8 +162,10 @@
     <Content Include="ProductDetails.aspx" />
     <Content Include="ProductInsert.aspx" />
     <Content Include="ProductView.aspx" />
+    <Content Include="RateForm.aspx" />
+    <Content Include="RatingProdView.aspx" />
     <Content Include="RecoverPassword.aspx" />
-    <Content Include="SeeCart.aspx" />
+    <Content Include="ReviewsNav.aspx" />
     <Content Include="SaveTransactionId.aspx" />
     <Content Include="ViewReview.aspx" />
     <Content Include="Profile.aspx" />
@@ -451,7 +453,6 @@
     <Content Include="Scripts\jquery-3.7.1.slim.js" />
     <Content Include="Scripts\jquery-3.7.1.slim.min.js" />
     <Content Include="SignUp.aspx" />
-    <Content Include="ViewCart.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -528,6 +529,21 @@
       <DependentUpon>Profile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RateForm.aspx.cs">
+      <DependentUpon>RateForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RateForm.aspx.designer.cs">
+      <DependentUpon>RateForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RatingProdView.aspx.cs">
+      <DependentUpon>RatingProdView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RatingProdView.aspx.designer.cs">
+      <DependentUpon>RatingProdView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RatingReview.cs" />
     <Compile Include="RecoverPassword.aspx.cs">
       <DependentUpon>RecoverPassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -536,6 +552,13 @@
       <DependentUpon>RecoverPassword.aspx</DependentUpon>
     </Compile>
     <Compile Include="Review.cs" />
+    <Compile Include="ReviewsNav.aspx.cs">
+      <DependentUpon>ReviewsNav.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReviewsNav.aspx.designer.cs">
+      <DependentUpon>ReviewsNav.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SaveTransactionId.aspx.cs">
       <DependentUpon>SaveTransactionId.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -543,14 +566,7 @@
     <Compile Include="SaveTransactionId.aspx.designer.cs">
       <DependentUpon>SaveTransactionId.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SeeCart.aspx.cs">
-      <DependentUpon>SeeCart.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SeeCart.aspx.designer.cs">
-      <DependentUpon>SeeCart.aspx</DependentUpon>
-    </Compile>
-	<Compile Include="ShoppingCart.cs" />
+    <Compile Include="ShoppingCart.cs" />
     <Compile Include="ViewReview.aspx.cs">
       <DependentUpon>ViewReview.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
