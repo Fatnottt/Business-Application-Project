@@ -10,6 +10,7 @@ namespace Business_Application_Project
 {
     public partial class ProductDetails : System.Web.UI.Page
     {
+        //VERLYN'S 
         public static readonly String IMAGE_FOLDER = "~\\Images\\"; //verlyn dh this
 
 
@@ -23,7 +24,7 @@ namespace Business_Application_Project
             //prodID = aProd.getProduct(prodID); //verlyn's
             Product prod = aProd.getProduct(prodID); //verlyn dh this
 
-            hf_productId.Value = prod.Product_ID;
+            hf_productID.Value = prod.Product_ID;
             //lbl_ProdName.Text = prod.Product_Name;
             lbl_ProdDesc.Text = prod.Product_Desc;
             lbl_Price.Text = prod.Unit_Price.ToString("c");
@@ -38,44 +39,49 @@ namespace Business_Application_Project
 
             lbl_ProdID.Text = prodID.ToString(); //verlyn's version is commented
 
-        }
+        } //VERLYN'S
 
         protected void btn_Add_Click(object sender, EventArgs e)
         {
+            // Assuming hf_productId.Value contains the product ID
+            string shoppingcartID = hf_shoppingcartID.Value;
+            string productID = hf_productID.Value;
 
-            Product prod = new Product();
-            prod.Product_ID = hf_productId.Value;
-
-            prod.Product_Desc = lbl_ProdDesc.Text;
-            prod.Category = lbl_Category.Text;
-            prod.Brand = lbl_Brand.Text;
-            prod.Model = lbl_Model.Text;
-            prod.Address = lbl_Address.Text;
+            // Assuming txt_Date.Text contains the selected date
+            string selectedDateStr = txt_Date.Text;
 
 
-            decimal price = 0; // Give it a default value in case parsing fails
-            Decimal.TryParse(lbl_Price.Text, NumberStyles.Currency, CultureInfo.CurrentCulture, out price);
-            prod.Unit_Price = price;
-
-            //var imageUrl = this.img_Product.ImageUrl.Replace("~\\Images\\", ""); //verlyn's
-            var imageUrl = this.img_Product.ImageUrl.Replace(IMAGE_FOLDER, ""); //lh's version verlyn dh this
-            prod.Product_Image = imageUrl;
-
-            string iProductID = prod.Product_ID.ToString();
-            ShoppingCart.Instance.AddItem(iProductID, prod);
-
-            // YL: Ensuring each user in different browser and computers have their own shopping cart instance.
-            var shoppingCart = Session[Constants.SESSION_KEY_SHOPPING_CART] as ProperShoppingCart;
-            if (shoppingCart == null)
+            // Parse the selected date string to DateTime
+            DateTime selectedDate;
+            if (DateTime.TryParse(selectedDateStr, out selectedDate))
             {
-                shoppingCart = new ProperShoppingCart();
+
+
+                ShoppingCart cart = new ShoppingCart(shoppingcartID, productID, selectedDate);
+                int result = cart.ShoppingCartInsert();
+
+                if (result > 0)
+                {
+                    Response.Write("<script>alert('Insert successful');</script>");
+                }
+                else
+                {
+                    Response.Write("<script>alert('Insert NOT successful');</script>");
+                }
             }
-            shoppingCart.AddItem(iProductID, prod);
-
-            Session[Constants.SESSION_KEY_SHOPPING_CART] = shoppingCart;
-
-            Response.Redirect("ViewCart.aspx");
+            else
+            {
+                // Handle the case where date parsing fails
+                Response.Write("<script>alert('Invalid date format. Use YYYY-MM-DD.');</script>");
+            }
 
         }
+
+        protected void btn_SeeCart_Click(object sender, EventArgs e)
+        {
+            //Re-direct page to “ProductView.aspx”
+            Response.Redirect("SeeCart.aspx");
+        }
+
     }
 }

@@ -154,6 +154,7 @@
     <Content Include="ProductDetails.aspx" />
     <Content Include="ProductInsert.aspx" />
     <Content Include="ProductView.aspx" />
+    <Content Include="SeeCart.aspx" />
     <Content Include="ViewReview.aspx" />
     <Content Include="Profile.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -284,7 +285,6 @@
     <Content Include="Scripts\jquery-3.7.1.slim.js" />
     <Content Include="Scripts\jquery-3.7.1.slim.min.js" />
     <Content Include="SignUp.aspx" />
-    <Content Include="ViewCart.aspx" />
     <Content Include="Web.config" />
     <Content Include="WithNavbar.Master" />
   </ItemGroup>
@@ -340,9 +340,16 @@
     <Compile Include="Profile.aspx.designer.cs">
       <DependentUpon>Profile.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ProperShoppingCart.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Review.cs" />
+    <Compile Include="SeeCart.aspx.cs">
+      <DependentUpon>SeeCart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SeeCart.aspx.designer.cs">
+      <DependentUpon>SeeCart.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ShoppingCart.cs" />
     <Compile Include="ViewReview.aspx.cs">
       <DependentUpon>ViewReview.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -350,8 +357,6 @@
     <Compile Include="ViewReview.aspx.designer.cs">
       <DependentUpon>ViewReview.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ShoppingCart.cs" />
-    <Compile Include="ShoppingCartItem.cs" />
     <Compile Include="SignUp.aspx.cs">
       <DependentUpon>SignUp.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -373,13 +378,6 @@
     </Compile>
     <Compile Include="WithNavbar.Master.designer.cs">
       <DependentUpon>WithNavbar.Master</DependentUpon>
-    </Compile>
-    <Compile Include="ViewCart.aspx.cs">
-      <DependentUpon>ViewCart.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ViewCart.aspx.designer.cs">
-      <DependentUpon>ViewCart.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
