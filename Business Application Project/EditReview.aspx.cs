@@ -23,9 +23,6 @@ namespace Business_Application_Project
                 // Check if there is an existing review
                 if (existingReview.Rows.Count > 0)
                 {
-                    // Display bike details
-                    lbl_Category.Text = "Mountain Bike"; // You can replace these with actual details
-                    lbl_Brand.Text = "Brand XYZ"; // Replace with actual brand details
 
                     // Display existing rating stars
                     int stars = Convert.ToInt32(existingReview.Rows[0]["Stars"]);
@@ -53,15 +50,37 @@ namespace Business_Application_Project
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
-            // Get the updated review data
-            int stars = Convert.ToInt32(hdRating.Value); // Assuming hdRating is your hidden field
-            string comment = txtComment.Text;
+            // Retrieve the existing review data to compare with the updated data
+            DataTable existingReview = RatingReview.GetReviewsFromDatabase("11"); // Assuming bikeId is hardcoded as "11"
 
-            // Update the review in the database
-            RatingReview.UpdateReviewInDatabase("yatsleo@gmail.com", "11", stars, comment);
+            if (existingReview.Rows.Count > 0)
+            {
+                int previousStars = Convert.ToInt32(existingReview.Rows[0]["Stars"]); // Retrieve the previous stars from the database
+                string comment = txtComment.Text;
 
-            // Redirect to a confirmation or another page
-            Response.Redirect("RatingProdView.aspx");
+                // Get the updated review data
+                int currentStars;
+                if (!string.IsNullOrEmpty(hdRating.Value) && int.TryParse(hdRating.Value, out currentStars))
+                {
+                    // Stars value has been modified, use the updated value
+                }
+                else
+                {
+                    // Stars value has not been modified, use the previous value
+                    currentStars = previousStars;
+                }
+
+                // Update the review in the database
+                RatingReview.UpdateReviewInDatabase("yatsleo@gmail.com", "11", currentStars, comment);
+
+                // Redirect to a confirmation or another page
+                Response.Redirect("ProductDetails.aspx?ProdID=11");
+            }
+        }
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ReviewsNav.aspx");
         }
     }
 }

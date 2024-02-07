@@ -79,5 +79,42 @@
             </td>
         </tr>
     </table>
+    <br />
+
+
+    <%--yuki's reviews part--%>
+    <h2>Customer Reviews</h2>
+
+    <div>
+        <!-- Display the number of reviews -->
+        <asp:Label ID="lbl_ReviewCount" runat="server" Text="0 Review" />
+
+        <br />
+        <br />
+        <!-- Display reviews dynamically (you can use a Repeater or GridView) -->
+        <asp:Repeater ID="rptReviews" runat="server">
+        <ItemTemplate>
+            <div class="review-item">
+                <div>
+                    <span class="stars">
+                        <%# GetStarIcons(Eval("Stars")) %>
+                    </span>
+                    <span class="reviewer-email">
+                        <%# Eval("User_Email") %>
+                    </span>
+                    <span class="review-date">
+                        <%# Eval("Review_Date", "{0:dd/MM/yyyy}") %>
+                    </span>
+
+                </div>
+                <div class="comment">
+                    <%# Eval("Comment") %>
+                </div>
+            </div>
+        </ItemTemplate>
+        </asp:Repeater>
+
+    </div>
+    <%--reviews--%>
 
 </asp:Content>

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data;
 
 namespace Business_Application_Project
 {
@@ -38,8 +39,32 @@ namespace Business_Application_Project
             lbl_Address.Text = prod.Address;
 
             lbl_ProdID.Text = prodID.ToString(); //verlyn's version is commented
+                                                 //VERLYN'S
 
-        } //VERLYN'S
+
+            //YUKI'S
+
+            if (!IsPostBack)
+            {
+                // Get the product ID from the query string
+                string productId = Request.QueryString["ProdID"];
+
+                // Check if the product ID is for bike 11
+                if (productId == "11")
+                {
+                    // Load and display the reviews for bike 11
+                    DataTable reviewsTable = RatingReview.GetReviewsFromDatabase("11");
+                    lbl_ReviewCount.Text = reviewsTable.Rows.Count + " Reviews";
+                    rptReviews.DataSource = reviewsTable;
+                    rptReviews.DataBind();
+                }
+                else
+                {
+                    lbl_ReviewCount.Text = "0 Review";
+                }
+            }
+
+        } 
 
         protected void btn_Add_Click(object sender, EventArgs e)
         {
@@ -81,6 +106,26 @@ namespace Business_Application_Project
         {
             //Re-direct page to “ProductView.aspx”
             Response.Redirect("SeeCart.aspx");
+        }
+
+
+        // yuki's
+        protected string GetStarIcons(object stars)
+        {
+            if (stars != null && stars != DBNull.Value)
+            {
+                int starCount = Convert.ToInt32(stars);
+
+                string starIcons = "";
+                for (int i = 0; i < starCount; i++)
+                {
+                    starIcons += "&#9733;"; // Unicode character for a star
+                }
+
+                return starIcons;
+            }
+
+            return "";
         }
 
     }

@@ -35,17 +35,6 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h2>Edit Your Review</h2>
 
-    <div>
-        <asp:Label ID="lblProductDetails" runat="server" Text="Bike Details: " />
-        <br />
-
-        <br />
-
-        <asp:Label ID="lbl_Category" runat="server" Text="Mountain Bike" />
-        <br />
-        <asp:Label ID="lbl_Brand" runat="server" Text="Brand XYZ" />
-    </div>
-
     <br />
     <div>
         <!-- Hidden field to store the selected rating for server-side retrieval -->
@@ -68,5 +57,6 @@
     <br />
     <div>
         <asp:Button ID="btnUpdate" runat="server" Text="Update Review" OnClick="btnUpdate_Click" />
+        <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" />
     </div>
 </asp:Content>

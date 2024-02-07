@@ -12,6 +12,7 @@
             text-align: center;
         }
 
+
     </style>
 </asp:Content>
 
@@ -21,7 +22,7 @@
 
     <table class="rental-history-table">
         <tr>
-            <th>Product ID</th>
+            <th>Bike ID</th>
             <th>Start Date</th>
             <th>End Date</th>
             <th></th>
@@ -35,4 +36,6 @@
         </tr>
 
     </table>
+
+
 </asp:Content>

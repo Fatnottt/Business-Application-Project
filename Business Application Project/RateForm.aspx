@@ -11,6 +11,9 @@
         .star.checked {
             color: gold;
         }
+
+        
+
     </style>
 
     <script>
@@ -30,23 +33,36 @@
             // Update the hidden field for server-side retrieval
             document.getElementById('<%= hdRating.ClientID %>').value = rating;
         }
+
+        function validateStars() {
+            var stars = parseInt(document.getElementById('<%= hdRating.ClientID %>').value);
+            if (isNaN(stars) || stars < 1 || stars > 5) {
+                alert("Please give a rating from 1-5");
+                return false;
+            }
+            return true;
+        }
+
+
+
+        function validateForm() {
+            var isValidStars = validateStars();
+            var comment = document.getElementById('<%= txtComment.ClientID %>').value;
+            if (comment.trim() === '') {
+                alert("Please provide a comment.");
+                return false;
+            }
+            return isValidStars;
+        }
+
+
     </script>
+
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <h2>Rate Your Experience!</h2>
-
-    <div>
-        <asp:Label ID="lblProductDetails" runat="server" Text="Bike Details: " />
-        <br />
-
-        <br />
-
-        <asp:Label ID="lbl_Category" runat="server" Text="Mountain Bike" />
-        <br />
-        <asp:Label ID="lbl_Brand" runat="server" Text="Brand XYZ" />
-    </div>
 
     <br />
     <div>
@@ -63,15 +79,16 @@
     </div>
     <br />
     <div>
-
         <asp:TextBox ID="txtComment" runat="server" TextMode="MultiLine" Columns="30" Rows="5" Placeholder="Enter your comment here..." />
-
     </div>
 
     <br />
 
     <div>
         <asp:Button ID="btnSubmit" runat="server" Text="Submit Rating" OnClick="btnSubmit_Click" />
+        <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" />
     </div>
+
+    <asp:ValidationSummary ID="ValidationSummary1" runat="server" DisplayMode="BulletList" />
 
 </asp:Content>
