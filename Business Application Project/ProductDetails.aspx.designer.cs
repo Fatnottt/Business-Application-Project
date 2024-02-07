@@ -105,31 +105,58 @@ namespace Business_Application_Project
         protected global::System.Web.UI.WebControls.Label lbl_Price;
 
         /// <summary>
-        /// txt_Date control.
+        /// txt_Datein control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_Date;
+        protected global::System.Web.UI.WebControls.TextBox txt_Datein;
 
         /// <summary>
-        /// rfv_Date control.
+        /// txt_Dateout control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_Date;
+        protected global::System.Web.UI.WebControls.TextBox txt_Dateout;
 
         /// <summary>
-        /// cv_Date control.
+        /// rfv_Datein control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CustomValidator cv_Date;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_Datein;
+
+        /// <summary>
+        /// cv_Datein control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator cv_Datein;
+
+        /// <summary>
+        /// rfv_Dateout control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_Dateout;
+
+        /// <summary>
+        /// cv_Dateout control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator cv_Dateout;
 
         /// <summary>
         /// btn_Add control.

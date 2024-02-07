@@ -15,24 +15,6 @@ namespace Business_Application_Project
     {
 
         /// <summary>
-        /// tb_ProductID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tb_ProductID;
-
-        /// <summary>
-        /// rfv_ProductID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_ProductID;
-
-        /// <summary>
         /// tb_Brand control.
         /// </summary>
         /// <remarks>

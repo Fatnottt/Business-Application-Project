@@ -41,6 +41,7 @@ namespace Business_Application_Project
 
         } //VERLYN'S
 
+
         protected void btn_Add_Click(object sender, EventArgs e)
         {
             // Assuming hf_productId.Value contains the product ID
@@ -48,16 +49,19 @@ namespace Business_Application_Project
             string productID = hf_productID.Value;
 
             // Assuming txt_Date.Text contains the selected date
-            string selectedDateStr = txt_Date.Text;
+            string selectedDateinStr = txt_Datein.Text;
+            string selectedDateoutStr = txt_Dateout.Text;
 
+       
 
             // Parse the selected date string to DateTime
-            DateTime selectedDate;
-            if (DateTime.TryParse(selectedDateStr, out selectedDate))
+            DateTime selectedDatein;
+            DateTime selectedDateout;
+            if (DateTime.TryParse(selectedDateinStr, out selectedDatein) && DateTime.TryParse(selectedDateoutStr, out selectedDateout))
             {
 
 
-                ShoppingCart cart = new ShoppingCart(shoppingcartID, productID, selectedDate);
+                ShoppingCart cart = new ShoppingCart(shoppingcartID, productID, selectedDatein, selectedDateout /*, selectedBrand, selectedModel, selectedCategory, selectedPriceDecimal, selectedDesc, selectedAddress*/);
                 int result = cart.ShoppingCartInsert();
 
                 if (result > 0)
@@ -68,6 +72,8 @@ namespace Business_Application_Project
                 {
                     Response.Write("<script>alert('Insert NOT successful');</script>");
                 }
+
+               
             }
             else
             {
@@ -75,6 +81,8 @@ namespace Business_Application_Project
                 Response.Write("<script>alert('Invalid date format. Use YYYY-MM-DD.');</script>");
             }
 
+            //// Redirect to the SeeCart page
+            //Server.Transfer("SeeCart.aspx");
         }
 
         protected void btn_SeeCart_Click(object sender, EventArgs e)
