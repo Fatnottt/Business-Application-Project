@@ -1,9 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="RateForm.aspx.cs" Inherits="Business_Application_Project.RateForm" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
-        /* Add your custom styling for stars here */
+
+        body {
+            background-color: #dbeae6;
+        }
+
         .star {
-            font-size: 25px;
+            font-size: 30px;
             cursor: pointer;
             color: gray;
         }
@@ -12,7 +16,48 @@
             color: gold;
         }
 
-        
+
+        .RateExp {
+            background-color: #e6f2f0; 
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+            text-align: center;
+            width: 45%;
+            margin: 0 auto; 
+            margin-top: 27px;
+        }
+
+        .comment {
+            text-align: left;
+            margin: 10px 0; /* Set margin to 10px top and bottom */
+        }
+
+        #txtComment {
+            width: 100%;
+            padding: 8px; /* Adjust padding as needed */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 0; /* Reset margin to 0 */
+            resize: vertical; /* Allow vertical resizing */
+        }
+
+
+
+        .submit-button, .cancel-button {
+            padding: 8px 20px;
+            background-color: #008374; 
+            color: #fff; 
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background-color 0.3s; 
+        }
+
+        .submit-button:hover, .cancel-button:hover {
+            background-color: #00584c; 
+        }
+
 
     </style>
 
@@ -55,40 +100,43 @@
             return isValidStars;
         }
 
-
     </script>
 
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div class="RateExp">
+        <h2>Rate Your Experience!</h2>
 
-    <h2>Rate Your Experience!</h2>
+        <br />
+        <div>
 
-    <br />
-    <div>
+            <!-- Hidden field to store the selected rating for server-side retrieval -->
+            <asp:HiddenField ID="hdRating" runat="server" />
 
-        <!-- Hidden field to store the selected rating for server-side retrieval -->
-        <asp:HiddenField ID="hdRating" runat="server" />
+            <!-- Star icons for interactive rating -->
+            <span class="star" onclick="setRating(1)">&#9733;</span>
+            <span class="star" onclick="setRating(2)">&#9733;</span>
+            <span class="star" onclick="setRating(3)">&#9733;</span>
+            <span class="star" onclick="setRating(4)">&#9733;</span>
+            <span class="star" onclick="setRating(5)">&#9733;</span>
+        </div>
+        <br />
+        
+        <div class="comment">
+            <p style="font-size:15px;">Comment:</p>
+            <asp:TextBox ID="txtComment" runat="server" TextMode="MultiLine" Rows="8" Placeholder="Tell us about your experience" style="width: 100%;" />
+        </div>
 
-        <!-- Star icons for interactive rating -->
-        <span class="star" onclick="setRating(1)">&#9733;</span>
-        <span class="star" onclick="setRating(2)">&#9733;</span>
-        <span class="star" onclick="setRating(3)">&#9733;</span>
-        <span class="star" onclick="setRating(4)">&#9733;</span>
-        <span class="star" onclick="setRating(5)">&#9733;</span>
+
+        <br />
+
+        <div class="button-container">
+            <asp:Button ID="btnSubmit" runat="server" Text="Submit Rating" OnClick="btnSubmit_Click" CssClass="submit-button" />
+            <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" CssClass="cancel-button" />
+        </div>
+
     </div>
-    <br />
-    <div>
-        <asp:TextBox ID="txtComment" runat="server" TextMode="MultiLine" Columns="30" Rows="5" Placeholder="Enter your comment here..." />
-    </div>
-
-    <br />
-
-    <div>
-        <asp:Button ID="btnSubmit" runat="server" Text="Submit Rating" OnClick="btnSubmit_Click" />
-        <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" />
-    </div>
-
     <asp:ValidationSummary ID="ValidationSummary1" runat="server" DisplayMode="BulletList" />
 
 </asp:Content>

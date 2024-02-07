@@ -122,6 +122,9 @@
   <ItemGroup>
     <Content Include="AdminMain.aspx" />
     <Content Include="App_Data\BikieDB.mdf" />
+    <Content Include="App_Data\BikieDB_log.ldf">
+      <DependentUpon>BikieDB.mdf</DependentUpon>
+    </Content>
     <Content Include="EditCart.aspx" />
     <Content Include="EditReview.aspx" />
     <Content Include="PayDeposit.html" />

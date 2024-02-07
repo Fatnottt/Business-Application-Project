@@ -5,6 +5,22 @@
         .auto-style3 {
             width: 50%;
         }
+
+        .review-item {
+            border: 1px solid #ccc; 
+            padding: 10px; 
+            margin-bottom: 20px; 
+        }
+
+        .reviewer-email, .review-date {
+
+            font-size: small;
+        }
+
+        .stars {
+            color: green;
+        }
+
     </style>
 </asp:Content>
 <asp:Content ID="ContentPlaceHolder1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -94,24 +110,27 @@
         <asp:Repeater ID="rptReviews" runat="server">
         <ItemTemplate>
             <div class="review-item">
-                <div>
-                    <span class="stars">
-                        <%# GetStarIcons(Eval("Stars")) %>
-                    </span>
+                <div class="review-header">
                     <span class="reviewer-email">
                         <%# Eval("User_Email") %>
                     </span>
+                    <br />
+                    <span class="stars">
+                        <%# GetStarIcons(Eval("Stars")) %>
+                    </span>
+                    <br />
                     <span class="review-date">
                         <%# Eval("Review_Date", "{0:dd/MM/yyyy}") %>
                     </span>
-
                 </div>
+                <br />
                 <div class="comment">
                     <%# Eval("Comment") %>
                 </div>
             </div>
         </ItemTemplate>
-        </asp:Repeater>
+    </asp:Repeater>
+
 
     </div>
     <%--reviews--%>
