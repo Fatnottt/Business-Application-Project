@@ -126,6 +126,7 @@
       <DependentUpon>BikieDB.mdf</DependentUpon>
     </Content>
     <Content Include="EditReview.aspx" />
+    <Content Include="Images\default-user-icon.png" />
     <Content Include="PayDeposit.html" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -619,7 +620,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="client\" />
-    <Folder Include="Images\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

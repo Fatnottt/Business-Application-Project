@@ -79,6 +79,20 @@ namespace Business_Application_Project
                     }
                 }
 
+                // Check if the user's email is soft-deleted before allowing registration
+                string checkDeletedQuery = "SELECT COUNT(*) FROM Users WHERE Email = @Email AND IsDeleted = 1";
+                using (SqlCommand checkDeletedCmd = new SqlCommand(checkDeletedQuery, connection))
+                {
+                    checkDeletedCmd.Parameters.AddWithValue("@Email", email);
+                    int deletedUsersCount = (int)checkDeletedCmd.ExecuteScalar();
+                    if (deletedUsersCount > 0)
+                    {
+                        // Handle the case where the user's account is soft-deleted
+                        ErrorMessage.Text = "Your account has been deactivated. Please contact support for assistance.";
+                        return;
+                    }
+                }
+
                 // Use parameterized query to prevent SQL injection
                 string insertQuery = "INSERT INTO [Users] (Email, Name, ActualPassword, RepeatPassword) VALUES (@Email, @Name, @ActualPassword, @RepeatPassword)";
 
@@ -96,13 +110,21 @@ namespace Business_Application_Project
                     if (rowsAffected > 0)
                     {
                         // Registration successful
+                        // Insert user's email into UserRoles table
+                        string insertUserRoleQuery = "INSERT INTO [UserRoles] (Email) VALUES (@Email)";
+                        using (SqlCommand userRoleCmd = new SqlCommand(insertUserRoleQuery, connection))
+                        {
+                            userRoleCmd.Parameters.AddWithValue("@Email", email);
+                            userRoleCmd.ExecuteNonQuery();
+                        }
+
                         // Create a User object and set user information
                         User currentUser = new User { Email = email, Name = name /* Add other properties if needed */ };
 
                         // Set user information in the session
                         Session["CurrentUser"] = currentUser;
                         // Optionally, you can redirect the user to a confirmation page
-                        Response.Redirect("PayDeposit.html");
+                        Response.Redirect("Main.aspx");
                     }
                     else
                     {
