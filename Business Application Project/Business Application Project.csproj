@@ -131,7 +131,7 @@
     <Content Include="EditCart.aspx" />
     <Content Include="EditReview.aspx" />
     <Content Include="Images\default-user-icon.png" />
-    <Content Include="PayDeposit.html" />
+    <Content Include="PayDeposit.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -502,6 +502,13 @@
     </Compile>
     <Compile Include="Logout.aspx.designer.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PayDeposit.aspx.cs">
+      <DependentUpon>PayDeposit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PayDeposit.aspx.designer.cs">
+      <DependentUpon>PayDeposit.aspx</DependentUpon>
     </Compile>
     <Compile Include="Product.cs" />
     <Compile Include="Main.aspx.cs">
