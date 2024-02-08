@@ -14,7 +14,7 @@
           
 
     <table class="auto-style2">
-        <tr>
+        <%--<tr>
             <td>Product ID</td>
             <td>
                 <asp:TextBox ID="tb_ProductID" runat="server"></asp:TextBox>
@@ -22,7 +22,7 @@
             <td>
                 <asp:RequiredFieldValidator ID="rfv_ProductID" runat="server" ControlToValidate="tb_ProductID" ErrorMessage="Please enter Product ID" ForeColor="Red"></asp:RequiredFieldValidator>
             </td>
-        </tr>
+        </tr>--%>
         <tr>
             <td>Brand</td>
             <td>

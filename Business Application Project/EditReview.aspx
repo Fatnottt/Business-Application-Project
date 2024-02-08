@@ -2,6 +2,11 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <!-- Add your custom styling for stars here -->
     <style>
+
+        body {
+            background-color: #dbeae6;
+        }
+
         .star {
             font-size: 25px;
             cursor: pointer;
@@ -11,6 +16,48 @@
         .star.checked {
             color: gold;
         }
+
+
+        .EditRev {
+            background-color: #e6f2f0; 
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+            text-align: center;
+            width: 45%;
+            margin: 0 auto; 
+            margin-top: 27px; 
+   
+        }
+
+        .comment {
+            text-align: left;
+            margin: 10px 0; /* Set margin to 10px top and bottom */
+        }
+
+        #txtComment {
+            width: 100%;
+            padding: 8px; /* Adjust padding as needed */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 0; /* Reset margin to 0 */
+            resize: vertical; /* Allow vertical resizing */
+        }
+
+        .update-button, .cancel-button {
+            padding: 8px 20px;
+            background-color: #008374; 
+            color: #fff; 
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background-color 0.3s; 
+        }
+
+        .update-button:hover, .cancel-button:hover {
+            background-color: #00584c; 
+        }
+
     </style>
 
     <script>
@@ -33,40 +80,30 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h2>Edit Your Review</h2>
-
-    <div>
-        <asp:Label ID="lblProductDetails" runat="server" Text="Bike Details: " />
-        <br />
+    <div class="EditRev">
+        <h2>Edit Your Review</h2>
 
         <br />
-
-        <asp:Label ID="lbl_Category" runat="server" Text="Mountain Bike" />
+        <div>
+            <asp:HiddenField ID="hdRating" runat="server" />
+            <asp:PlaceHolder ID="phStars" runat="server">
+                <span class="star" id="star_1" onclick="setRating(1)">&#9733;</span>
+                <span class="star" id="star_2" onclick="setRating(2)">&#9733;</span>
+                <span class="star" id="star_3" onclick="setRating(3)">&#9733;</span>
+                <span class="star" id="star_4" onclick="setRating(4)">&#9733;</span>
+                <span class="star" id="star_5" onclick="setRating(5)">&#9733;</span>
+            </asp:PlaceHolder>
+        </div>
         <br />
-        <asp:Label ID="lbl_Brand" runat="server" Text="Brand XYZ" />
-    </div>
+        <div class="comment">
+            <p style="font-size:15px;">Comment:</p>
+            <asp:TextBox ID="txtComment" runat="server" TextMode="MultiLine" Rows="8" Placeholder="Tell us about your experience" style="width: 100%;" />
+        </div>
 
-    <br />
-    <div>
-        <!-- Hidden field to store the selected rating for server-side retrieval -->
-        <asp:HiddenField ID="hdRating" runat="server" />
-
-        <!-- Placeholder for displaying stars -->
-        <asp:PlaceHolder ID="phStars" runat="server">
-            <span class="star" id="star_1" onclick="setRating(1)">&#9733;</span>
-            <span class="star" id="star_2" onclick="setRating(2)">&#9733;</span>
-            <span class="star" id="star_3" onclick="setRating(3)">&#9733;</span>
-            <span class="star" id="star_4" onclick="setRating(4)">&#9733;</span>
-            <span class="star" id="star_5" onclick="setRating(5)">&#9733;</span>
-        </asp:PlaceHolder>
-    </div>
-    <br />
-    <div>
-        <asp:TextBox ID="txtComment" runat="server" TextMode="MultiLine" Columns="30" Rows="5" />
-    </div>
-
-    <br />
-    <div>
-        <asp:Button ID="btnUpdate" runat="server" Text="Update Review" OnClick="btnUpdate_Click" />
+        <br />
+        <div>
+            <asp:Button ID="btnUpdate" runat="server" Text="Update Review" OnClick="btnUpdate_Click" CssClass="update-button" />
+            <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" CssClass="cancel-button" />
+        </div>
     </div>
 </asp:Content>

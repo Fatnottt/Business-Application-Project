@@ -19,20 +19,37 @@ namespace Business_Application_Project
         }
 
 
-
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            // Call JavaScript function to validate the form
+            string script = "validateStars();";
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "ValidateForm", script, true);
 
-            int stars = Convert.ToInt32(hdRating.Value); // Assuming hdRating is your hidden field
+            // Get the updated review data
+            string starsValue = hdRating.Value;
+            int stars;
+            if (!int.TryParse(starsValue, out stars))
+            {
+                // Stars value is not valid
+                return;
+            }
+
             string comment = txtComment.Text;
+            string bikeId = "11"; // Replace this with the actual bike ID
 
-            // Save rating to the database with default email
-            RatingReview.SaveRatingToDatabase(stars, comment);
+            // Save rating to database
+            RatingReview.SaveRatingToDatabase(stars, comment, bikeId);
 
-            // Redirect to a confirmation or another page
-            Response.Redirect("RatingProdView.aspx");
+            // Redirect to ReviewsNav page
+            Response.Redirect("ReviewsNav.aspx");
         }
 
 
+
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ReviewsNav.aspx");
+        }
     }
 }

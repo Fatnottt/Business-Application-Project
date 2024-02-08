@@ -18,6 +18,12 @@ namespace Business_Application_Project
             // Check if the user has reviewed the bike
             bool userHasReviewed = RatingReview.HasUserReviewed(userEmail, bikeId);
 
+            // Create a button for viewing the bike
+            Button btnViewBike = new Button();
+            btnViewBike.ID = "btnViewBike_" + bikeId;
+            btnViewBike.Text = "View Bike";
+            btnViewBike.Click += (s, args) => ViewBikeButtonClick(bikeId);
+
             // Create a button for the bike
             Button btn = new Button();
             btn.ID = "btnRate_" + bikeId;
@@ -27,24 +33,9 @@ namespace Business_Application_Project
             // Clear existing controls in the placeholder
             phBikeButtons.Controls.Clear();
 
-            // Add the button to your UI (e.g., to the placeholder)
+            // Add the buttons to your UI (e.g., to the placeholder)
             phBikeButtons.Controls.Add(btn);
-        }
-
-
-        protected void btn_Rate_Click(object sender, EventArgs e)
-        {
-            // Access the clicked control
-            Control control = (Control)sender;
-
-            if (control is Button rateButton)
-            {
-                // Access the Product ID from the CommandArgument
-                string productId = rateButton.CommandArgument;
-
-                // Redirect to RateForm.aspx for rating
-                Response.Redirect($"RateForm.aspx?productId={productId}");
-            }
+            phBikeButtons.Controls.Add(btnViewBike);
         }
 
         private void RateButtonClick(string bikeId, bool userHasReviewed)
@@ -61,9 +52,11 @@ namespace Business_Application_Project
             }
         }
 
-      
-
-
+        private void ViewBikeButtonClick(string bikeId)
+        {
+            // Redirect to the bike details page
+            Response.Redirect($"ProductDetails.aspx?ProdID={bikeId}");
+        }
 
     }
 }

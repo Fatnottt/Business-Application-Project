@@ -12,16 +12,17 @@
             text-align: center;
         }
 
+
     </style>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h2>You have recently rented bike(s)!</h2>
+    <h2>Rental History</h2>
     <p>We'd love to hear from you about your experience. Please leave a review so that we can share it with other renters just like you.</p>
 
     <table class="rental-history-table">
         <tr>
-            <th>Product ID</th>
+            <th>Bike ID</th>
             <th>Start Date</th>
             <th>End Date</th>
             <th></th>
@@ -35,4 +36,6 @@
         </tr>
 
     </table>
+
+
 </asp:Content>

@@ -213,14 +213,14 @@ namespace Business_Application_Project
 
             try
             {
-                string queryStr = "INSERT INTO Products(Product_ID, Brand, Model, Category, Unit_Price, Product_Desc, Address, Product_Image)"
-                  + " values (@Product_ID, @Brand, @Model, @Category, @Unit_Price, @Product_Desc, @Address, @Product_Image)";
+                string queryStr = "INSERT INTO Products(Brand, Model, Category, Unit_Price, Product_Desc, Address, Product_Image)"
+                  + " values ( @Brand, @Model, @Category, @Unit_Price, @Product_Desc, @Address, @Product_Image)";
 
                 using (SqlConnection conn = new SqlConnection(_connStr))
                 {
                     using (SqlCommand cmd = new SqlCommand(queryStr, conn))
                     {
-                        cmd.Parameters.AddWithValue("@Product_ID", this.Product_ID);
+                        //cmd.Parameters.AddWithValue("@Product_ID", this.Product_ID);
                         cmd.Parameters.AddWithValue("@Brand", this.Brand);
                         cmd.Parameters.AddWithValue("@Model", this.Model);
                         cmd.Parameters.AddWithValue("@Category", this.Category);

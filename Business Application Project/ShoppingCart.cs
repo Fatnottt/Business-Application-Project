@@ -16,7 +16,9 @@ namespace Business_Application_Project
         string _connStr = ConfigurationManager.ConnectionStrings["BikieDB"].ConnectionString;
         private string _cartID = null;
         private string _prodID = "";
-        private DateTime _date;
+        private DateTime _datein;
+        private DateTime _dateout;
+
         private string _brand = "";
         private string _model = "";
         private string _category = "";
@@ -24,14 +26,11 @@ namespace Business_Application_Project
         private string _prodDesc = "";
         private string _address = "";
 
-
-        //private int _quantity = 0;
-
-        //public static void Main(string[] args)
-        //{
-        //    ShoppingCart cart = new ShoppingCart("CartId", "ProdId", DateTime.Now);
-        //    int insertResult = cart.ShoppingCartInsert();
-        //}
+        private string _email = "";
+        private string _name = "";
+        private string _actualpassword = "";
+        private string _repeatpassword = "";
+        private string _tokenauth = "";
 
 
         // Default constructor
@@ -40,11 +39,13 @@ namespace Business_Application_Project
         }
 
         // Constructor that take in all data required to build a Product object
-        public ShoppingCart(string cartID, string prodID, DateTime date) //, int quantity , string brand, string model, string category, decimal unitPrice, string prodDesc, string address
+        public ShoppingCart(string cartID, string prodID, string email, DateTime datein, DateTime dateout) //, int quantity , string brand, string model, string category, decimal unitPrice, string prodDesc, string address
         {
             _cartID = cartID;
             _prodID = prodID;
-            _date = date;
+            _datein = datein;
+            _dateout = dateout;
+            _email = email;
 
             //_brand = brand;
             //_model = model;
@@ -57,14 +58,14 @@ namespace Business_Application_Project
         }
 
         // Constructor that take in all except cart ID 
-        public ShoppingCart(string prodID, DateTime date) //, int quantity
-            : this(null, prodID, date) //, quantity
+        public ShoppingCart(string prodID, string email, DateTime datein, DateTime dateout)
+            : this(null, prodID, email, datein, dateout)
         {
         }
 
         // Constructor that take in only cart ID. The other attributes will be set to 0 or empty.
         public ShoppingCart(string cartID)
-            : this(cartID, "", DateTime.MinValue) //, 0
+            : this(cartID, "", "", DateTime.MinValue, DateTime.MinValue)
         {
         }
 
@@ -82,10 +83,22 @@ namespace Business_Application_Project
             set { _prodID = value; }
         }
 
-        public DateTime Date
+        public string Email
         {
-            get { return _date; }
-            set { _date = value; }
+            get { return _email; }
+            set { _email = value; }
+        }
+
+        public DateTime Datein
+        {
+            get { return _datein; }
+            set { _datein = value; }
+        }
+
+        public DateTime Dateout
+        {
+            get { return _dateout; }
+            set { _dateout = value; }
         }
 
 
@@ -97,11 +110,6 @@ namespace Business_Application_Project
         public string Address { get; set; }
         public string Product_Image { get; set; }
 
-        //public int Quantity
-        //{
-        //    get { return _quantity; }
-        //    set { _quantity = value; }
-        //}
 
 
 
@@ -109,9 +117,23 @@ namespace Business_Application_Project
         {
             ShoppingCart cartDetail = null;
 
-            string queryStr = "SELECT ShoppingCarts.ShoppingCart_ID, ShoppingCarts.Product_ID, Products.Brand, Products.Model, Products.Category, Products.Unit_Price, Products.Product_Desc, Products.Address, Products.Product_Image FROM ShoppingCarts INNER JOIN Products ON ShoppingCarts.Product_ID = Products.Product_ID WHERE ShoppingCarts.ShoppingCart_ID = @CartID;";
+            //string queryStr = "SELECT ShoppingCarts.ShoppingCart_ID, ShoppingCarts.Product_ID, Products.Brand, Products.Model, Products.Category, Products.Unit_Price, Products.Product_Desc, Products.Address, Products.Product_Image FROM ShoppingCarts INNER JOIN Products ON ShoppingCarts.Product_ID = Products.Product_ID WHERE ShoppingCarts.ShoppingCart_ID = @CartID;";
 
-            //Quantity,
+            string queryStr = "SELECT ShoppingCarts.ShoppingCart_ID, " +
+                  "ShoppingCarts.Product_ID, " +
+                  "Products.Brand, " +
+                  "Products.Model, " +
+                  "Products.Category, " +
+                  "Products.Unit_Price, " +
+                  "Products.Product_Desc, " +
+                  "Products.Address, " +
+                  "Products.Product_Image, " +
+                  "Users.Email " +
+                  "FROM ShoppingCarts " +
+                  "INNER JOIN Products ON ShoppingCarts.Product_ID = Products.Product_ID " +
+                  "INNER JOIN Users ON ShoppingCarts.Email = Users.Email " +
+                  "WHERE ShoppingCarts.ShoppingCart_ID = @CartID;";
+
 
             using (SqlConnection conn = new SqlConnection(_connStr))
             {
@@ -127,8 +149,9 @@ namespace Business_Application_Project
                         {
                             // Retrieve columns from ShoppingCart table
                             string prodID = dr["Product_ID"].ToString();
-                            DateTime date = DateTime.Parse(dr["Date"].ToString());
-                            //int quantity = int.Parse(dr["Quantity"].ToString());
+                            DateTime datein = DateTime.Parse(dr["Datein"].ToString());
+                            DateTime dateout = DateTime.Parse(dr["Dateout"].ToString());
+
 
                             // Retrieve columns from Products table
                             string brand = dr["Brand"].ToString();
@@ -139,8 +162,11 @@ namespace Business_Application_Project
                             string address = dr["Address"].ToString();
                             //string Prod_Image = dr["Product_Image"].ToString();
 
+                            // Retrieve columns from Users table
+                            string email = dr["Email"].ToString();
+
                             // Create ShoppingCart object
-                            cartDetail = new ShoppingCart(cartID, prodID, date); //, brand, model, category, unit_Price, prod_Desc, address, prod_Image, quantity
+                            cartDetail = new ShoppingCart(cartID, prodID, email, datein, dateout); //, brand, model, category, unit_Price, prod_Desc, address, prod_Image, quantity
                         }
                     }
                 }
@@ -149,109 +175,35 @@ namespace Business_Application_Project
             return cartDetail;
         }
 
-        //public ShoppingCart getShoppingCart(string cartID)
-        //{
-        //    ShoppingCart cartDetail = null;
-
-        //    //string queryStr = "SELECT ShoppingCarts.ShoppingCart_ID, ShoppingCarts.Product_ID, Products.Brand, Products.Model, Products.Category, Products.Unit_Price, Products.Product_Desc, Products.Address, Products.Product_Image FROM ShoppingCarts INNER JOIN Products ON ShoppingCarts.Product_ID = Products.Product_ID WHERE ShoppingCarts.ShoppingCart_ID = @CartID;";
-        //    string queryStr = "SELECT ShoppingCarts.ShoppingCart_ID, ShoppingCarts.Product_ID, ShoppingCarts.Date, Products.Brand, Products.Model, Products.Category, Products.Unit_Price, Products.Product_Desc, Products.Address, Products.Product_Image FROM ShoppingCarts INNER JOIN Products ON ShoppingCarts.Product_ID = Products.Product_ID WHERE ShoppingCarts.ShoppingCart_ID = @CartID";
-
-
-        //    using (SqlConnection conn = new SqlConnection(_connStr))
-        //    {
-        //        conn.Open();
-
-        //        using (SqlCommand cmd = new SqlCommand(queryStr, conn))
-        //        {
-        //            cmd.Parameters.AddWithValue("@CartID", cartID);
-
-        //            using (SqlDataReader dr = cmd.ExecuteReader())
-        //            {
-        //                if (dr.Read())
-        //                {
-        //                    // Retrieve columns from ShoppingCart table
-        //                    string prodID = dr["Product_ID"].ToString();
-        //                    DateTime date = DateTime.Parse(dr["Date"].ToString());
-
-        //                    // Retrieve columns from Products table
-        //                    string brand = dr["Brand"].ToString();
-        //                    string model = dr["Model"].ToString();
-        //                    string category = dr["Category"].ToString();
-        //                    decimal unit_Price = decimal.Parse(dr["Unit_Price"].ToString());
-        //                    string prod_Desc = dr["Product_Desc"].ToString();
-        //                    string address = dr["Address"].ToString();
-        //                    string Prod_Image = dr["Product_Image"].ToString();
-
-        //                    // Create ShoppingCart object
-        //                    cartDetail = new ShoppingCart(cartID, prodID, date);
-        //                }
-        //            }
-        //        }
-        //    }
-
-        //    return cartDetail;
-        //}
-
-
-        //public List<ShoppingCart> getShoppingCartAll()
-        //{
-        //    List<ShoppingCart> cartList = new List<ShoppingCart>();
-
-        //    //string queryStr = "SELECT ShoppingCarts.ShoppingCart_ID, ShoppingCarts.Product_ID, ShoppingCarts.Date, Products.Brand, Products.Model, Products.Category, Products.Unit_Price, Products.Product_Desc, Products.Address, Products.Product_Image FROM ShoppingCarts INNER JOIN Products ON ShoppingCarts.Product_ID = Products.Product_ID ORDER BY ShoppingCarts.Date";
-        //    string queryStr = "SELECT ShoppingCarts.ShoppingCart_ID, ShoppingCarts.Product_ID, ShoppingCarts.Date, Products.Brand, Products.Model, Products.Category, Products.Unit_Price, Products.Product_Desc, Products.Address, Products.Product_Image FROM ShoppingCarts INNER JOIN Products ON ShoppingCarts.Product_ID = Products.Product_ID ORDER BY ShoppingCarts.Date";
-
-        //    using (SqlConnection conn = new SqlConnection(_connStr))
-        //    {
-        //        conn.Open();
-
-        //        using (SqlCommand cmd = new SqlCommand(queryStr, conn))
-        //        {
-        //            using (SqlDataReader dr = cmd.ExecuteReader())
-        //            {
-        //                while (dr.Read())
-        //                {
-        //                    //string cart_ID = dr["ShoppingCart_ID"].ToString();
-        //                    string cart_ID = dr["ShoppingCart_ID"].ToString(); // Use the correct column name here
-
-        //                    //string prod_ID = dr["Product_ID"].ToString();
-
-        //                    string prod_ID = dr["Product_ID"].ToString();
-        //                    string brand = dr["Brand"].ToString();
-        //                    string model = dr["Model"].ToString();
-        //                    string category = dr["Category"].ToString();
-        //                    decimal unit_Price = decimal.Parse(dr["Unit_Price"].ToString());
-        //                    string prod_Desc = dr["Product_Desc"].ToString();
-        //                    string address = dr["Address"].ToString();
-
-        //                    DateTime date;
-        //                    if (DateTime.TryParse(dr["Date"].ToString(), out date))
-        //                    {
-        //                        ShoppingCart a = new ShoppingCart(cart_ID, prod_ID, date, brand, model, category, unit_Price, prod_Desc, address);
-        //                        cartList.Add(a);
-        //                    }
-        //                    else
-        //                    {
-        //                        // Handle the case where date parsing fails
-        //                        // You might want to log an error or take appropriate action
-        //                    }
-        //                }
-        //            }
-        //        }
-        //    }
-
-        //    return cartList;
-        //}
 
         public List<ShoppingCart> getShoppingCartAll()
         {
             List<ShoppingCart> cartList = new List<ShoppingCart>();
 
-            string queryStr = "SELECT ShoppingCarts.ShoppingCart_ID, ShoppingCarts.Product_ID, ShoppingCarts.Date, " +
-                              "Products.Brand, Products.Model, Products.Category, " +
-                              "Products.Unit_Price, Products.Product_Desc, Products.Address, Products.Product_Image " +
-                              "FROM ShoppingCarts " +
-                              "INNER JOIN Products ON ShoppingCarts.Product_ID = Products.Product_ID " +
-                              "ORDER BY ShoppingCarts.Date";
+            //string queryStr = "SELECT ShoppingCarts.ShoppingCart_ID, ShoppingCarts.Product_ID, ShoppingCarts.Datein,ShoppingCarts.Dateout, " +
+            //                  "Products.Brand, Products.Model, Products.Category, " +
+            //                  "Products.Unit_Price, Products.Product_Desc, Products.Address, Products.Product_Image " +
+            //                  "FROM ShoppingCarts " +
+            //                  "INNER JOIN Products ON ShoppingCarts.Product_ID = Products.Product_ID " +
+            //                  "ORDER BY ShoppingCarts.Datein";
+
+            string queryStr = "SELECT ShoppingCarts.ShoppingCart_ID, " +
+                  "ShoppingCarts.Product_ID, " +
+                  "ShoppingCarts.Datein, " +
+                  "ShoppingCarts.Dateout, " +
+                  "Products.Brand, " +
+                  "Products.Model, " +
+                  "Products.Category, " +
+                  "Products.Unit_Price, " +
+                  "Products.Product_Desc, " +
+                  "Products.Address, " +
+                  "Products.Product_Image, " +
+                  "Users.Email " +
+                  "FROM ShoppingCarts " +
+                  "INNER JOIN Products ON ShoppingCarts.Product_ID = Products.Product_ID " +
+                  "INNER JOIN Users ON ShoppingCarts.Email = Users.Email " +
+                  "ORDER BY ShoppingCarts.Datein";
+
 
             using (SqlConnection conn = new SqlConnection(_connStr))
             {
@@ -265,9 +217,11 @@ namespace Business_Application_Project
                         {
                             string cart_ID = dr["ShoppingCart_ID"].ToString();
                             string prod_ID = dr["Product_ID"].ToString();
+                            string email = dr["Email"].ToString();
 
-                            DateTime date;
-                            if (DateTime.TryParse(dr["Date"].ToString(), out date))
+                            DateTime datein;
+                            DateTime dateout;
+                            if (DateTime.TryParse(dr["Datein"].ToString(), out datein) && DateTime.TryParse(dr["Dateout"].ToString(), out dateout))
                             {
                                 string brand = dr["Brand"].ToString();
                                 string model = dr["Model"].ToString();
@@ -276,7 +230,7 @@ namespace Business_Application_Project
                                 string prod_Desc = dr["Product_Desc"].ToString();
                                 string address = dr["Address"].ToString();
 
-                                ShoppingCart cart = new ShoppingCart(cart_ID, prod_ID, date)
+                                ShoppingCart cart = new ShoppingCart(cart_ID, prod_ID, email, datein, dateout)
                                 {
                                     Brand = brand,
                                     Model = model,
@@ -312,36 +266,7 @@ namespace Business_Application_Project
         }
 
 
-        //public int ShoppingCartInsert()
-        //{
-        //    int result = 0;
 
-        //    // Ensure that Cart_ID, Product_ID, and Date are not null
-        //    if (string.IsNullOrEmpty(this._cartID) || string.IsNullOrEmpty(this._prodID) || this._date == DateTime.MinValue)
-        //    {
-        //        // Handle the case where parameters are not set
-        //        return -1; // You may choose an appropriate error code
-        //    }
-
-        //    string queryStr = "INSERT INTO ShoppingCarts(ShoppingCart_ID, Product_ID, Date) VALUES (@ShoppingCart_ID, @Product_ID, @Date)";
-
-        //    using (SqlConnection conn = new SqlConnection(_connStr))
-        //    {
-        //        conn.Open();
-
-        //        using (SqlCommand cmd = new SqlCommand(queryStr, conn))
-        //        {
-        //            // Set parameters
-        //            cmd.Parameters.AddWithValue("@ShoppingCart_ID", this.ShoppingCart_ID);
-        //            cmd.Parameters.AddWithValue("@Product_ID", this.Product_ID);
-        //            cmd.Parameters.AddWithValue("@Date", this.Date);
-
-        //            result += cmd.ExecuteNonQuery();
-        //        }
-        //    }
-
-        //    return result;
-        //}
 
         public int ShoppingCartInsert()
         {
@@ -354,7 +279,7 @@ namespace Business_Application_Project
 
             //ShoppingCart_ID, @ShoppingCart_ID, 
 
-            string queryStr = "INSERT INTO ShoppingCarts(Product_ID, Date)" + "values(@Product_ID, @Date)";
+            string queryStr = "INSERT INTO ShoppingCarts(Product_ID, Email, Datein, Dateout)" + "values(@Product_ID, @Email, @Datein, @Dateout)";
             //string queryStr = "INSERT INTO ShoppingCarts(Product_ID, Date, Brand, Model, Category, Unit_Price, Product_Desc, Address)" + "values(@Product_ID, @Date, @Brand, @Model, @Category, @Unit_Price, @Product_Desc, @Address)";
 
 
@@ -366,7 +291,9 @@ namespace Business_Application_Project
                 {
                     //cmd.Parameters.AddWithValue("@ShoppingCart_ID", this.ShoppingCart_ID);
                     cmd.Parameters.AddWithValue("@Product_ID", this.Product_ID);
-                    cmd.Parameters.AddWithValue("@Date", this.Date);
+                    cmd.Parameters.AddWithValue("@Email", this.Email);
+                    cmd.Parameters.AddWithValue("@Datein", this.Datein);
+                    cmd.Parameters.AddWithValue("@Dateout", this.Dateout);
                     //cmd.Parameters.AddWithValue("@Brand", this.Brand);
                     //cmd.Parameters.AddWithValue("@Model", this.Model);
                     //cmd.Parameters.AddWithValue("@Category", this.Category);
@@ -439,7 +366,7 @@ namespace Business_Application_Project
 
 
 
-        public int ShoppingCartUpdate(string cId, string cDesc, string cCategory, string cBrand, string cModel, decimal cUnitPrice, string cAddress, DateTime cDate)
+        public int ShoppingCartUpdate(string cId, string cDesc, string cCategory, string cBrand, string cModel, decimal cUnitPrice, string cAddress, DateTime cDatein, DateTime cDateout)
         {
             int nofRow = 0;
             string queryStr = "UPDATE ShoppingCarts SET" +
@@ -449,7 +376,8 @@ namespace Business_Application_Project
                 " Model = @model, " +
                 " Address = @address, " +
                 " Unit_Price = @unitPrice, " +
-                " Date = @date " +
+                " Datein = @datein " +
+                " Dateout = @dateout " +
                 " WHERE ShoppingCart_ID = @shoppingcartID";
 
             try
@@ -464,7 +392,8 @@ namespace Business_Application_Project
                         cmd.Parameters.AddWithValue("@model", cModel);
                         cmd.Parameters.AddWithValue("@address", cAddress);
                         cmd.Parameters.AddWithValue("@unitPrice", cUnitPrice);
-                        cmd.Parameters.AddWithValue("@date", cDate);
+                        cmd.Parameters.AddWithValue("@datein", cDatein);
+                        cmd.Parameters.AddWithValue("@dateout", cDateout);
                         cmd.Parameters.AddWithValue("@shoppingcartID", cId);
 
                         conn.Open();
@@ -486,10 +415,10 @@ namespace Business_Application_Project
             return nofRow;
         }
 
-        public int ShoppingCartUpdateDate(string cId, DateTime cDate)
+        public int ShoppingCartUpdateDate(string cId, DateTime cDatein, DateTime cDateout)
         {
             int nofRow = 0;
-            string queryStr = "UPDATE ShoppingCarts SET Date = @date WHERE ShoppingCart_ID = @shoppingcartID";
+            string queryStr = "UPDATE ShoppingCarts SET Datein = @datein, Dateout = @dateout WHERE ShoppingCart_ID = @shoppingcartID";
 
             try
             {
@@ -497,7 +426,8 @@ namespace Business_Application_Project
                 {
                     using (SqlCommand cmd = new SqlCommand(queryStr, conn))
                     {
-                        cmd.Parameters.AddWithValue("@date", cDate);
+                        cmd.Parameters.AddWithValue("@datein", cDatein);
+                        cmd.Parameters.AddWithValue("@dateout", cDateout);
                         cmd.Parameters.AddWithValue("@shoppingcartID", cId);
 
                         conn.Open();
@@ -522,4 +452,3 @@ namespace Business_Application_Project
 
     }
 }
-

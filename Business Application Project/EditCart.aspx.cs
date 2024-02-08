@@ -1,70 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data;
 
 namespace Business_Application_Project
 {
-    public partial class ProductDetails : System.Web.UI.Page
+    public partial class EditCart : System.Web.UI.Page
     {
-        //VERLYN'S 
         public static readonly String IMAGE_FOLDER = "~\\Images\\"; //verlyn dh this
 
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            Product aProd = new Product(); //verlyn dh this
+            ShoppingCart aCart = new ShoppingCart(); //verlyn dh this
 
             // Get Product ID from querystring
-            string prodID = Request.QueryString["ProdID"].ToString();
+            string cartID = Request.QueryString["CartID"].ToString();
 
             //prodID = aProd.getProduct(prodID); //verlyn's
-            Product prod = aProd.getProduct(prodID); //verlyn dh this
+            ShoppingCart cart = aCart.getShoppingCart(cartID); //verlyn dh this
 
-            hf_productID.Value = prod.Product_ID;
+            hf_shoppingcartID.Value = cart.ShoppingCart_ID;
             //lbl_ProdName.Text = prod.Product_Name;
-            lbl_ProdDesc.Text = prod.Product_Desc;
-            lbl_Price.Text = prod.Unit_Price.ToString("c");
+            lbl_ProdDesc.Text = cart.Product_Desc;
+            lbl_Price.Text = cart.Unit_Price.ToString("c");
 
             //img_Product.ImageUrl = "~\\Images\\" + prod.Product_Image; //verlyn's
-            img_Product.ImageUrl = IMAGE_FOLDER + prod.Product_Image; //lh's version verlyn dh this
+            img_Product.ImageUrl = IMAGE_FOLDER + cart.Product_Image; //lh's version verlyn dh this
 
-            lbl_Category.Text = prod.Category;
-            lbl_Brand.Text = prod.Brand;
-            lbl_Model.Text = prod.Model;
-            lbl_Address.Text = prod.Address;
+            lbl_Category.Text = cart.Category;
+            lbl_Brand.Text = cart.Brand;
+            lbl_Model.Text = cart.Model;
+            lbl_Address.Text = cart.Address;
 
-            lbl_ProdID.Text = prodID.ToString(); //verlyn's version is commented
-                                                 //VERLYN'S
+            lbl_CartID.Text = cartID.ToString(); //verlyn's version is commented
 
-
-            //YUKI'S
-
-            if (!IsPostBack)
-            {
-                // Get the product ID from the query string
-                string productId = Request.QueryString["ProdID"];
-
-                // Check if the product ID is for bike 11
-                if (productId == "11")
-                {
-                    // Load and display the reviews for bike 11
-                    DataTable reviewsTable = RatingReview.GetReviewsFromDatabase("11");
-                    lbl_ReviewCount.Text = reviewsTable.Rows.Count + " Reviews";
-                    rptReviews.DataSource = reviewsTable;
-                    rptReviews.DataBind();
-                }
-                else
-                {
-                    lbl_ReviewCount.Text = "0 Review";
-                }
-            }
-
-        } 
+        } //VERLYN'S
 
 
         protected void btn_Add_Click(object sender, EventArgs e)
@@ -77,7 +50,7 @@ namespace Business_Application_Project
             string selectedDateinStr = txt_Datein.Text;
             string selectedDateoutStr = txt_Dateout.Text;
 
-       
+
 
             // Parse the selected date string to DateTime
             DateTime selectedDatein;
@@ -98,7 +71,7 @@ namespace Business_Application_Project
                     Response.Write("<script>alert('Insert NOT successful');</script>");
                 }
 
-               
+
             }
             else
             {
@@ -114,26 +87,6 @@ namespace Business_Application_Project
         {
             //Re-direct page to “ProductView.aspx”
             Response.Redirect("SeeCart.aspx");
-        }
-
-
-        // yuki's
-        protected string GetStarIcons(object stars)
-        {
-            if (stars != null && stars != DBNull.Value)
-            {
-                int starCount = Convert.ToInt32(stars);
-
-                string starIcons = "";
-                for (int i = 0; i < starCount; i++)
-                {
-                    starIcons += "&#9733;"; // Unicode character for a star
-                }
-
-                return starIcons;
-            }
-
-            return "";
         }
 
     }

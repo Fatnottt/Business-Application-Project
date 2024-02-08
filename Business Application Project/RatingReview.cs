@@ -13,10 +13,9 @@ namespace Business_Application_Project
     {
         private static string _connStr = ConfigurationManager.ConnectionStrings["BikieDB"].ConnectionString;
 
-        public static void SaveRatingToDatabase(int stars, string comment)
+        public static void SaveRatingToDatabase(int stars, string comment, string bikeId)
         {
             string defaultUserEmail = "yatsleo@gmail.com"; // Default user email
-            string defaultBikeId = "11"; // Hardcoded default Bike_ID
 
             using (SqlConnection connection = new SqlConnection(_connStr))
             {
@@ -28,7 +27,7 @@ namespace Business_Application_Project
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@UserEmail", defaultUserEmail);
-                    command.Parameters.AddWithValue("@BikeId", defaultBikeId);
+                    command.Parameters.AddWithValue("@BikeId", bikeId);
                     command.Parameters.AddWithValue("@Stars", stars);
                     command.Parameters.AddWithValue("@Comment", comment);
 
@@ -37,14 +36,19 @@ namespace Business_Application_Project
             }
         }
 
+
         public static DataTable GetReviewsFromDatabase(string bikeId)
         {
-            // Retrieve reviews from the database based on the bike ID
             using (SqlConnection connection = new SqlConnection(_connStr))
             {
                 connection.Open();
 
-                string query = "SELECT User_Email, Stars, Comment FROM Reviews WHERE Bike_ID = @BikeId";
+                string query = @"SELECT R.User_Email, R.Stars, R.Comment, CONVERT(date, R.Review_Date) AS Review_Date
+                    FROM Reviews R
+                    INNER JOIN Products P ON R.Bike_ID = P.Product_Id
+                    WHERE R.Bike_ID = @BikeId";
+
+
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@BikeId", bikeId);
@@ -57,6 +61,7 @@ namespace Business_Application_Project
                 }
             }
         }
+
 
         public static void UpdateReviewInDatabase(string userEmail, string bikeId, int stars, string comment)
         {
