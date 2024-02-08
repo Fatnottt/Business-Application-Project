@@ -44,6 +44,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=20.1.0.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <HintPath>..\packages\AjaxControlToolkit.20.1.0\lib\net40\AjaxControlToolkit.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -149,7 +152,6 @@
     <Content Include="EditProfile.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="ForgotPassword.aspx" />
-    <Content Include="InsertReview.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Logout.aspx" />
     <Content Include="Main.aspx" />
@@ -165,12 +167,10 @@
     <Content Include="ProductInsert.aspx" />
     <Content Include="ProductView.aspx" />
     <Content Include="RateForm.aspx" />
-    <Content Include="RatingProdView.aspx" />
     <Content Include="RecoverPassword.aspx" />
     <Content Include="ReviewsNav.aspx" />
     <Content Include="SaveTransactionId.aspx" />
     <Content Include="SeeCart.aspx" />
-    <Content Include="ViewReview.aspx" />
     <Content Include="Profile.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -333,7 +333,6 @@
     <Compile Include="EditProfile.aspx.designer.cs">
       <DependentUpon>EditProfile.aspx</DependentUpon>
     </Compile>
-    <Content Include="ViewReview.aspx" />
     <Content Include="Profile.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -487,13 +486,6 @@
     <Compile Include="ForgotPassword.aspx.designer.cs">
       <DependentUpon>ForgotPassword.aspx</DependentUpon>
     </Compile>
-    <Compile Include="InsertReview.aspx.cs">
-      <DependentUpon>InsertReview.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="InsertReview.aspx.designer.cs">
-      <DependentUpon>InsertReview.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Constants.cs" />
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -553,13 +545,6 @@
     <Compile Include="RateForm.aspx.designer.cs">
       <DependentUpon>RateForm.aspx</DependentUpon>
     </Compile>
-    <Compile Include="RatingProdView.aspx.cs">
-      <DependentUpon>RatingProdView.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="RatingProdView.aspx.designer.cs">
-      <DependentUpon>RatingProdView.aspx</DependentUpon>
-    </Compile>
     <Compile Include="RatingReview.cs" />
     <Compile Include="RecoverPassword.aspx.cs">
       <DependentUpon>RecoverPassword.aspx</DependentUpon>
@@ -568,7 +553,6 @@
     <Compile Include="RecoverPassword.aspx.designer.cs">
       <DependentUpon>RecoverPassword.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Review.cs" />
     <Compile Include="ReviewsNav.aspx.cs">
       <DependentUpon>ReviewsNav.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -592,13 +576,6 @@
       <DependentUpon>SeeCart.aspx</DependentUpon>
     </Compile>
     <Compile Include="ShoppingCart.cs" />
-    <Compile Include="ViewReview.aspx.cs">
-      <DependentUpon>ViewReview.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ViewReview.aspx.designer.cs">
-      <DependentUpon>ViewReview.aspx</DependentUpon>
-    </Compile>
     <Compile Include="SignUp.aspx.cs">
       <DependentUpon>SignUp.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

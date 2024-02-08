@@ -58,10 +58,5 @@ namespace Business_Application_Project
             Response.Redirect($"ProductDetails.aspx?ProdID={bikeId}");
         }
 
-
-
-
-
-
     }
 }

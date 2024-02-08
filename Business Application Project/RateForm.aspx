@@ -90,16 +90,6 @@
 
 
 
-        function validateForm() {
-            var isValidStars = validateStars();
-            var comment = document.getElementById('<%= txtComment.ClientID %>').value;
-            if (comment.trim() === '') {
-                alert("Please provide a comment.");
-                return false;
-            }
-            return isValidStars;
-        }
-
     </script>
 
 
@@ -131,9 +121,9 @@
 
         <br />
 
-        <div class="button-container">
-            <asp:Button ID="btnSubmit" runat="server" Text="Submit Rating" OnClick="btnSubmit_Click" CssClass="submit-button" />
-            <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" CssClass="cancel-button" />
+        <div class="button-container">            
+            <asp:Button ID="btnSubmit" runat="server" Text="Submit Rating" OnClick="btnSubmit_Click" CssClass="submit-button" OnClientClick="return validateForm();" />
+            <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" CssClass="cancel-button" OnClientClick="return closePopup();" />
         </div>
 
     </div>
