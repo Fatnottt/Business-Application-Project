@@ -299,6 +299,15 @@ namespace Business_Application_Project
                     }
                 }
 
+                // Update status in DepositTransactions table to "Pending Refund"
+                string updateStatusQuery = "UPDATE DepositTransactions SET Status = @Status WHERE Email = @Email";
+                using (SqlCommand updateCmd = new SqlCommand(updateStatusQuery, connection))
+                {
+                    updateCmd.Parameters.AddWithValue("@Status", "Pending Refund");
+                    updateCmd.Parameters.AddWithValue("@Email", email);
+                    updateCmd.ExecuteNonQuery();
+                }
+
                 string deleteQuery = "DELETE FROM [Users] WHERE Email = @Email";
 
                 using (SqlCommand command = new SqlCommand(deleteQuery, connection))

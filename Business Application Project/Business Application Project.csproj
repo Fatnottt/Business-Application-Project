@@ -302,6 +302,7 @@
     <Content Include="Scripts\jquery-3.7.1.slim.js" />
     <Content Include="Scripts\jquery-3.7.1.slim.min.js" />
     <Content Include="SignUp.aspx" />
+    <Content Include="Transactions.aspx" />
     <Content Include="Web.config" />
     <Content Include="WithNavbar.Master" />
   </ItemGroup>
@@ -590,6 +591,13 @@
     </Compile>
     <Compile Include="Site1.Master.designer.cs">
       <DependentUpon>Site1.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions.aspx.cs">
+      <DependentUpon>Transactions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Transactions.aspx.designer.cs">
+      <DependentUpon>Transactions.aspx</DependentUpon>
     </Compile>
     <Compile Include="User.cs" />
     <Compile Include="WithNavbar.Master.cs">
