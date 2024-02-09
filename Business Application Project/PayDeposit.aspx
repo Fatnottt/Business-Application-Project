@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PayDeposit.aspx.cs" Inherits="Business_Application_Project.PayDeposit" %>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -75,7 +77,7 @@
             function saveTransactionId(transactionId) {
                 // Use AJAX to send the transaction ID to the server
                 var xhr = new XMLHttpRequest();
-                xhr.open("POST", "SaveTransactionId.aspx", true);
+                xhr.open("POST", "PayDeposit.aspx/SaveTransactionId", true);
                 xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
                 xhr.send("transactionId=" + transactionId);
             }

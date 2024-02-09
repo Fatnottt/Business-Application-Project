@@ -135,6 +135,7 @@
     <Content Include="Images\default-user-icon.png" />
     <Content Include="Images\PeopleBike.png" />
     <Content Include="PayDeposit.html" />
+    <Content Include="PayDeposit.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -305,6 +306,7 @@
     <Content Include="Scripts\jquery-3.7.1.slim.js" />
     <Content Include="Scripts\jquery-3.7.1.slim.min.js" />
     <Content Include="SignUp.aspx" />
+    <Content Include="Transactions.aspx" />
     <Content Include="Web.config" />
     <Content Include="WithNavbar.Master" />
   </ItemGroup>
@@ -505,6 +507,13 @@
     <Compile Include="Logout.aspx.designer.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PayDeposit.aspx.cs">
+      <DependentUpon>PayDeposit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PayDeposit.aspx.designer.cs">
+      <DependentUpon>PayDeposit.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Product.cs" />
     <Compile Include="Main.aspx.cs">
       <DependentUpon>Main.aspx</DependentUpon>
@@ -593,6 +602,13 @@
     </Compile>
     <Compile Include="Site1.Master.designer.cs">
       <DependentUpon>Site1.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions.aspx.cs">
+      <DependentUpon>Transactions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Transactions.aspx.designer.cs">
+      <DependentUpon>Transactions.aspx</DependentUpon>
     </Compile>
     <Compile Include="User.cs" />
     <Compile Include="WithNavbar.Master.cs">
