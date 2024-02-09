@@ -108,5 +108,29 @@ namespace Business_Application_Project
 
         }
 
+        // for testing history database in TestingReview.aspx
+        public static DataTable GetRentalHistory(string userEmail)
+        {
+            using (SqlConnection connection = new SqlConnection(_connStr))
+            {
+                connection.Open();
+
+                string query = @"SELECT History_Id, Bike_Id, Bike_Name, Start_Date, End_Date, Total_Price, Bike_Image
+                                 FROM History
+                                 WHERE User_Email = @UserEmail";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@UserEmail", userEmail);
+
+                    SqlDataAdapter adapter = new SqlDataAdapter(command);
+                    DataTable historyTable = new DataTable();
+                    adapter.Fill(historyTable);
+
+                    return historyTable;
+                }
+            }
+        }
+
     }
 }
