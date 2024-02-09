@@ -130,7 +130,10 @@
     </Content>
     <Content Include="EditCart.aspx" />
     <Content Include="EditReview.aspx" />
+    <Content Include="Images\active_bikers_ltr.jpg" />
+    <Content Include="Images\active_bikers_rtl.jpg" />
     <Content Include="Images\default-user-icon.png" />
+    <Content Include="Images\PeopleBike.png" />
     <Content Include="PayDeposit.html" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
