@@ -16,7 +16,7 @@ namespace Business_Application_Project
             {
                 // Retrieve the existing review data based on the user's email and bike ID
                 string userEmail = "yatsleo@gmail.com"; // Replace with the actual user email
-                string bikeId = "11"; // Replace with the actual bike ID
+                string bikeId = "3"; // Replace with the actual bike ID
 
                 DataTable existingReview = RatingReview.GetReviewsFromDatabase(bikeId);
 
@@ -51,7 +51,7 @@ namespace Business_Application_Project
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
             // Retrieve the existing review data to compare with the updated data
-            DataTable existingReview = RatingReview.GetReviewsFromDatabase("11"); // Assuming bikeId is hardcoded as "11"
+            DataTable existingReview = RatingReview.GetReviewsFromDatabase("3"); // Assuming bikeId is hardcoded as "11"
 
             if (existingReview.Rows.Count > 0)
             {
@@ -71,10 +71,10 @@ namespace Business_Application_Project
                 }
 
                 // Update the review in the database
-                RatingReview.UpdateReviewInDatabase("yatsleo@gmail.com", "11", currentStars, comment);
+                RatingReview.UpdateReviewInDatabase("yatsleo@gmail.com", "3", currentStars, comment);
 
                 // Redirect to a confirmation or another page
-                Response.Redirect("ProductDetails.aspx?ProdID=11");
+                Response.Redirect("ProductDetails.aspx?ProdID=3");
             }
         }
 
