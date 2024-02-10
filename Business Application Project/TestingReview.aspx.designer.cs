@@ -11,16 +11,16 @@ namespace Business_Application_Project
 {
 
 
-    public partial class AdminMain
+    public partial class TestingReview
     {
 
         /// <summary>
-        /// usersGridView control.
+        /// rptHistory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView usersGridView;
+        protected global::System.Web.UI.WebControls.Repeater rptHistory;
     }
 }

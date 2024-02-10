@@ -45,6 +45,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=20.1.0.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <HintPath>..\packages\AjaxControlToolkit.20.1.0\lib\net40\AjaxControlToolkit.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -128,7 +131,11 @@
     </Content>
     <Content Include="EditCart.aspx" />
     <Content Include="EditReview.aspx" />
-    <Content Include="PayDeposit.html" />
+    <Content Include="Images\active_bikers_ltr.jpg" />
+    <Content Include="Images\active_bikers_rtl.jpg" />
+    <Content Include="Images\default-user-icon.png" />
+    <Content Include="Images\PeopleBike.png" />
+    <Content Include="PayDeposit.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -150,7 +157,6 @@
     <Content Include="EditProfile.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="ForgotPassword.aspx" />
-    <Content Include="InsertReview.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Logout.aspx" />
     <Content Include="Main.aspx" />
@@ -166,12 +172,10 @@
     <Content Include="ProductInsert.aspx" />
     <Content Include="ProductView.aspx" />
     <Content Include="RateForm.aspx" />
-    <Content Include="RatingProdView.aspx" />
     <Content Include="RecoverPassword.aspx" />
     <Content Include="ReviewsNav.aspx" />
     <Content Include="SaveTransactionId.aspx" />
     <Content Include="SeeCart.aspx" />
-    <Content Include="ViewReview.aspx" />
     <Content Include="Profile.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -302,6 +306,8 @@
     <Content Include="Scripts\jquery-3.7.1.slim.js" />
     <Content Include="Scripts\jquery-3.7.1.slim.min.js" />
     <Content Include="SignUp.aspx" />
+    <Content Include="TestingReview.aspx" />
+    <Content Include="Transactions.aspx" />
     <Content Include="Web.config" />
     <Content Include="WithNavbar.Master" />
   </ItemGroup>
@@ -334,7 +340,6 @@
     <Compile Include="EditProfile.aspx.designer.cs">
       <DependentUpon>EditProfile.aspx</DependentUpon>
     </Compile>
-    <Content Include="ViewReview.aspx" />
     <Content Include="Profile.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -488,13 +493,6 @@
     <Compile Include="ForgotPassword.aspx.designer.cs">
       <DependentUpon>ForgotPassword.aspx</DependentUpon>
     </Compile>
-    <Compile Include="InsertReview.aspx.cs">
-      <DependentUpon>InsertReview.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="InsertReview.aspx.designer.cs">
-      <DependentUpon>InsertReview.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Constants.cs" />
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -509,6 +507,13 @@
     </Compile>
     <Compile Include="Logout.aspx.designer.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PayDeposit.aspx.cs">
+      <DependentUpon>PayDeposit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PayDeposit.aspx.designer.cs">
+      <DependentUpon>PayDeposit.aspx</DependentUpon>
     </Compile>
     <Compile Include="Product.cs" />
     <Compile Include="Main.aspx.cs">
@@ -554,13 +559,6 @@
     <Compile Include="RateForm.aspx.designer.cs">
       <DependentUpon>RateForm.aspx</DependentUpon>
     </Compile>
-    <Compile Include="RatingProdView.aspx.cs">
-      <DependentUpon>RatingProdView.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="RatingProdView.aspx.designer.cs">
-      <DependentUpon>RatingProdView.aspx</DependentUpon>
-    </Compile>
     <Compile Include="RatingReview.cs" />
     <Compile Include="RecoverPassword.aspx.cs">
       <DependentUpon>RecoverPassword.aspx</DependentUpon>
@@ -569,7 +567,6 @@
     <Compile Include="RecoverPassword.aspx.designer.cs">
       <DependentUpon>RecoverPassword.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Review.cs" />
     <Compile Include="ReviewsNav.aspx.cs">
       <DependentUpon>ReviewsNav.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -592,13 +589,6 @@
       <DependentUpon>SeeCart.aspx</DependentUpon>
     </Compile>
     <Compile Include="ShoppingCart.cs" />
-    <Compile Include="ViewReview.aspx.cs">
-      <DependentUpon>ViewReview.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ViewReview.aspx.designer.cs">
-      <DependentUpon>ViewReview.aspx</DependentUpon>
-    </Compile>
     <Compile Include="SignUp.aspx.cs">
       <DependentUpon>SignUp.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -612,6 +602,20 @@
     </Compile>
     <Compile Include="Site1.Master.designer.cs">
       <DependentUpon>Site1.Master</DependentUpon>
+    </Compile>
+    <Compile Include="TestingReview.aspx.cs">
+      <DependentUpon>TestingReview.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TestingReview.aspx.designer.cs">
+      <DependentUpon>TestingReview.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions.aspx.cs">
+      <DependentUpon>Transactions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Transactions.aspx.designer.cs">
+      <DependentUpon>Transactions.aspx</DependentUpon>
     </Compile>
     <Compile Include="User.cs" />
     <Compile Include="WithNavbar.Master.cs">
@@ -636,7 +640,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="client\" />
-    <Folder Include="Images\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

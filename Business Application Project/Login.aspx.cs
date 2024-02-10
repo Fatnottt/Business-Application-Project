@@ -19,7 +19,7 @@ namespace Business_Application_Project
                 // Check if the user is already logged in
                 if (Session["CurrentUser"] != null)
                 {
-                    Response.Redirect("Main.aspx"); // Redirect to the home page or dashboard
+                    Response.Redirect("Main.aspx"); // Redirect to the homepage
                 }
 
                 // Check if "Remember Me" is checked
@@ -86,14 +86,13 @@ namespace Business_Application_Project
                 }
             }
         }
-
         private bool AuthenticateUser(string email, string password, out string userName, out string userRole)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["BikieDB"].ConnectionString;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                string query = "SELECT u.Email, u.Name, r.Role FROM Users u INNER JOIN UserRoles r ON u.Email = r.Email WHERE u.Email = @Email AND u.ActualPassword = @Password";
+                string query = "SELECT u.Email, u.Name, ur.Role FROM Users u INNER JOIN UserRoles ur ON u.Email = ur.Email WHERE u.Email = @Email AND u.ActualPassword = @Password AND u.IsDeleted = 0"; // Add condition to check IsDeleted
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@Email", email);
@@ -105,10 +104,7 @@ namespace Business_Application_Project
                         userName = reader["Name"].ToString();
                         userRole = reader["Role"].ToString();
 
-                        // Create a user object (you may need to adjust this based on your User class)
                         User currentUser = new User { Email = email, Name = userName, Role = userRole };
-
-                        // Store user object in session
                         Session["CurrentUser"] = currentUser;
                         return true;
                     }
@@ -119,8 +115,6 @@ namespace Business_Application_Project
             userRole = null;
             return false;
         }
-
-
 
         private bool IsValidEmail(string email)
         {

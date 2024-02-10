@@ -50,10 +50,10 @@ namespace Business_Application_Project
                 string productId = Request.QueryString["ProdID"];
 
                 // Check if the product ID is for bike 11
-                if (productId == "11")
+                if (productId == "3")
                 {
                     // Load and display the reviews for bike 11
-                    DataTable reviewsTable = RatingReview.GetReviewsFromDatabase("11");
+                    DataTable reviewsTable = RatingReview.GetReviewsFromDatabase("3");
                     lbl_ReviewCount.Text = reviewsTable.Rows.Count + " Reviews";
                     rptReviews.DataSource = reviewsTable;
                     rptReviews.DataBind();

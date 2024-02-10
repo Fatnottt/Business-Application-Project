@@ -49,7 +49,11 @@
                                         </div>
 
                                         <asp:Label ID="ErrorMessage" runat="server" Text="" ForeColor="Red"></asp:Label>
-                                        <br />*Please note that by clicking &#39;Register&#39;, you will be redirected to pay the security deposit of $100 for registration of account. However, this amount will be returned to you after the termination of your account.
+                                        <div>
+                                            <input type="checkbox" id="agreeCheckbox" required="required"/>
+                                            By clicking 'Register', you'll be directed to pay a $100 security deposit for account registration, which will be refunded upon account termination.
+                                        </div>
+
                                         <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                                             <asp:Button ID="Button1" class="btn btn-primary btn-lg" runat="server" Text="Register" OnClick="Register_Click" />
                                         </div>
@@ -61,7 +65,7 @@
 
                                     <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
                                         class="img-fluid" alt="Sample image">
-                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

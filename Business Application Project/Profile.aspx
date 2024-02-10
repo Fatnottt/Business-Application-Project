@@ -13,7 +13,7 @@
                         <div class="card">
                             <div class="rounded-top text-white d-flex flex-row" style="background-color: #000; height: 200px;">
                                 <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
-                                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
+                                    <img src="Images/default-user-icon.png"
                                         alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2"
                                         style="width: 150px; z-index: 1">
                                     <a href="EditProfile.aspx" class="btn btn-outline-dark" data-mdb-ripple-color="dark"

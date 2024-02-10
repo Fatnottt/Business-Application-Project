@@ -82,28 +82,58 @@
                 </div>
             </header>
             <!-- End Header -->
-            <div id="header2" class="header d-flex align-items-center justify-content-center" style="background-color: black; color: white;">
 
-                <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-                    <nav id="navbar2" class="navbar align-items-center">
-                        <ul>
-                            <li><a href="#hero" class="active">Users</a></li>
-                            <li><a href="#about">Transactions</a></li>
-                            <li><a href="#services">Bikes</a></li>
-                        </ul>
-                    </nav>
-                    <!-- .navbar -->
+            <div>
+                <!-- ======= Second Navigation Bar ======= -->
+                <nav id="second-navbar" class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-center">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="showUsers()">Users</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="showTransactions()">Transactions</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="showBikes()">Bikes</a>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- End Second Navigation Bar -->
 
-                    <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
-                    <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
-
-                </div>
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
             </div>
-
-
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            </asp:ContentPlaceHolder>
         </div>
     </form>
+    <script>
+        // Function to show Users content
+        function showUsers() {
+            document.getElementById('users-content').style.display = 'block';
+            document.getElementById('transactions-content').style.display = 'none';
+            document.getElementById('bikes-content').style.display = 'none';
+        }
+
+        // Function to show Transactions content
+        function showTransactions() {
+            document.getElementById('users-content').style.display = 'none';
+            document.getElementById('transactions-content').style.display = 'block';
+            document.getElementById('bikes-content').style.display = 'none';
+        }
+
+        // Function to show Bikes content
+        function showBikes() {
+            document.getElementById('users-content').style.display = 'none';
+            document.getElementById('transactions-content').style.display = 'none';
+            document.getElementById('bikes-content').style.display = 'block';
+        }
+    </script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/js/main.js"></script>
 </body>
 </html>
