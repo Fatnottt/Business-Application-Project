@@ -24,6 +24,15 @@ namespace Business_Application_Project
         protected global::System.Web.UI.WebControls.GridView gvShoppingCart;
 
         /// <summary>
+        /// lblSelectedTotalAmount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSelectedTotalAmount;
+
+        /// <summary>
         /// btn_Back control.
         /// </summary>
         /// <remarks>
@@ -31,5 +40,23 @@ namespace Business_Application_Project
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn_Back;
+
+        /// <summary>
+        /// btnCalculateTotalAmount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCalculateTotalAmount;
+
+        /// <summary>
+        /// btnRentNow control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnRentNow;
     }
 }

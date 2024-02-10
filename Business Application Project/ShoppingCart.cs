@@ -83,11 +83,11 @@ namespace Business_Application_Project
             set { _prodID = value; }
         }
 
-        public string Email
-        {
-            get { return _email; }
-            set { _email = value; }
-        }
+        //public string Email
+        //{
+        //    get { return _email; }
+        //    set { _email = value; }
+        //}
 
         public DateTime Datein
         {
@@ -110,17 +110,24 @@ namespace Business_Application_Project
         public string Address { get; set; }
         public string Product_Image { get; set; }
 
+        public string Email
+        {
+            get { return _email; }
+            set { _email = value; }
+        }
 
 
+        public decimal TotalPrice { get; set; }
 
         public ShoppingCart getShoppingCart(string cartID)
         {
             ShoppingCart cartDetail = null;
 
-            //string queryStr = "SELECT ShoppingCarts.ShoppingCart_ID, ShoppingCarts.Product_ID, Products.Brand, Products.Model, Products.Category, Products.Unit_Price, Products.Product_Desc, Products.Address, Products.Product_Image FROM ShoppingCarts INNER JOIN Products ON ShoppingCarts.Product_ID = Products.Product_ID WHERE ShoppingCarts.ShoppingCart_ID = @CartID;";
-
+            
             string queryStr = "SELECT ShoppingCarts.ShoppingCart_ID, " +
                   "ShoppingCarts.Product_ID, " +
+                  "ShoppingCarts.Datein, " +
+                  "ShoppingCarts.Dateout, " +
                   "Products.Brand, " +
                   "Products.Model, " +
                   "Products.Category, " +
@@ -176,17 +183,11 @@ namespace Business_Application_Project
         }
 
 
-        public List<ShoppingCart> getShoppingCartAll()
+        public List<ShoppingCart> getShoppingCartAll(string _email)
         {
             List<ShoppingCart> cartList = new List<ShoppingCart>();
 
-            //string queryStr = "SELECT ShoppingCarts.ShoppingCart_ID, ShoppingCarts.Product_ID, ShoppingCarts.Datein,ShoppingCarts.Dateout, " +
-            //                  "Products.Brand, Products.Model, Products.Category, " +
-            //                  "Products.Unit_Price, Products.Product_Desc, Products.Address, Products.Product_Image " +
-            //                  "FROM ShoppingCarts " +
-            //                  "INNER JOIN Products ON ShoppingCarts.Product_ID = Products.Product_ID " +
-            //                  "ORDER BY ShoppingCarts.Datein";
-
+           
             string queryStr = "SELECT ShoppingCarts.ShoppingCart_ID, " +
                   "ShoppingCarts.Product_ID, " +
                   "ShoppingCarts.Datein, " +
@@ -202,7 +203,9 @@ namespace Business_Application_Project
                   "FROM ShoppingCarts " +
                   "INNER JOIN Products ON ShoppingCarts.Product_ID = Products.Product_ID " +
                   "INNER JOIN Users ON ShoppingCarts.Email = Users.Email " +
+                  "WHERE ShoppingCarts.Email = @Email " +
                   "ORDER BY ShoppingCarts.Datein";
+
 
 
             using (SqlConnection conn = new SqlConnection(_connStr))
@@ -211,10 +214,13 @@ namespace Business_Application_Project
 
                 using (SqlCommand cmd = new SqlCommand(queryStr, conn))
                 {
+                    cmd.Parameters.AddWithValue("@Email", _email);
                     using (SqlDataReader dr = cmd.ExecuteReader())
                     {
                         while (dr.Read())
                         {
+                            
+
                             string cart_ID = dr["ShoppingCart_ID"].ToString();
                             string prod_ID = dr["Product_ID"].ToString();
                             string email = dr["Email"].ToString();
@@ -268,16 +274,11 @@ namespace Business_Application_Project
 
 
 
-        public int ShoppingCartInsert()
+        public int ShoppingCartInsert() //string _email
         {
             int result = 0;
 
-            //if (string.IsNullOrEmpty(this.ShoppingCart_ID) || string.IsNullOrEmpty(this.Product_ID) || this.Date == DateTime.MinValue)
-            //{
-            //    return -1; // You may choose an appropriate error code
-            //}
-
-            //ShoppingCart_ID, @ShoppingCart_ID, 
+            
 
             string queryStr = "INSERT INTO ShoppingCarts(Product_ID, Email, Datein, Dateout)" + "values(@Product_ID, @Email, @Datein, @Dateout)";
             //string queryStr = "INSERT INTO ShoppingCarts(Product_ID, Date, Brand, Model, Category, Unit_Price, Product_Desc, Address)" + "values(@Product_ID, @Date, @Brand, @Model, @Category, @Unit_Price, @Product_Desc, @Address)";
@@ -308,32 +309,7 @@ namespace Business_Application_Project
             return result;
         }
 
-        //public int ShoppingCartInsert()
-        //{
-        //    int result = 0;
-
-        //    string queryStr = "INSERT INTO ShoppingCarts (Product_ID, Date)" +
-        //                      "SELECT @Product_ID, @Date " +
-        //                      "FROM Products WHERE Products.Product_ID = @Product_ID";
-
-        //    using (SqlConnection conn = new SqlConnection(_connStr))
-        //    {
-        //        conn.Open();
-
-        //        using (SqlCommand cmd = new SqlCommand(queryStr, conn))
-        //        {
-        //            //cmd.Parameters.AddWithValue("@ShoppingCart_ID", this.ShoppingCart_ID);
-        //            cmd.Parameters.AddWithValue("@Product_ID", this.Product_ID);
-        //            cmd.Parameters.AddWithValue("@Date", this.Date);
-
-        //            result += cmd.ExecuteNonQuery();
-        //        }
-        //    }
-
-        //    return result;
-        //}
-
-
+        
 
         public int ShoppingCartDelete(string ID)
         {
@@ -378,6 +354,7 @@ namespace Business_Application_Project
                 " Unit_Price = @unitPrice, " +
                 " Datein = @datein " +
                 " Dateout = @dateout " +
+                
                 " WHERE ShoppingCart_ID = @shoppingcartID";
 
             try
@@ -448,6 +425,9 @@ namespace Business_Application_Project
 
             return nofRow;
         }
+
+
+
 
 
     }

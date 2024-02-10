@@ -15,21 +15,12 @@ namespace Business_Application_Project
     {
 
         /// <summary>
-        /// gvProduct control.
+        /// rptProducts control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvProduct;
-
-        /// <summary>
-        /// btn_AddProduct control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_AddProduct;
+        protected global::System.Web.UI.WebControls.Repeater rptProducts;
     }
 }

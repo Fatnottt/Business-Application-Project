@@ -1,4 +1,5 @@
 ﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\BlazorGoogleMapsV3-New.1.2.0\build\BlazorGoogleMapsV3-New.props" Condition="Exists('..\packages\BlazorGoogleMapsV3-New.1.2.0\build\BlazorGoogleMapsV3-New.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -122,6 +123,9 @@
   <ItemGroup>
     <Content Include="AdminMain.aspx" />
     <Content Include="App_Data\BikieDB.mdf" />
+    <Content Include="App_Data\BikieDB_log.ldf">
+      <DependentUpon>BikieDB.mdf</DependentUpon>
+    </Content>
     <Content Include="EditCart.aspx" />
     <Content Include="EditReview.aspx" />
     <Content Include="PayDeposit.html" />
@@ -580,7 +584,6 @@
     <Compile Include="SaveTransactionId.aspx.designer.cs">
       <DependentUpon>SaveTransactionId.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ShoppingCart.cs" />
     <Compile Include="SeeCart.aspx.cs">
       <DependentUpon>SeeCart.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -667,6 +670,7 @@
     <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
     <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\BlazorGoogleMapsV3-New.1.2.0\build\BlazorGoogleMapsV3-New.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\BlazorGoogleMapsV3-New.1.2.0\build\BlazorGoogleMapsV3-New.props'))" />
   </Target>
   <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
