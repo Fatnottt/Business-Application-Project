@@ -11,16 +11,16 @@ namespace Business_Application_Project
 {
 
 
-    public partial class ProductView
+    public partial class TestingReview
     {
 
         /// <summary>
-        /// rptProducts control.
+        /// rptHistory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptProducts;
+        protected global::System.Web.UI.WebControls.Repeater rptHistory;
     }
 }

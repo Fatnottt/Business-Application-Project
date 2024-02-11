@@ -1,4 +1,5 @@
 ﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\BlazorGoogleMapsV3-New.1.2.0\build\BlazorGoogleMapsV3-New.props" Condition="Exists('..\packages\BlazorGoogleMapsV3-New.1.2.0\build\BlazorGoogleMapsV3-New.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -136,7 +137,6 @@
     <Content Include="Images\active_bikers_rtl.jpg" />
     <Content Include="Images\default-user-icon.png" />
     <Content Include="Images\PeopleBike.png" />
-    <Content Include="PayDeposit.html" />
     <Content Include="PayDeposit.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -309,6 +309,7 @@
     <Content Include="Scripts\jquery-3.7.1.slim.js" />
     <Content Include="Scripts\jquery-3.7.1.slim.min.js" />
     <Content Include="SignUp.aspx" />
+    <Content Include="TestingReview.aspx" />
     <Content Include="Transactions.aspx" />
     <Content Include="Web.config" />
     <Content Include="WithNavbar.Master" />
@@ -604,7 +605,6 @@
     <Compile Include="SaveTransactionId.aspx.designer.cs">
       <DependentUpon>SaveTransactionId.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ShoppingCart.cs" />
     <Compile Include="SeeCart.aspx.cs">
       <DependentUpon>SeeCart.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -626,6 +626,13 @@
     </Compile>
     <Compile Include="Site1.Master.designer.cs">
       <DependentUpon>Site1.Master</DependentUpon>
+    </Compile>
+    <Compile Include="TestingReview.aspx.cs">
+      <DependentUpon>TestingReview.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TestingReview.aspx.designer.cs">
+      <DependentUpon>TestingReview.aspx</DependentUpon>
     </Compile>
     <Compile Include="Transactions.aspx.cs">
       <DependentUpon>Transactions.aspx</DependentUpon>
@@ -690,6 +697,7 @@
     <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
     <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\BlazorGoogleMapsV3-New.1.2.0\build\BlazorGoogleMapsV3-New.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\BlazorGoogleMapsV3-New.1.2.0\build\BlazorGoogleMapsV3-New.props'))" />
   </Target>
   <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

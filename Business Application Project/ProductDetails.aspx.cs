@@ -50,10 +50,10 @@ namespace Business_Application_Project
                 string productId = Request.QueryString["ProdID"];
 
                 // Check if the product ID is for bike 11
-                if (productId == "11")
+                if (productId == "3")
                 {
                     // Load and display the reviews for bike 11
-                    DataTable reviewsTable = RatingReview.GetReviewsFromDatabase("11");
+                    DataTable reviewsTable = RatingReview.GetReviewsFromDatabase("3");
                     lbl_ReviewCount.Text = reviewsTable.Rows.Count + " Reviews";
                     rptReviews.DataSource = reviewsTable;
                     rptReviews.DataBind();
@@ -64,7 +64,7 @@ namespace Business_Application_Project
                 }
             }
 
-        } 
+        }
 
 
         protected void btn_Add_Click(object sender, EventArgs e)
@@ -73,20 +73,30 @@ namespace Business_Application_Project
             string shoppingcartID = hf_shoppingcartID.Value;
             string productID = hf_productID.Value;
 
+            // Get the email from session
+            string email = "";
+            if (Session["CurrentUser"] != null)
+            {
+                User currentUser = (User)Session["CurrentUser"];
+                email = currentUser.Email;
+            }
+            else
+            {
+                // Handle the case where the user is not logged in
+                // Redirect or display an error message
+                return;
+            }
+
             // Assuming txt_Date.Text contains the selected date
             string selectedDateinStr = txt_Datein.Text;
             string selectedDateoutStr = txt_Dateout.Text;
-
-       
 
             // Parse the selected date string to DateTime
             DateTime selectedDatein;
             DateTime selectedDateout;
             if (DateTime.TryParse(selectedDateinStr, out selectedDatein) && DateTime.TryParse(selectedDateoutStr, out selectedDateout))
             {
-
-
-                ShoppingCart cart = new ShoppingCart(shoppingcartID, productID, selectedDatein, selectedDateout /*, selectedBrand, selectedModel, selectedCategory, selectedPriceDecimal, selectedDesc, selectedAddress*/);
+                ShoppingCart cart = new ShoppingCart(shoppingcartID, productID, email, selectedDatein, selectedDateout);
                 int result = cart.ShoppingCartInsert();
 
                 if (result > 0)
@@ -97,8 +107,6 @@ namespace Business_Application_Project
                 {
                     Response.Write("<script>alert('Insert NOT successful');</script>");
                 }
-
-               
             }
             else
             {
@@ -106,8 +114,8 @@ namespace Business_Application_Project
                 Response.Write("<script>alert('Invalid date format. Use YYYY-MM-DD.');</script>");
             }
 
-            //// Redirect to the SeeCart page
-            //Server.Transfer("SeeCart.aspx");
+            // Redirect to the SeeCart page
+            // Server.Transfer("SeeCart.aspx");
         }
 
         protected void btn_SeeCart_Click(object sender, EventArgs e)

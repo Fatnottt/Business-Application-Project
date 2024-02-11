@@ -12,7 +12,7 @@ namespace Business_Application_Project
         protected void Page_Load(object sender, EventArgs e)
         {
             // Assuming you have a hardcoded bike ID
-            string bikeId = "11"; // Replace with your actual bike ID
+            string bikeId = "3"; // Replace with your actual bike ID
             string userEmail = "yatsleo@gmail.com"; // Replace with actual user email
 
             // Check if the user has reviewed the bike

@@ -67,6 +67,11 @@
                             <li><a href="Main.aspx" class="active">Home</a></li>
                             <li><a href="#about">About</a></li>
                             <li><a href="#portfolio">Portfolio</a></li>
+
+                            <% if(Session["CurrentUser"] != null) { %>
+                                <li><a href="TestingReview.aspx">My Ratings</a></li>
+                            <% } %>
+
                             <li class="dropdown" id="SignUpLink" runat="server"><a href="#"><span>Sign Up</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
                                 <ul>
                                     <li><a href="SignUp.aspx">Sign Up</a></li>

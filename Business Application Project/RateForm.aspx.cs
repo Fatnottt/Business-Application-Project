@@ -35,7 +35,7 @@ namespace Business_Application_Project
             }
 
             string comment = txtComment.Text;
-            string bikeId = "11"; // Replace this with the actual bike ID
+            string bikeId = "3"; // Replace this with the actual bike ID
 
             // Save rating to database
             RatingReview.SaveRatingToDatabase(stars, comment, bikeId);
