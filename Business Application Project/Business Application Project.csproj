@@ -128,6 +128,8 @@
     <Content Include="App_Data\BikieDB_log.ldf">
       <DependentUpon>BikieDB.mdf</DependentUpon>
     </Content>
+    <Content Include="BikeListing.aspx" />
+    <Content Include="BikeRental.aspx" />
     <Content Include="EditCart.aspx" />
     <Content Include="EditReview.aspx" />
     <Content Include="Images\active_bikers_ltr.jpg" />
@@ -300,6 +302,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="AdminNavbar.Master" />
+    <Content Include="RentalPage.Master" />
     <None Include="Scripts\jquery-3.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.1.js" />
     <Content Include="Scripts\jquery-3.7.1.min.js" />
@@ -324,6 +327,20 @@
     </Compile>
     <Compile Include="AdminNavbar.Master.designer.cs">
       <DependentUpon>AdminNavbar.Master</DependentUpon>
+    </Compile>
+    <Compile Include="BikeListing.aspx.cs">
+      <DependentUpon>BikeListing.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BikeListing.aspx.designer.cs">
+      <DependentUpon>BikeListing.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BikeRental.aspx.cs">
+      <DependentUpon>BikeRental.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BikeRental.aspx.designer.cs">
+      <DependentUpon>BikeRental.aspx</DependentUpon>
     </Compile>
     <Compile Include="EditCart.aspx.cs">
       <DependentUpon>EditCart.aspx</DependentUpon>
@@ -565,6 +582,13 @@
     </Compile>
     <Compile Include="RecoverPassword.aspx.designer.cs">
       <DependentUpon>RecoverPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RentalPage.Master.cs">
+      <DependentUpon>RentalPage.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RentalPage.Master.designer.cs">
+      <DependentUpon>RentalPage.Master</DependentUpon>
     </Compile>
     <Compile Include="ReviewsNav.aspx.cs">
       <DependentUpon>ReviewsNav.aspx</DependentUpon>
