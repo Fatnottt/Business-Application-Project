@@ -264,6 +264,35 @@ namespace Business_Application_Project
 
 
 
+        //protected void gvShoppingCart_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        //{
+        //    int result = 0;
+        //    ShoppingCart cart = new ShoppingCart();
+        //    GridViewRow row = gvShoppingCart.Rows[e.RowIndex];
+        //    string cartId = gvShoppingCart.DataKeys[e.RowIndex].Value.ToString();
+
+        //    DateTime tDatein;
+        //    DateTime tDateout;
+
+        //    if (DateTime.TryParse(((TextBox)row.FindControl("txt_Datein")).Text, out tDatein) &&
+        //        DateTime.TryParse(((TextBox)row.FindControl("txt_Dateout")).Text, out tDateout))
+        //    {
+        //        result = cart.ShoppingCartUpdateDate(cartId, tDatein, tDateout);
+
+        //        if (result > 0)
+        //        {
+        //            Response.Write("<script>alert('Date updated successfully');</script>");
+        //        }
+        //        else
+        //        {
+        //            Response.Write("<script>alert('Date not updated');</script>");
+        //        }
+        //    }
+
+        //    gvShoppingCart.EditIndex = -1;
+        //    bind();
+        //}
+
         protected void gvShoppingCart_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
             int result = 0;
@@ -281,6 +310,9 @@ namespace Business_Application_Project
 
                 if (result > 0)
                 {
+                    // Recalculate and update total price
+                    CalculateTotalPriceForRow(row);
+
                     Response.Write("<script>alert('Date updated successfully');</script>");
                 }
                 else
@@ -290,9 +322,8 @@ namespace Business_Application_Project
             }
 
             gvShoppingCart.EditIndex = -1;
-            bind();
+            bind(); // Rebind the GridView
         }
-
 
 
         protected void gvShoppingCart_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
@@ -302,7 +333,7 @@ namespace Business_Application_Project
         }
 
 
-       
+
 
         protected void gvShoppingCart_SelectedIndexChanged1(object sender, EventArgs e)
         {

@@ -88,7 +88,23 @@
             return true;
         }
 
+        function validateForm() {
+            // Get the selected rating
+            var rating = parseInt(document.getElementById('<%= hdRating.ClientID %>').value);
 
+            // Check if the rating is valid
+            if (isNaN(rating) || rating < 1 || rating > 5) {
+                alert("Please select a star rating.");
+                return false; 
+            }
+
+            alert("Thank you for submitting a review!")
+            return true; 
+        }
+
+        function confirmCancel() {
+            return confirm("Are you sure you want to cancel? Any unsaved changes will be lost.");
+        }
 
     </script>
 
@@ -123,7 +139,7 @@
 
         <div class="button-container">            
             <asp:Button ID="btnSubmit" runat="server" Text="Submit Rating" OnClick="btnSubmit_Click" CssClass="submit-button" OnClientClick="return validateForm();" />
-            <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" CssClass="cancel-button" OnClientClick="return closePopup();" />
+            <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" CssClass="cancel-button" OnClientClick="return confirmCancel();" />
         </div>
 
     </div>
