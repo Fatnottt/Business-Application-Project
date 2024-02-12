@@ -37,7 +37,6 @@ namespace Business_Application_Project
                 SignUpLink.InnerHtml = "<a href=\"javascript:void(0);\"><span>Sign Up</span> <i class=\"bi bi-chevron-down dropdown-indicator\"></i></a><ul><li><a href=\"SignUp.aspx\">Sign Up</a></li><li><a href=\"Login.aspx\">Login</a></li></ul>";
 
             }
-
         }
     }
 }
