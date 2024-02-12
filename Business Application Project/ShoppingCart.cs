@@ -123,7 +123,7 @@ namespace Business_Application_Project
         {
             ShoppingCart cartDetail = null;
 
-            
+
             string queryStr = "SELECT ShoppingCarts.ShoppingCart_ID, " +
                   "ShoppingCarts.Product_ID, " +
                   "ShoppingCarts.Datein, " +
@@ -187,7 +187,7 @@ namespace Business_Application_Project
         {
             List<ShoppingCart> cartList = new List<ShoppingCart>();
 
-           
+
             string queryStr = "SELECT ShoppingCarts.ShoppingCart_ID, " +
                   "ShoppingCarts.Product_ID, " +
                   "ShoppingCarts.Datein, " +
@@ -219,7 +219,7 @@ namespace Business_Application_Project
                     {
                         while (dr.Read())
                         {
-                            
+
 
                             string cart_ID = dr["ShoppingCart_ID"].ToString();
                             string prod_ID = dr["Product_ID"].ToString();
@@ -278,7 +278,7 @@ namespace Business_Application_Project
         {
             int result = 0;
 
-            
+
 
             string queryStr = "INSERT INTO ShoppingCarts(Product_ID, Email, Datein, Dateout)" + "values(@Product_ID, @Email, @Datein, @Dateout)";
             //string queryStr = "INSERT INTO ShoppingCarts(Product_ID, Date, Brand, Model, Category, Unit_Price, Product_Desc, Address)" + "values(@Product_ID, @Date, @Brand, @Model, @Category, @Unit_Price, @Product_Desc, @Address)";
@@ -309,7 +309,7 @@ namespace Business_Application_Project
             return result;
         }
 
-        
+
 
         public int ShoppingCartDelete(string ID)
         {
@@ -354,7 +354,7 @@ namespace Business_Application_Project
                 " Unit_Price = @unitPrice, " +
                 " Datein = @datein " +
                 " Dateout = @dateout " +
-                
+
                 " WHERE ShoppingCart_ID = @shoppingcartID";
 
             try

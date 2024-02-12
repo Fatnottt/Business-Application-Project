@@ -78,7 +78,7 @@
                                     <li><a href="Login.aspx">Login</a></li>
                                 </ul>
                             </li>
-                            <li><a href="BikeSignUp.aspx">Lend Your Bike</a></li>
+                            <li><a href="BikeListing.aspx">Lend Your Bike</a></li>
                             <li><a href="ShoppingCart.aspx"><i class="bi bi-cart"></i></a></li>
                         </ul>
                     </nav>

@@ -30,7 +30,7 @@
 
         .product-card {
             width: 45%;
-            height: 54%;
+            height: auto;
             float: left;
             margin: 2.5% 2.5%;
             box-sizing: border-box;

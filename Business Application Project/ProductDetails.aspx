@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="ProductDetails.aspx.cs" Inherits="Business_Application_Project.ProductDetails" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/WithNavbar.Master" AutoEventWireup="true" CodeBehind="ProductDetails.aspx.cs" Inherits="Business_Application_Project.ProductDetails" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
@@ -6,22 +6,6 @@
         .auto-style3 {
             width: 50%;
         }
-
-        .review-item {
-            border: 1px solid #ccc; 
-            padding: 10px; 
-            margin-bottom: 20px; 
-        }
-
-        .reviewer-email, .review-date {
-
-            font-size: small;
-        }
-
-        .stars {
-            color: green;
-        }
-
     </style>
 </asp:Content>
 <asp:Content ID="ContentPlaceHolder1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -114,29 +98,26 @@
         <br />
         <!-- Display reviews dynamically (you can use a Repeater or GridView) -->
         <asp:Repeater ID="rptReviews" runat="server">
-        <ItemTemplate>
-            <div class="review-item">
-                <div class="review-header">
-                    <span class="reviewer-email">
-                        <%# Eval("User_Email") %>
-                    </span>
-                    <br />
-                    <span class="stars">
-                        <%# GetStarIcons(Eval("Stars")) %>
-                    </span>
-                    <br />
-                    <span class="review-date">
-                        <%# Eval("Review_Date", "{0:dd/MM/yyyy}") %>
-                    </span>
-                </div>
-                <br />
-                <div class="comment">
-                    <%# Eval("Comment") %>
-                </div>
-            </div>
-        </ItemTemplate>
-    </asp:Repeater>
+            <ItemTemplate>
+                <div class="review-item">
+                    <div>
+                        <span class="stars">
+                            <%# GetStarIcons(Eval("Stars")) %>
+                        </span>
+                        <span class="reviewer-email">
+                            <%# Eval("User_Email") %>
+                        </span>
+                        <span class="review-date">
+                            <%# Eval("Review_Date", "{0:dd/MM/yyyy}") %>
+                        </span>
 
+                    </div>
+                    <div class="comment">
+                        <%# Eval("Comment") %>
+                    </div>
+                </div>
+            </ItemTemplate>
+        </asp:Repeater>
 
     </div>
     <%--reviews--%>

@@ -1,6 +1,46 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/WithNavbar.Master" AutoEventWireup="true" CodeBehind="Profile.aspx.cs" Inherits="Business_Application_Project.Profile" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style>
+        .product-container {
+            height: 100vh; /* Set the height of the container to half of the viewport height */
+            overflow: auto; /* Add overflow:auto to enable scrolling if the content exceeds the container height */
+        }
+
+            .product-container::-webkit-scrollbar {
+                display: none;
+            }
+
+        .product-card {
+            width: 45%;
+            height: auto;
+            float: left;
+            margin: 2.5% 2.5%;
+            box-sizing: border-box;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* Add shadow effect */
+            transition: box-shadow 0.3s ease-in-out; /* Add transition effect for smoother shadow change */
+            /* Define card background and border */
+            background-color: #ffffff;
+            border: 1px solid #dddddd;
+        }
+
+            .product-card:hover {
+                box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
+                transform: translateY(-5px); /* Move the card up slightly on hover */
+            }
+
+            /* Add styles for product card content */
+            .product-card p {
+                margin-bottom: 5px;
+            }
+
+            .product-card img {
+                width: 100%;
+                border-radius: 5px;
+            }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <body data-aos-easing="ease-in-out" data-aos-duration="1000" data-aos-delay="0">
@@ -56,22 +96,20 @@
                                 </div>
                                 <div class="row g-2">
                                     <div class="col mb-2">
-                                        <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(112).webp"
-                                            alt="image 1" class="w-100 rounded-3">
-                                    </div>
-                                    <div class="col mb-2">
-                                        <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(107).webp"
-                                            alt="image 1" class="w-100 rounded-3">
-                                    </div>
-                                </div>
-                                <div class="row g-2">
-                                    <div class="col">
-                                        <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(108).webp"
-                                            alt="image 1" class="w-100 rounded-3">
-                                    </div>
-                                    <div class="col">
-                                        <img src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(114).webp"
-                                            alt="image 1" class="w-100 rounded-3">
+                                        <div class="product-container">
+                                            <asp:Repeater ID="rptProducts" runat="server" OnItemCommand="rptProducts_ItemCommand" OnItemDataBound="rptProducts_ItemDataBound">
+                                                <ItemTemplate>
+                                                    <div class="product-card">
+                                                        <asp:Image ID="img_Product" runat="server" Height="150px" />
+                                                        <p><strong><%# Eval("Brand") %></strong> &nbsp;<%# Eval("Model") %></p>
+                                                        <p><strong>Category:</strong> <%# Eval("Category") %></p>
+                                                        <p><strong>Unit Price:</strong> <%# Eval("Unit_Price", "{0:C}") %></p>
+                                                        <p><strong>Address:</strong> <%# Eval("Address") %></p>
+                                                        <asp:Button ID="btnViewDetails" runat="server" Text="View Details" CommandName="ViewDetails" CommandArgument='<%# Eval("Product_ID") %>' />
+                                                    </div>
+                                                </ItemTemplate>
+                                            </asp:Repeater>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
