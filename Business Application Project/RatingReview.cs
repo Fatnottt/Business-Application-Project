@@ -13,10 +13,8 @@ namespace Business_Application_Project
     {
         private static string _connStr = ConfigurationManager.ConnectionStrings["BikieDB"].ConnectionString;
 
-        public static void SaveRatingToDatabase(int stars, string comment, string bikeId)
+        public static void SaveRatingToDatabase(string userEmail, int stars, string comment, string bikeId)
         {
-            string defaultUserEmail = "yatsleo@gmail.com"; // Default user email
-
             using (SqlConnection connection = new SqlConnection(_connStr))
             {
                 connection.Open();
@@ -26,7 +24,7 @@ namespace Business_Application_Project
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@UserEmail", defaultUserEmail);
+                    command.Parameters.AddWithValue("@UserEmail", userEmail);
                     command.Parameters.AddWithValue("@BikeId", bikeId);
                     command.Parameters.AddWithValue("@Stars", stars);
                     command.Parameters.AddWithValue("@Comment", comment);
@@ -37,21 +35,23 @@ namespace Business_Application_Project
         }
 
 
-        public static DataTable GetReviewsFromDatabase(string bikeId)
+
+        public static DataTable GetReviewsFromProduct(string productId)
         {
             using (SqlConnection connection = new SqlConnection(_connStr))
             {
                 connection.Open();
 
-                string query = @"SELECT R.User_Email, R.Stars, R.Comment, CONVERT(date, R.Review_Date) AS Review_Date
-                    FROM Reviews R
-                    INNER JOIN Products P ON R.Bike_ID = P.Product_Id
-                    WHERE R.Bike_ID = @BikeId";
-
+                string query = @"
+            SELECT R.Stars, R.Comment, CONVERT(date, R.Review_Date) AS Review_Date, 
+                   CASE WHEN U.Name IS NOT NULL THEN U.Name ELSE 'Anonymous' END AS User_Name
+            FROM Reviews R
+            LEFT JOIN Users U ON R.User_Email = U.Email
+            WHERE R.Bike_ID = @ProductId";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@BikeId", bikeId);
+                    command.Parameters.AddWithValue("@ProductId", productId);
 
                     SqlDataAdapter adapter = new SqlDataAdapter(command);
                     DataTable reviewsTable = new DataTable();
@@ -61,6 +61,36 @@ namespace Business_Application_Project
                 }
             }
         }
+
+        public static DataTable GetReviewsFromDatabase(string userEmail, string productId)
+        {
+            using (SqlConnection connection = new SqlConnection(_connStr))
+            {
+                connection.Open();
+
+                string query = @"
+            SELECT R.Stars, R.Comment, CONVERT(date, R.Review_Date) AS Review_Date, 
+                   CASE WHEN U.Name IS NOT NULL THEN U.Name ELSE 'Anonymous' END AS User_Name
+            FROM Reviews R
+            LEFT JOIN Users U ON R.User_Email = U.Email
+            WHERE R.User_Email = @UserEmail AND R.Bike_ID = @ProductId";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@UserEmail", userEmail);
+                    command.Parameters.AddWithValue("@ProductId", productId);
+
+                    SqlDataAdapter adapter = new SqlDataAdapter(command);
+                    DataTable reviewsTable = new DataTable();
+                    adapter.Fill(reviewsTable);
+
+                    return reviewsTable;
+                }
+            }
+        }
+
+
+
 
 
         public static void UpdateReviewInDatabase(string userEmail, string bikeId, int stars, string comment)
@@ -105,17 +135,17 @@ namespace Business_Application_Project
                     return count > 0;
                 }
             }
-
         }
 
-        // for testing history database in TestingReview.aspx
+        
+        // testingreview
         public static DataTable GetRentalHistory(string userEmail)
         {
             using (SqlConnection connection = new SqlConnection(_connStr))
             {
                 connection.Open();
 
-                string query = @"SELECT History_Id, Bike_Id, Bike_Name, Start_Date, End_Date, Total_Price, Bike_Image
+                string query = @"SELECT History_Id, Bike_Id, Bike_Name, Start_Date, End_Date, Total_Price
                                  FROM History
                                  WHERE User_Email = @UserEmail";
 
@@ -127,10 +157,41 @@ namespace Business_Application_Project
                     DataTable historyTable = new DataTable();
                     adapter.Fill(historyTable);
 
+                    // Add HasReviewed column dynamically
+                    historyTable.Columns.Add("HasReviewed", typeof(bool));
+                    foreach (DataRow row in historyTable.Rows)
+                    {
+                        string bikeId = row["Bike_Id"].ToString();
+                        row["HasReviewed"] = HasUserReviewed(userEmail, bikeId);
+                    }
+
                     return historyTable;
                 }
             }
         }
+
+        public static void UpdateHasReviewedStatus(string userEmail, string bikeId)
+        {
+            using (SqlConnection connection = new SqlConnection(_connStr))
+            {
+                connection.Open();
+
+                string query = "IF EXISTS (SELECT 1 FROM Reviews WHERE User_Email = @UserEmail AND Bike_ID = @BikeId) " +
+                               "BEGIN " +
+                               "    UPDATE Reviews SET HasReviewed = 1 WHERE User_Email = @UserEmail AND Bike_ID = @BikeId " +
+                               "END";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@UserEmail", userEmail);
+                    command.Parameters.AddWithValue("@BikeId", bikeId);
+
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+
 
     }
 }

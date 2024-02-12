@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="EditReview.aspx.cs" Inherits="Business_Application_Project.EditReview" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+
     <!-- Add your custom styling for stars here -->
     <style>
 
@@ -76,10 +77,23 @@
             // Update the hidden field for server-side retrieval
             document.getElementById('<%= hdRating.ClientID %>').value = rating;
         }
+
+        
+
+        function confirmCancel() {
+            return confirm("Are you sure you want to cancel? Any unsaved changes will be lost.");
+        }
+
+        function showUpdateMessage() {
+            return confirm("Review updated successfully!");
+        }
+
     </script>
+
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
     <div class="EditRev">
         <h2>Edit Your Review</h2>
 
@@ -102,8 +116,8 @@
 
         <br />
         <div>
-            <asp:Button ID="btnUpdate" runat="server" Text="Update Review" OnClick="btnUpdate_Click" CssClass="update-button" />
-            <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" CssClass="cancel-button" />
+            <asp:Button ID="btnUpdate" runat="server" Text="Update Review" OnClick="btnUpdate_Click" CssClass="update-button" OnClientClick="return showUpdateMessage();"/>
+            <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" CssClass="cancel-button" OnClientClick="return confirmCancel();"/>
         </div>
     </div>
 </asp:Content>
