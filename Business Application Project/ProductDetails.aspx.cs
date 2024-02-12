@@ -46,21 +46,18 @@ namespace Business_Application_Project
 
             if (!IsPostBack)
             {
-                // Get the product ID from the query string
                 string productId = Request.QueryString["ProdID"];
 
-                // Check if the product ID is for bike 11
-                if (productId == "3")
+                if (!string.IsNullOrEmpty(productId))
                 {
-                    // Load and display the reviews for bike 11
-                    DataTable reviewsTable = RatingReview.GetReviewsFromDatabase("3");
-                    lbl_ReviewCount.Text = reviewsTable.Rows.Count + " Reviews";
+                    DataTable reviewsTable = RatingReview.GetReviewsFromProduct(productId);
+                    lbl_ReviewCount.Text = "(" + reviewsTable.Rows.Count + ")";
                     rptReviews.DataSource = reviewsTable;
                     rptReviews.DataBind();
                 }
                 else
                 {
-                    lbl_ReviewCount.Text = "0 Review";
+                    lbl_ReviewCount.Text = "(0)";
                 }
             }
 

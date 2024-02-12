@@ -7,19 +7,45 @@
             width: 50%;
         }
 
-        .review-item {
-            border: 1px solid #ccc; 
-            padding: 10px; 
-            margin-bottom: 20px; 
+        .custReviews {
+            padding: 20px; 
+            background-color: #d5e9e6; 
         }
 
-        .reviewer-email, .review-date {
+        .review-item {
+            border: none; 
+            padding: 15px; 
+            margin-bottom: 20px; 
+            background-color: #e6f2f0; 
+            position: relative;
+        }
 
-            font-size: small;
+        .review-header {
+            margin-bottom: 10px; 
+        }
+
+
+        .reviewer-name {
+            font-weight: bold;
+            font-size: 18px;
         }
 
         .stars {
-            color: green;
+            color: #008374; 
+            font-size: 22px;
+        }
+
+        .review-date {
+            font-size: 13px;
+            font-style: italic;
+            position: absolute; 
+            top: 17px;
+            right: 17px; 
+    
+        }
+
+        .comment {
+            margin-top: 25px; 
         }
 
     </style>
@@ -104,40 +130,38 @@
     <br />
 
     <%--yuki's reviews part--%>
-    <h2>Customer Reviews</h2>
+    <div class="custReviews">
+        <h2>Reviews <asp:Label ID="lbl_ReviewCount" runat="server" CssClass="review-count" /></h2>
 
-    <div>
-        <!-- Display the number of reviews -->
-        <asp:Label ID="lbl_ReviewCount" runat="server" Text="0 Review" />
+        <div>
+            <br />
 
-        <br />
-        <br />
-        <!-- Display reviews dynamically (you can use a Repeater or GridView) -->
-        <asp:Repeater ID="rptReviews" runat="server">
-        <ItemTemplate>
-            <div class="review-item">
-                <div class="review-header">
-                    <span class="reviewer-email">
-                        <%# Eval("User_Email") %>
-                    </span>
-                    <br />
-                    <span class="stars">
-                        <%# GetStarIcons(Eval("Stars")) %>
-                    </span>
-                    <br />
-                    <span class="review-date">
-                        <%# Eval("Review_Date", "{0:dd/MM/yyyy}") %>
-                    </span>
+            <asp:Repeater ID="rptReviews" runat="server">
+            <ItemTemplate>
+                <div class="review-item">
+                    <div class="review-header">
+                        <span class="reviewer-name">
+                            <%# Eval("User_Name") %>
+                        </span>
+                        <br />
+                        <span class="stars">
+                            <%# GetStarIcons(Eval("Stars")) %>
+                        </span>
+                        <br />
+                        <span class="review-date">
+                            <%# Eval("Review_Date", "{0:dd/MM/yyyy}") %>
+                        </span>
+                    </div>
+                    
+                    <div class="comment">
+                        <%# Eval("Comment") %>
+                    </div>
                 </div>
-                <br />
-                <div class="comment">
-                    <%# Eval("Comment") %>
-                </div>
-            </div>
-        </ItemTemplate>
-    </asp:Repeater>
+            </ItemTemplate>
+        </asp:Repeater>
 
 
+        </div>
     </div>
     <%--reviews--%>
 </asp:Content>

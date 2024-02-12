@@ -14,16 +14,17 @@ namespace Business_Application_Project
         {
             if (!IsPostBack)
             {
-                // Retrieve the existing review data based on the user's email and bike ID
-                string userEmail = "yatsleo@gmail.com"; // Replace with the actual user email
-                string bikeId = "3"; // Replace with the actual bike ID
+                // Retrieve the current user's email from the session or any other method
+                string userEmail = ((User)Session["CurrentUser"]).Email; // Replace with the actual method to retrieve the user's email
 
-                DataTable existingReview = RatingReview.GetReviewsFromDatabase(bikeId);
+                // Retrieve the bike ID from the query string or any other method
+                string bikeId = Request.QueryString["bikeId"]; // Replace with the actual method to retrieve the bike ID
+
+                DataTable existingReview = RatingReview.GetReviewsFromDatabase(userEmail, bikeId);
 
                 // Check if there is an existing review
                 if (existingReview.Rows.Count > 0)
                 {
-
                     // Display existing rating stars
                     int stars = Convert.ToInt32(existingReview.Rows[0]["Stars"]);
                     DisplayExistingRating(stars);
@@ -50,8 +51,14 @@ namespace Business_Application_Project
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
+            // Retrieve the user's email from the session or wherever it's stored
+            string userEmail = ((User)Session["CurrentUser"]).Email;
+
+            // Retrieve the bike ID from the query string or wherever it's stored
+            string bikeId = Request.QueryString["bikeId"];
+
             // Retrieve the existing review data to compare with the updated data
-            DataTable existingReview = RatingReview.GetReviewsFromDatabase("3"); // Assuming bikeId is hardcoded as "11"
+            DataTable existingReview = RatingReview.GetReviewsFromDatabase(userEmail, bikeId);
 
             if (existingReview.Rows.Count > 0)
             {
@@ -71,16 +78,18 @@ namespace Business_Application_Project
                 }
 
                 // Update the review in the database
-                RatingReview.UpdateReviewInDatabase("yatsleo@gmail.com", "3", currentStars, comment);
+                RatingReview.UpdateReviewInDatabase(userEmail, bikeId, currentStars, comment);
 
-                // Redirect to a confirmation or another page
-                Response.Redirect("ProductDetails.aspx?ProdID=3");
+                // Redirect to ProductDetails page with the updated bike ID
+                Response.Redirect($"TestingReview.aspx");
             }
         }
 
+
+
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            Response.Redirect("ReviewsNav.aspx");
+            Response.Redirect("TestingReview.aspx");
         }
     }
 }

@@ -32,9 +32,28 @@ namespace Business_Application_Project
 
         protected void RateButton_Command(object sender, CommandEventArgs e)
         {
-            // Handle button click event (e.g., redirect to rate/edit page)
-            string historyId = e.CommandArgument.ToString();
-            // Perform necessary actions based on the button click
+            // Get the bike ID from the command argument
+            string bikeId = e.CommandArgument.ToString();
+
+            // Redirect to the appropriate page based on whether the user has reviewed the bike
+            Response.Redirect(RatingReview.HasUserReviewed(((User)Session["CurrentUser"]).Email, bikeId) ?
+                $"EditReview.aspx?bikeId={bikeId}" :
+                $"RateForm.aspx?bikeId={bikeId}");
         }
+
+        protected void btnView_Click(object sender, EventArgs e)
+        {
+            Button btnView = (Button)sender;
+            RepeaterItem item = (RepeaterItem)btnView.NamingContainer;
+            HiddenField hfBikeId = (HiddenField)item.FindControl("hf_BikeId");
+            string bikeId = hfBikeId.Value;
+
+            Response.Redirect($"ProductDetails.aspx?ProdId={bikeId}");
+        }
+
+
+
+
     }
 }
+

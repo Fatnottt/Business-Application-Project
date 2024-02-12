@@ -21,11 +21,8 @@ namespace Business_Application_Project
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            // Call JavaScript function to validate the form
-            string script = "validateStars();";
-            Page.ClientScript.RegisterStartupScript(this.GetType(), "ValidateForm", script, true);
-
             // Get the updated review data
+            string userEmail = ((User)Session["CurrentUser"]).Email;
             string starsValue = hdRating.Value;
             int stars;
             if (!int.TryParse(starsValue, out stars))
@@ -35,21 +32,27 @@ namespace Business_Application_Project
             }
 
             string comment = txtComment.Text;
-            string bikeId = "3"; // Replace this with the actual bike ID
+            string bikeId = Request.QueryString["bikeId"]; // Get the bike ID from the query string
 
             // Save rating to database
-            RatingReview.SaveRatingToDatabase(stars, comment, bikeId);
+            RatingReview.SaveRatingToDatabase(userEmail, stars, comment, bikeId);
+
+            // Update the review status for the current user
+            RatingReview.UpdateHasReviewedStatus(userEmail, bikeId);
 
             // Redirect to ReviewsNav page
-            Response.Redirect("ReviewsNav.aspx");
+            Response.Redirect("TestingReview.aspx");
         }
+
+
+
 
 
 
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            Response.Redirect("ReviewsNav.aspx");
+            Response.Redirect("TestingReview.aspx");
         }
     }
 }
