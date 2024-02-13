@@ -71,7 +71,7 @@
                                 </ul>
                             </li>
                             <li><a href="BikeListing.aspx">Lend Your Bike</a></li>
-                            <li><a href="ShoppingCart.aspx"><i class="bi bi-cart"></i></a></li>
+                            <li><a href="SeeCart.aspx"><i class="bi bi-cart"></i></a></li>
                         </ul>
                     </nav>
                     <!-- .navbar -->
