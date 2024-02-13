@@ -30,7 +30,7 @@
                                 <input class="form-check-input" type="checkbox" value="" id="RmbMeCheckbox" checked runat="server"/>
                                 <label class="form-check-label" for="RmbMeCheckbox">Remember me </label>
                             </div>
-                            <a href="ForgotPassword.aspx">Forgot password?</a>
+                            <a href="ForgotPassword.aspx" style="color: Black">Forgot password?</a>
                         </div>
 
                         <!-- Submit button -->

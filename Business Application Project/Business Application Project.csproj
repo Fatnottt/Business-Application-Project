@@ -329,6 +329,7 @@
     <Compile Include="AdminNavbar.Master.designer.cs">
       <DependentUpon>AdminNavbar.Master</DependentUpon>
     </Compile>
+    <Compile Include="Bike.cs" />
     <Compile Include="BikeListing.aspx.cs">
       <DependentUpon>BikeListing.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -30,14 +30,6 @@
     <!-- Template Main CSS File -->
     <link href="assets/css/main.css" rel="stylesheet">
 
-    <!-- =======================================================
-* Template Name: Impact
-* Updated: Jan 09 2024 with Bootstrap v5.3.2
-* Template URL: https://bootstrapmade.com/impact-bootstrap-business-website-template/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-======================================================== -->
-
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -57,7 +49,7 @@
             <header id="header" class="header d-flex align-items-center">
 
                 <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-                    <a href="index.html" class="logo d-flex align-items-center">
+                    <a href="Main.aspx" class="logo d-flex align-items-center">
                         <!-- Uncomment the line below if you also wish to use an image logo -->
                         <!-- <img src="assets/img/logo.png" alt=""> -->
                         <h1>Bikie<span>.</span></h1>
