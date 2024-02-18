@@ -76,7 +76,7 @@ namespace Business_Application_Project
             List<Dictionary<string, object>> dataList = new List<Dictionary<string, object>>();
 
             User currentUser = Session["CurrentUser"] as User;
-            string email = "yatsleo@gmail.com";
+            string email = currentUser.Email;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();

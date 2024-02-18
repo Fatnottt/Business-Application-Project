@@ -328,6 +328,7 @@
     <Content Include="Scripts\jquery-3.7.1.slim.min.js" />
     <Content Include="SignUp.aspx" />
     <Content Include="TestingReview.aspx" />
+    <Content Include="ThankYou.aspx" />
     <Content Include="Web.config" />
     <Content Include="WithNavbar.Master" />
   </ItemGroup>
@@ -657,6 +658,13 @@
     </Compile>
     <Compile Include="TestingReview.aspx.designer.cs">
       <DependentUpon>TestingReview.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ThankYou.aspx.cs">
+      <DependentUpon>ThankYou.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ThankYou.aspx.designer.cs">
+      <DependentUpon>ThankYou.aspx</DependentUpon>
     </Compile>
     <Compile Include="User.cs" />
     <Compile Include="WithNavbar.Master.cs">

@@ -65,7 +65,7 @@
                 onApprove: function (data, actions) {
                     return actions.order.capture().then(function (details) {
                         saveTransactionId(details.id);
-                        window.location.href = 'Main.aspx';
+                        window.location.href = 'ThankYou.aspx';
                     });
                 },
                 onCancel: function (data) {
