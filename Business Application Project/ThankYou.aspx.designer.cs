@@ -11,34 +11,25 @@ namespace Business_Application_Project
 {
 
 
-    public partial class AdminMain
+    public partial class ThankYou
     {
 
         /// <summary>
-        /// usersGridView control.
+        /// form2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView usersGridView;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form2;
 
         /// <summary>
-        /// GridViewTransactions control.
+        /// Button1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridViewTransactions;
-
-        /// <summary>
-        /// bikesGridView control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView bikesGridView;
+        protected global::System.Web.UI.WebControls.Button Button1;
     }
 }

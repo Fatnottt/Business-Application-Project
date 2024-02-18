@@ -370,7 +370,7 @@ namespace Business_Application_Project
         //to be linked to payment page
         protected void btnRentNow_Click(object sender, EventArgs e)
         {
-            Response.Redirect("PayDeposit.aspx");
+            Response.Redirect("Checkout.aspx");
         }
     }
 }

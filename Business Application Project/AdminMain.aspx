@@ -72,11 +72,21 @@
 
         </div>
 
-
         <!-- Content for Transactions -->
         <div id="transactions-content" style="display: none;">
-            <h2>Transactions Content</h2>
-            <p>This is where Transactions content will appear.</p>
+            <h2>Security Deposit Transactions</h2>
+            <asp:GridView ID="GridViewTransactions" runat="server" AutoGenerateColumns="False" CssClass="container" OnRowCommand="GridViewTransactions_RowCommand" DataKeyNames="PayPalTransactionID" OnRowDataBound="GridViewTransactions_RowDataBound">
+                <Columns>
+                    <asp:BoundField DataField="PayPalTransactionID" HeaderText="Transaction ID" SortExpression="PayPalTransactionID" />
+                    <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" />
+                    <asp:BoundField DataField="Status" HeaderText="Status" SortExpression="Status" />
+                    <asp:TemplateField HeaderText="Action">
+                        <ItemTemplate>
+                            <asp:Button ID="btnMarkRefunded" runat="server" Text="Mark as Refunded" CommandName="Refund" CommandArgument='<%# Container.DataItemIndex %>' Visible="false" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                </Columns>
+            </asp:GridView>
         </div>
 
         <!-- Content for Bikes -->
