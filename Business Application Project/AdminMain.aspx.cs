@@ -15,6 +15,7 @@ namespace Business_Application_Project
             if (!IsPostBack)
             {
                 BindUserData();
+                BindTransactionsGrid();
                 BindBikesData();
             }
         }
@@ -61,6 +62,19 @@ namespace Business_Application_Project
                     cmd.Parameters.AddWithValue("@Email", email);
                     con.Open();
                     cmd.ExecuteNonQuery();
+                }
+            }
+
+            // Update status in DepositTransactions table to "Pending Refund"
+            string updateStatusQuery = "UPDATE DepositTransactions SET Status = @Status WHERE Email = @Email";
+            using (SqlConnection connection = new SqlConnection(constr))
+            {
+                using (SqlCommand updateCmd = new SqlCommand(updateStatusQuery, connection))
+                {
+                    updateCmd.Parameters.AddWithValue("@Status", "Pending Refund");
+                    updateCmd.Parameters.AddWithValue("@Email", email);
+                    connection.Open();
+                    updateCmd.ExecuteNonQuery();
                 }
             }
 
