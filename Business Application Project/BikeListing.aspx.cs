@@ -246,7 +246,7 @@ namespace Business_Application_Project
                                 using (SqlCommand command = new SqlCommand(query, connection))
                                 {
                                     // Save the uploaded pictures in the "UserBikeImages" folder
-                                    string folderPath = Server.MapPath("~/Images/UserBikeImages");
+                                    string folderPath = Server.MapPath("/Images");   
 
                                     string picture1FileName = Path.GetFileName(FileUpload1.FileName);
                                     string picture2FileName = Path.GetFileName(FileUpload2.FileName);

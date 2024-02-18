@@ -87,21 +87,44 @@ namespace Business_Application_Project
             using (SqlConnection con = new SqlConnection(constr))
             {
                 con.Open();
-                using (SqlCommand cmd = new SqlCommand("UPDATE Users SET Email = @NewEmail, Name = @Name, IsDeleted = @IsDeleted WHERE Email = @OldEmail", con))
+                using (SqlTransaction transaction = con.BeginTransaction())
                 {
-                    cmd.Parameters.AddWithValue("@NewEmail", newEmail);
-                    cmd.Parameters.AddWithValue("@Name", newName);
-                    cmd.Parameters.AddWithValue("@IsDeleted", newIsDeleted);
-                    cmd.Parameters.AddWithValue("@OldEmail", oldEmail);
-                    cmd.ExecuteNonQuery();
-                }
+                    try
+                    {
+                        using (SqlCommand cmd = new SqlCommand("UPDATE Users SET Email = @NewEmail, Name = @Name, IsDeleted = @IsDeleted WHERE Email = @OldEmail", con, transaction))
+                        {
+                            // Update Users table
+                            cmd.Parameters.AddWithValue("@NewEmail", newEmail);
+                            cmd.Parameters.AddWithValue("@Name", newName);
+                            cmd.Parameters.AddWithValue("@IsDeleted", newIsDeleted);
+                            cmd.Parameters.AddWithValue("@OldEmail", oldEmail);
+                            cmd.ExecuteNonQuery();
+                        }
 
-                // Update the role
-                using (SqlCommand cmd = new SqlCommand("UPDATE UserRoles SET Role = @NewRole WHERE Email = @Email", con))
-                {
-                    cmd.Parameters.AddWithValue("@NewRole", newRole);
-                    cmd.Parameters.AddWithValue("@Email", newEmail);
-                    cmd.ExecuteNonQuery();
+                        // Update UserRoles table
+                        using (SqlCommand cmd = new SqlCommand("UPDATE UserRoles SET Email = @NewEmail, Role = @Role WHERE Email = @OldEmail", con, transaction))
+                        {
+                            cmd.Parameters.AddWithValue("@NewEmail", newEmail);
+                            cmd.Parameters.AddWithValue("@OldEmail", oldEmail);
+                            cmd.Parameters.AddWithValue("@Role", newRole);
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        // Update BikeInfo table
+                        using (SqlCommand cmd = new SqlCommand("UPDATE BikeInfo SET Email = @NewEmail WHERE Email = @OldEmail", con, transaction))
+                        {
+                            cmd.Parameters.AddWithValue("@NewEmail", newEmail);
+                            cmd.Parameters.AddWithValue("@OldEmail", oldEmail);
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        transaction.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        // Handle the exception
+                    }
                 }
             }
 
@@ -128,7 +151,6 @@ namespace Business_Application_Project
                     editButton.Attributes["onclick"] = $"editRow({rowIndex}); return false;";
                 }
             }
-
             if (e.Row.RowType == DataControlRowType.DataRow && (e.Row.RowState & DataControlRowState.Edit) != 0)
             {
                 // Show update and cancel buttons in edit mode
@@ -158,9 +180,6 @@ namespace Business_Application_Project
                 if (ddlEditIsDeleted != null)
                     ddlEditIsDeleted.SelectedValue = ((DataRowView)e.Row.DataItem)["IsDeleted"].ToString();
             }
-
-
-
             else if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 // Show edit and delete buttons in normal mode
@@ -182,8 +201,6 @@ namespace Business_Application_Project
                     deleteButton.Visible = true;
             }
         }
-
-
         protected void BindBikesData()
         {
             string connectionString = WebConfigurationManager.ConnectionStrings["BikieDB"].ConnectionString;
@@ -444,6 +461,5 @@ namespace Business_Application_Project
             string locationData = string.Format("{0}, {1}, {2}, {3}", bikeLocation, bikePostal, bikeLocality, bikePrincipleSubDivision);
             return locationData;
         }
-
     }
 }

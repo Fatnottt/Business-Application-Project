@@ -173,7 +173,6 @@
         function initializeAutocomplete() {
             // Get all TextBoxes with the editLocationTextBox class
             var textBoxes = document.querySelectorAll('.editLocationTextBox[data-editmode="true"]');
-
             textBoxes.forEach(function (textbox) {
                 var autocomplete = new google.maps.places.Autocomplete(textbox, { types: ['geocode'] });
                 autocomplete.addListener('place_changed', function () {
@@ -185,7 +184,6 @@
             });
         }
         google.maps.event.addDomListener(window, 'load', initializeAutocomplete);
-
     </script>
-
 </asp:Content>
+

@@ -60,126 +60,131 @@ namespace Business_Application_Project
                     lbl_ReviewCount.Text = "(0)";
                 }
             }
-
-
-
-            //protected void btn_Add_Click(object sender, EventArgs e)
-            //{
-            //    // Assuming hf_productId.Value contains the product ID
-            //    string shoppingcartID = hf_shoppingcartID.Value;
-            //    string productID = hf_productID.Value;
-
-            //    // Get the email from session
-            //    string email = "";
-            //    if (Session["CurrentUser"] != null)
-            //    {
-            //        User currentUser = (User)Session["CurrentUser"];
-            //        email = currentUser.Email;
-            //    }
-            //    else
-            //    {
-            //        // Handle the case where the user is not logged in
-            //        // Redirect or display an error message
-            //        return;
-            //    }
-
-            //    // Assuming txt_Date.Text contains the selected date
-            //    string selectedDateinStr = txt_Datein.Text;
-            //    string selectedDateoutStr = txt_Dateout.Text;
-
-            //    // Parse the selected date string to DateTime
-            //    DateTime selectedDatein;
-            //    DateTime selectedDateout;
-            //    if (DateTime.TryParse(selectedDateinStr, out selectedDatein) && DateTime.TryParse(selectedDateoutStr, out selectedDateout))
-            //    {
-            //        ShoppingCart cart = new ShoppingCart(shoppingcartID, productID, email, selectedDatein, selectedDateout);
-            //        int result = cart.ShoppingCartInsert();
-
-            //        if (result > 0)
-            //        {
-            //            Response.Write("<script>alert('Insert successful');</script>");
-            //        }
-            //        else
-            //        {
-            //            Response.Write("<script>alert('Insert NOT successful');</script>");
-            //        }
-            //    }
-            //    else
-            //    {
-            //        // Handle the case where date parsing fails
-            //        Response.Write("<script>alert('Invalid date format. Use YYYY-MM-DD.');</script>");
-            //    }
-
-            //    // Redirect to the SeeCart page
-            //    // Server.Transfer("SeeCart.aspx");
-            //}
-
-            //added validation for datein to be atleast 1 day after current date, and for dateout to be atleast 1 day after datein
-            protected void btn_Add_Click(object sender, EventArgs e)
-        {
-            // Assuming hf_productId.Value contains the product ID
-            string shoppingcartID = hf_shoppingcartID.Value;
-            string productID = hf_productID.Value;
-
-            // Get the email from session
-            string email = "";
-            if (Session["CurrentUser"] != null)
-            {
-                User currentUser = (User)Session["CurrentUser"];
-                email = currentUser.Email;
-            }
-            else
-            {
-                // Handle the case where the user is not logged in
-                // Redirect or display an error message
-                return;
-            }
-
-            // Assuming txt_Date.Text contains the selected date
-            string selectedDateinStr = txt_Datein.Text;
-            string selectedDateoutStr = txt_Dateout.Text;
-
-            // Parse the selected date string to DateTime
-            DateTime selectedDatein;
-            DateTime selectedDateout;
-            if (DateTime.TryParse(selectedDateinStr, out selectedDatein) && DateTime.TryParse(selectedDateoutStr, out selectedDateout))
-            {
-                // Validate selected dates
-                if (selectedDatein.Date <= DateTime.Now.Date)
-                {
-                    Response.Write("<script>alert('Start date must be at least 1 day after the current date.');</script>");
-                    return;
-                }
-                if (selectedDateout.Date <= selectedDatein.Date)
-                {
-                    Response.Write("<script>alert('End date must be at least 1 day after start date.');</script>");
-                    return;
-                }
-
-                ShoppingCart cart = new ShoppingCart(shoppingcartID, productID, email, selectedDatein, selectedDateout);
-                int result = cart.ShoppingCartInsert();
-
-                if (result > 0)
-                {
-                    Response.Write("<script>alert('Insert successful');</script>");
-                }
-                else
-                {
-                    Response.Write("<script>alert('Insert NOT successful');</script>");
-                }
-            }
-            else
-            {
-                // Handle the case where date parsing fails
-                Response.Write("<script>alert('Invalid date format. Use YYYY-MM-DD.');</script>");
-            }
-
-            // Redirect to the SeeCart page
-            // Server.Transfer("SeeCart.aspx");
         }
 
 
-        protected void btn_SeeCart_Click(object sender, EventArgs e)
+
+        //protected void btn_Add_Click(object sender, EventArgs e)
+        //{
+        //    // Assuming hf_productId.Value contains the product ID
+        //    string shoppingcartID = hf_shoppingcartID.Value;
+        //    string productID = hf_productID.Value;
+
+        //    // Get the email from session
+        //    string email = "";
+        //    if (Session["CurrentUser"] != null)
+        //    {
+        //        User currentUser = (User)Session["CurrentUser"];
+        //        email = currentUser.Email;
+        //    }
+        //    else
+        //    {
+        //        // Handle the case where the user is not logged in
+        //        // Redirect or display an error message
+        //        return;
+        //    }
+
+        //    // Assuming txt_Date.Text contains the selected date
+        //    string selectedDateinStr = txt_Datein.Text;
+        //    string selectedDateoutStr = txt_Dateout.Text;
+
+        //    // Parse the selected date string to DateTime
+        //    DateTime selectedDatein;
+        //    DateTime selectedDateout;
+        //    if (DateTime.TryParse(selectedDateinStr, out selectedDatein) && DateTime.TryParse(selectedDateoutStr, out selectedDateout))
+        //    {
+        //        ShoppingCart cart = new ShoppingCart(shoppingcartID, productID, email, selectedDatein, selectedDateout);
+        //        int result = cart.ShoppingCartInsert();
+
+        //        if (result > 0)
+        //        {
+        //            Response.Write("<script>alert('Insert successful');</script>");
+        //        }
+        //        else
+        //        {
+        //            Response.Write("<script>alert('Insert NOT successful');</script>");
+        //        }
+        //    }
+        //    else
+        //    {
+        //        // Handle the case where date parsing fails
+        //        Response.Write("<script>alert('Invalid date format. Use YYYY-MM-DD.');</script>");
+        //    }
+
+        //    // Redirect to the SeeCart page
+        //    // Server.Transfer("SeeCart.aspx");
+        //}
+
+        //added validation for datein to be atleast 1 day after current date, and for dateout to be atleast 1 day after datein
+        public void btn_Add_Click(object sender, EventArgs e)
+        {
+
+
+            {
+                // Assuming hf_productId.Value contains the product ID
+                string shoppingcartID = hf_shoppingcartID.Value;
+                string productID = hf_productID.Value;
+
+                // Get the email from session
+                string email = "";
+                if (Session["CurrentUser"] != null)
+                {
+                    User currentUser = (User)Session["CurrentUser"];
+                    email = currentUser.Email;
+                }
+                else
+                {
+                    // Handle the case where the user is not logged in
+                    // Redirect or display an error message
+                    return;
+                }
+
+                // Assuming txt_Date.Text contains the selected date
+                string selectedDateinStr = txt_Datein.Text;
+                string selectedDateoutStr = txt_Dateout.Text;
+
+                // Parse the selected date string to DateTime
+                DateTime selectedDatein;
+                DateTime selectedDateout;
+                if (DateTime.TryParse(selectedDateinStr, out selectedDatein) && DateTime.TryParse(selectedDateoutStr, out selectedDateout))
+                {
+                    // Validate selected dates
+                    if (selectedDatein.Date <= DateTime.Now.Date)
+                    {
+                        Response.Write("<script>alert('Start date must be at least 1 day after the current date.');</script>");
+                        return;
+                    }
+                    if (selectedDateout.Date <= selectedDatein.Date)
+                    {
+                        Response.Write("<script>alert('End date must be at least 1 day after start date.');</script>");
+                        return;
+                    }
+
+                    ShoppingCart cart = new ShoppingCart(shoppingcartID, productID, email, selectedDatein, selectedDateout);
+                    int result = cart.ShoppingCartInsert();
+
+                    if (result > 0)
+                    {
+                        Response.Write("<script>alert('Insert successful');</script>");
+                    }
+                    else
+                    {
+                        Response.Write("<script>alert('Insert NOT successful');</script>");
+                    }
+                }
+                else
+                {
+                    // Handle the case where date parsing fails
+                    Response.Write("<script>alert('Invalid date format. Use YYYY-MM-DD.');</script>");
+                }
+
+                // Redirect to the SeeCart page
+                // Server.Transfer("SeeCart.aspx");
+            }
+        }
+
+
+        public void btn_SeeCart_Click(object sender, EventArgs e)
         {
             //Re-direct page to “ProductView.aspx”
             Response.Redirect("SeeCart.aspx");
@@ -187,7 +192,7 @@ namespace Business_Application_Project
 
 
         // yuki's
-        protected string GetStarIcons(object stars)
+        public string GetStarIcons(object stars)
         {
             if (stars != null && stars != DBNull.Value)
             {

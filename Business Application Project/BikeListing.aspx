@@ -165,7 +165,7 @@
                     <asp:TextBox ID="PostalCode" runat="server" placeholder="Postal Code"></asp:TextBox>
                     <asp:TextBox ID="City" runat="server" placeholder="City"></asp:TextBox>
                     <asp:TextBox ID="Country" runat="server" placeholder="Country"></asp:TextBox>
-                    <asp:Button runat="server" Text="Find My Current Location" CssClass="btn btn-primary" OnClientClick="findMyLocation(); return false;" />
+                    <asp:Button runat="server" Text="Find My Location" CssClass="btn btn-primary" OnClientClick="findMyLocation(); return false;" />
                 </div>
                 <div class="container">
                     <asp:Label ID="errorMessageLabel4" runat="server" Text="" ForeColor="Red"></asp:Label>

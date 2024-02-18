@@ -124,7 +124,7 @@ namespace Business_Application_Project
                         // Set user information in the session
                         Session["CurrentUser"] = currentUser;
                         // Optionally, you can redirect the user to a confirmation page
-                        Response.Redirect("PayDeposit.aspx");
+                        Response.Redirect("Main.aspx");
                     }
                     else
                     {
